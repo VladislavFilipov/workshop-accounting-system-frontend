@@ -26,6 +26,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
     assetModuleFilename: "assets/[hash][ext][query]",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -80,6 +81,7 @@ module.exports = {
   ],
   devServer: {
     static: "./dist",
+    historyApiFallback: true,
   },
   optimization: {
     nodeEnv: DEVELOPMENT,
