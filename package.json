@@ -4,8 +4,8 @@
   "description": "Система учета производства в цехах",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --open --hot",
-    "build": "webpack --mode=production",
+    "start": "webpack-dev-server --env=mode=development --open --hot",
+    "build": "webpack --env=mode=production",
     "server": "json-server -w db.json -p 5000"
   },
   "keywords": [],
