@@ -8,7 +8,7 @@ const UserInfo: FC = () => {
 
   return (
     <div>
-      <div>{formatUserName(user)}</div>
+      <div>{formatUserName(user, false)}</div>
     </div>
   );
 };

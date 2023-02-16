@@ -1,6 +1,9 @@
 import { IUser } from "@src/types/user";
 
-export const formatUserName = ({ lastName, name, middleName }: IUser) =>
-  lastName && name
-    ? `${lastName} ${name[0]}.${middleName ? middleName[0] + "." : ""}`
+export const formatUserName = (
+  { first_name, last_name }: IUser,
+  isFull: boolean = true,
+): string =>
+  last_name && first_name
+    ? `${last_name} ${isFull ? first_name : first_name[0] + "."}`
     : "Имя не указано";

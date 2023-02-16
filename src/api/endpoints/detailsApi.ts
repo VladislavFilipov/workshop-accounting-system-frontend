@@ -1,14 +1,14 @@
 import { GET } from "@src/const/httpMethods";
-import { IUser } from "@src/types/user";
+import { IDetail } from "@src/types/detail";
 
-import request from "./request";
+import request from "../request";
 
-const url = "/users";
-const usersApi = {
-  getAll: async () =>
-    request<IUser[]>({
+const baseUrl = "/details";
+const detailsApi = {
+  getByToken: async (token: string) =>
+    request<IDetail>({
       method: GET,
-      url,
+      url: `${baseUrl}/token?data=${token}`,
     }),
   // editHabit: async (habit: IHabit) =>
   //   request<IHabit>({
@@ -22,4 +22,4 @@ const usersApi = {
   // })
 };
 
-export default usersApi;
+export default detailsApi;

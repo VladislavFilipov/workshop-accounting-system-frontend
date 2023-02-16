@@ -28,8 +28,14 @@ const UsersPage: FC<IUsersPageProps> = () => {
   return (
     <ul>
       {users?.map((user) => (
-        <li key={user.id} onClick={() => login(user)}>
-          {formatUserName(user)}
+        <li
+          key={user.id}
+          onClick={() => {
+            login(user);
+            navigate("/");
+          }}
+        >
+          {formatUserName(user, false)}
         </li>
       ))}
       {/* <button
