@@ -57,6 +57,7 @@ const ScannerPage = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(DETAILS_CRAFT_KEY);
+        queryClient.invalidateQueries(DETAILS_CRAFT_KEY + "list");
       },
     },
   );
@@ -73,14 +74,14 @@ const ScannerPage = () => {
     <div>
       <textarea ref={inputRef} autoFocus rows={4} cols={50} />
       <br />
-      {/* <button
+      <button
         onClick={() => {
           if (inputRef && inputRef.current)
             inputRef.current.value = `item\n7a103371-7548-48a5-aa3a-efd289472ed4`;
         }}
       >
         Test fill
-      </button> */}
+      </button>
 
       {/* {inputRef?.current?.value && ( */}
       <button onClick={handleGetDataClick}>Получить данные</button>
