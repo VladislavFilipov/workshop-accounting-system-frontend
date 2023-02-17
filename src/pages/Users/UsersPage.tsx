@@ -23,7 +23,7 @@ const UsersPage: FC<IUsersPageProps> = () => {
   const login = useAuthStore((state) => state.login);
 
   if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div>{(error as AxiosError).message}</div>;
+  if (error) return <div>{(error as Error).message}</div>;
 
   return (
     <ul>

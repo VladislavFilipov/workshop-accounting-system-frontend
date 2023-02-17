@@ -20,7 +20,7 @@ const ScannerPage = () => {
 
   return (
     <div>
-      <textarea ref={inputRef} />
+      <textarea ref={inputRef} autoFocus />
       <br />
       {/* <button
         onClick={() => {
@@ -32,7 +32,7 @@ const ScannerPage = () => {
       </button> */}
 
       {/* {inputRef?.current?.value && ( */}
-      <button onClick={handleGetDataClick}>Get data by token</button>
+      <button onClick={handleGetDataClick}>Получить данные</button>
       {/* )} */}
 
       {error ? (
