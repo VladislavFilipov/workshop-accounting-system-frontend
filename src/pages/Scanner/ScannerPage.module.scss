@@ -1,0 +1,14 @@
+.stageItem {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  color: gray;
+  margin-bottom: 10px;
+  width: max-content;
+
+  &.selected {
+    // color: rgba(0, 128, 0, 0.34);
+    color: green;
+    background-color: rgba(0, 128, 0, 0.182);
+  }
+}

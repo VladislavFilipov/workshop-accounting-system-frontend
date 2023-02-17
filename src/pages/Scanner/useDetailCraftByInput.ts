@@ -3,10 +3,13 @@ import { useQuery } from "react-query";
 
 import Api from "@src/api";
 import { DETAILS_CRAFT_KEY } from "@src/const/queryKeys";
+import { IDetailCraft } from "@src/types/detailCraft";
 
 type TTypeOfScanning = "item" | "stamp";
 
-const useDetailCraftByInput = () => {
+const useDetailCraftByInput = (
+  onSuccess?: (detailCraft: IDetailCraft) => void,
+) => {
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const [typeOfScanning, setTypeOfScanning] = useState<
     TTypeOfScanning | undefined
@@ -37,6 +40,7 @@ const useDetailCraftByInput = () => {
     },
     {
       enabled: false,
+      // onSuccess,
     },
   );
 

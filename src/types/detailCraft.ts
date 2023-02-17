@@ -1,3 +1,5 @@
+import { IDetail } from "@src/types/detail";
+
 export type TDetailCraftStatus = "WAITING" | "WORKING" | "COMPLETE";
 
 export interface IDetailCraft {
@@ -9,43 +11,7 @@ export interface IDetailCraft {
     name: string;
     description: string;
   };
-  details_id: {
-    token: string;
-    techNumber: string;
-    amount: number;
-    status: {};
-    userId: {
-      id: number;
-      username: string;
-      password: string;
-      note: string;
-      token: string;
-      enterpriseId: number;
-      status: {};
-      role: {};
-      firstName: string;
-      lastName: string;
-      createDate: string;
-      enterpriseLocationId: null | string;
-      jobs: [
-        {
-          id: number;
-          name: string;
-        },
-        {
-          id: number;
-          name: string;
-        },
-      ];
-    };
-    enterpriseLocationId: {
-      id: number;
-      description: string;
-      address: string;
-      locationName: string;
-      mailIndex: string;
-    };
-  };
+  details_id: IDetail;
   location_id: {
     id: 6;
     description: string;
