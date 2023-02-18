@@ -12,7 +12,10 @@ const AppLayout = () => {
   return (
     <div className={style.appLayout}>
       <Header />
-      <Outlet />
+      <div className={style.content}>
+        <Outlet />
+      </div>
+
       {/* <footer>footer</footer> */}
     </div>
   );

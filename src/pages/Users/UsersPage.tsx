@@ -9,6 +9,8 @@ import { USERS_KEY } from "@src/const/queryKeys";
 import useAuthStore from "@src/store/auth";
 import { formatUserName } from "@src/utils/userFunctions";
 
+import styles from "./UsersPage.module.scss";
+
 interface IUsersPageProps {}
 
 const UsersPage: FC<IUsersPageProps> = () => {
@@ -26,17 +28,20 @@ const UsersPage: FC<IUsersPageProps> = () => {
   if (error) return <div>{(error as Error).message}</div>;
 
   return (
-    <ul>
+    <div className={styles.usersPage}>
+      <div className={styles.titleMini}>НАЧАЛО РАБОТЫ</div>
+      <div className={styles.subtitle}>Пожалуйста, выберите пользователя</div>
       {users?.map((user) => (
-        <li
+        <div
+          className={styles.linkButton}
           key={user.id}
           onClick={() => {
             login(user);
             navigate("/");
           }}
         >
-          {formatUserName(user, false)}
-        </li>
+          <div className={styles.text}>{formatUserName(user, true)}</div>
+        </div>
       ))}
       {/* <button
         onClick={() => {
@@ -46,7 +51,7 @@ const UsersPage: FC<IUsersPageProps> = () => {
       >
         Auth
       </button> */}
-    </ul>
+    </div>
   );
 };
 

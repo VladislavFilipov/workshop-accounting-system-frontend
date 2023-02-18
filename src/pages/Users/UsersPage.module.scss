@@ -1,0 +1,12 @@
+@import "../../styles/mixins";
+
+.usersPage {
+  @include pageStyle();
+
+  .linkButton {
+    @include linkButtonStyle();
+    background-color: #44475aff;
+    padding: 20px 30px;
+    margin-bottom: 20px;
+  }
+}

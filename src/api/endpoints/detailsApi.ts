@@ -1,5 +1,5 @@
-import { GET } from "@src/const/httpMethods";
-import { IDetail } from "@src/types/detail";
+import { GET, PATCH } from "@src/const/httpMethods";
+import { IDetail, TDetailStatus } from "@src/types/detail";
 
 import request from "../request";
 
@@ -10,12 +10,12 @@ const detailsApi = {
       method: GET,
       url: `${baseUrl}/token?data=${token}`,
     }),
-  // editHabit: async (habit: IHabit) =>
-  //   request<IHabit>({
-  //     method: PUT,
-  //     url: `${url}/${habit.id}`,
-  //     data: habit
-  //   })
+  updateDetailStatus: async (detail: { status: TDetailStatus }, id: number) =>
+    request<IDetail>({
+      method: PATCH,
+      url: `${baseUrl}/detail?id=${id}`,
+      data: detail,
+    }),
   // .then((res) => {
   //   console.log("getAll", res);
   //   return res.filter((item) => item.id > 0);

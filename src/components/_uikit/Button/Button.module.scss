@@ -1,0 +1,33 @@
+@import "../../../styles/mixins";
+
+.button {
+  border: none;
+  outline: none;
+  background-color: $black;
+  border-radius: 15px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  cursor: pointer;
+
+  &.confirm {
+    background-color: $success-color;
+
+    &:hover {
+      background-color: darken($success-color, 10%);
+    }
+  }
+
+  &.danger {
+    background-color: $danger-color;
+
+    &:hover {
+      background-color: darken($success-color, 10%);
+    }
+  }
+
+  .text {
+    @include setFont(24px, 600, 24px, white);
+  }
+}

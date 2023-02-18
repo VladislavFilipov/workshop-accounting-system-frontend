@@ -1,14 +1,134 @@
-.stageItem {
-  display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-  color: gray;
-  margin-bottom: 10px;
-  width: max-content;
+@use "sass:map";
+@import "../../styles/mixins";
 
-  &.selected {
-    // color: rgba(0, 128, 0, 0.34);
-    color: green;
-    background-color: rgba(0, 128, 0, 0.182);
+$statuses: (
+  "WAITING": $detail-craft-waiting,
+  "WORKING": $detail-craft-working,
+  "COMPLETE": $detail-craft-complete,
+);
+$selectors: map-keys($statuses);
+
+@mixin setType($selector) {
+  &.#{$selector} {
+    $color: map-get($statuses, $selector);
+
+    background-color: lighten($color, 30%);
+    // border: 5px solid $color;
+    .stageStatus {
+      background-color: $color;
+      color: white;
+    }
+  }
+}
+
+.scannerPage {
+  @include pageStyle();
+
+  .inputToken {
+    border: 5px solid $black;
+    border-radius: 10px;
+    font-size: 30px;
+    width: 800px;
+    height: 150px;
+    margin-bottom: 30px;
+    padding: 20px;
+  }
+
+  .titleH2 {
+    @include setFont(40px, 600, 40px);
+    margin-bottom: 20px;
+  }
+
+  .detailInfo {
+    border: 5px solid $black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px 0;
+
+    .titleH2 {
+      margin-left: 192px;
+    }
+
+    .line {
+      display: grid;
+      grid-template-columns: 172px 1fr;
+      gap: 20px;
+      margin-bottom: 15px;
+
+      @include setFont(24px, 600, 24px);
+
+      span {
+        color: gray;
+        justify-self: flex-end;
+      }
+    }
+  }
+
+  .stages {
+    margin-top: 30px;
+    .stageItemWrap {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 20px;
+
+      button {
+        margin-top: 10px;
+      }
+    }
+    .stageItem {
+      // display: grid;
+      // grid-template-columns: 240px 1fr;
+      gap: 20px;
+
+      // width: max-content;
+
+      border-radius: 10px;
+      width: 600px;
+      max-width: 600px;
+      padding: 10px;
+
+      .stageStatus {
+        padding: 10px 10px 12px;
+        width: max-content;
+        margin-bottom: 10px;
+        text-align: center;
+        height: max-content;
+        border-radius: 10px;
+        @include setFont(24px, 600, 24px);
+      }
+
+      .stageName {
+        @include setFont(28px, 600, 28px, rgb(188, 187, 187));
+      }
+
+      .stageDesc {
+        @include setFont(24px, 500, 24px, rgb(188, 187, 187));
+      }
+
+      @for $i from 1 through length($selectors) {
+        @include setType(nth($selectors, $i));
+      }
+
+      // &.WAITING {
+      //   background-color: $detail-craft-waiting;
+      // }
+      // &.WORKING {
+      //   background-color: $detail-craft-working;
+      // }
+      // &.COMPLETE {
+      //   background-color: $detail-craft-complete;
+      // }
+
+      &.selected {
+        .stageName,
+        .stageDesc {
+          color: $black;
+        }
+
+        // color: rgba(0, 128, 0, 0.34);
+        // border: 5px solid $black;
+        //
+      }
+    }
   }
 }

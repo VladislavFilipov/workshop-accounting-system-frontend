@@ -36,7 +36,7 @@ module.exports = (env) => {
         {
           test: /\.s?css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            mode === PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader",
             "postcss-loader",
             "sass-loader",

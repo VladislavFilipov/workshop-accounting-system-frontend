@@ -3,15 +3,27 @@ import { JSONTree } from "react-json-tree";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import Api from "@src/api";
+import Button from "@src/components/_uikit/Button/Button";
+import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import { DETAILS_CRAFT_KEY } from "@src/const/queryKeys";
+import { formatDetailCraftsList } from "@src/pages/Scanner/functions/formatDetailCraftsList";
+import {
+  detailCraftStatuses,
+  detailStatuses,
+} from "@src/pages/Scanner/objects";
 import useDetailCraftByInput from "@src/pages/Scanner/useDetailCraftByInput";
-import { IDetailCraft } from "@src/types/detailCraft";
+import { TDetailStatus } from "@src/types/detail";
+import { IDetailCraft, TDetailCraftStatus } from "@src/types/detailCraft";
 import { sortArrayOfObjects } from "@src/utils/sort/sortArrayOfObjects";
 
 import styles from "./ScannerPage.module.scss";
 
 const ScannerPage = () => {
   const queryClient = useQueryClient();
+
+  const [canUpdate, setCanUpdate] = useState<boolean>(false);
+  const [canDetailComplete, setCanDetailComplete] = useState<boolean>(false);
+
   const {
     detailCraft,
     getDetailCraft,
@@ -24,7 +36,7 @@ const ScannerPage = () => {
   const {
     data: detailCraftsList,
     error: listError,
-    refetch: getDetailCraftsList,
+    // refetch: getDetailCraftsList,
   } = useQuery(
     [DETAILS_CRAFT_KEY + "list", detailCraft],
     async () => {
@@ -32,12 +44,16 @@ const ScannerPage = () => {
       const detailId: number | undefined = detailCraft?.details_id.id;
       if (!detailId) throw new Error("Error");
 
-      const response: IDetailCraft[] = sortArrayOfObjects(
-        await Api.detailsCraftApi.getByDetailId(detailId),
-        "stage_number",
-        "number",
-      );
-      return response;
+      const { sortedList, canUpdate, canDetailComplete } =
+        formatDetailCraftsList(
+          await Api.detailsCraftApi.getByDetailId(detailId),
+          detailCraft as IDetailCraft,
+        );
+
+      setCanUpdate(canUpdate);
+      setCanDetailComplete(canDetailComplete);
+
+      return sortedList;
     },
     {
       enabled: !!detailCraft,
@@ -46,113 +62,179 @@ const ScannerPage = () => {
 
   const { mutateAsync: updateDetailCraft, error: updateError } = useMutation(
     [DETAILS_CRAFT_KEY + "list", detailCraft],
-    (id: number) =>
-      Api.detailsCraftApi.update(
+    (detailCraft: IDetailCraft) => {
+      const status = detailCraftStatuses[detailCraft.status].next;
+
+      if (!status) {
+        throw new Error("Процесс производства уже завершен.");
+      }
+      return Api.detailsCraftApi.update(
         {
-          status: "WORKING",
-          // location_id:
+          status,
         },
-        id,
-      ),
+        detailCraft.id,
+      );
+    },
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(DETAILS_CRAFT_KEY);
+      onSuccess: async () => {
+        if (detailCraft?.details_id.status === "INACTIVE")
+          await updateDetailStatus({ status: "ASSEMBLY", detailCraft });
+        getDetailCraft();
+        // queryClient.invalidateQueries(DETAILS_CRAFT_KEY);
         queryClient.invalidateQueries(DETAILS_CRAFT_KEY + "list");
       },
     },
   );
 
+  const { mutateAsync: updateDetailStatus, error: updateDetailError } =
+    useMutation(
+      [DETAILS_CRAFT_KEY + "detail", detailCraft],
+      ({
+        status,
+        detailCraft,
+      }: {
+        status: TDetailStatus;
+        detailCraft: IDetailCraft;
+      }) =>
+        Api.detailsApi.updateDetailStatus(
+          {
+            status,
+          },
+          detailCraft.details_id.id,
+        ),
+      {
+        onSuccess: () => {
+          getDetailCraft();
+          // queryClient.invalidateQueries(DETAILS_CRAFT_KEY);
+        },
+      },
+    );
+
   const handleGetDataClick = () => {
     getDetailCraft();
   };
 
-  const handleUpdateClick = () => {
-    if (detailCraft) updateDetailCraft(detailCraft.id);
+  const handleUpdateClick = (detailCraft: IDetailCraft) => {
+    updateDetailCraft(detailCraft);
+  };
+
+  const handleDetailComplete = () => {
+    if (detailCraft) updateDetailStatus({ status: "COMPLETE", detailCraft });
   };
 
   return (
-    <div>
-      <textarea ref={inputRef} autoFocus rows={4} cols={50} />
-      <br />
-      <button
+    <div className={styles.scannerPage}>
+      <div className={styles.titleMini}>УЧЕТ РАБОТ</div>
+      <div className={styles.subtitle}>
+        Отсканируйте QR-код этапа производства
+      </div>
+      <textarea className={styles.inputToken} ref={inputRef} autoFocus />
+
+      {/* <Button
+        text="Test fill"
         onClick={() => {
           if (inputRef && inputRef.current)
-            inputRef.current.value = `item\n7a103371-7548-48a5-aa3a-efd289472ed4`;
+            // inputRef.current.value = `item\n7a103371-7548-48a5-aa3a-efd289472ed4`;
+            inputRef.current.value = `item\n210b91bd-55da-4166-9e18-68c7258da871`;
         }}
-      >
-        Test fill
-      </button>
-
-      {/* {inputRef?.current?.value && ( */}
-      <button onClick={handleGetDataClick}>Получить данные</button>
-      {/* )} */}
+      /> */}
+      <Button text="Получить данные" onClick={handleGetDataClick} />
 
       {error ? (
-        <p>{(error as Error).message}</p>
+        <StatusLabel text={(error as Error).message} type="error" />
       ) : (
         <>
-          {typeOfScanning && <p>Тип: {typeOfScanning}</p>}
-          <br />
+          {/* {typeOfScanning && <p>Тип: {typeOfScanning}</p>} */}
+
           {detailCraft && (
-            <div>
-              <h2>Деталь</h2>
-              <div>
-                <b>Номер:</b> {detailCraft.details_id.tech_number}
+            <div className={styles.detailInfo}>
+              <h2 className={styles.titleH2}>Деталь</h2>
+              <div className={styles.line}>
+                <span>Номер</span> {detailCraft.details_id.tech_number}
               </div>
-              <div>
-                <b>Название:</b> {detailCraft.details_id.name}
+              <div className={styles.line}>
+                <span>Название</span> {detailCraft.details_id.name}
               </div>
-              <div>
-                <b>Описание:</b> {detailCraft.details_id.description}
+              <div className={styles.line}>
+                <span>Описание</span> {detailCraft.details_id.description}
               </div>
-              <div>
-                <b>Количество:</b> {detailCraft.details_id.amount}
+              <div className={styles.line}>
+                <span>Количество</span> {detailCraft.details_id.amount}
               </div>
-              <div>
-                <b>Статус:</b> {detailCraft.details_id.status}
+              <div className={styles.line}>
+                <span>Статус</span>{" "}
+                {detailStatuses[detailCraft.details_id.status]?.name}
               </div>
             </div>
           )}
-          <br />
+
+          {canDetailComplete &&
+            detailCraft?.details_id.status !== "COMPLETE" && (
+              <Button
+                text="Завершить деталь"
+                type="confirm"
+                onClick={() => handleDetailComplete()}
+              />
+            )}
 
           {detailCraftsList && (
-            <>
-              <h2>Этапы</h2>
+            <div className={styles.stages}>
+              <h2 className={styles.titleH2}>Этапы производства</h2>
               <ul>
                 {detailCraftsList.map((detilCraftItem) => (
-                  <li
-                    key={detilCraftItem.id}
-                    className={`${
-                      detilCraftItem.stage_number === detailCraft?.stage_number
-                        ? styles.selected
-                        : ""
-                    } ${styles.stageItem}`}
-                  >
-                    <div>
-                      <div>{detilCraftItem?.stage_id.name}</div>
-                      <div>{detilCraftItem?.stage_id.description}</div>
+                  <li className={styles.stageItemWrap}>
+                    <div
+                      key={detilCraftItem.id}
+                      className={`${styles.stageItem} ${
+                        styles[detilCraftItem.status]
+                      } ${
+                        detilCraftItem.id === detailCraft?.id
+                          ? styles.selected
+                          : ""
+                      }`}
+                    >
+                      <div className={styles.stageStatus}>
+                        {detailCraftStatuses[detilCraftItem.status].name}
+                      </div>
+                      <div>
+                        <div className={styles.stageName}>
+                          {detilCraftItem?.stage_id.name}
+                        </div>
+                        <div className={styles.stageDesc}>
+                          {detilCraftItem?.stage_id.description}
+                        </div>
+                      </div>
                     </div>
-                    <div>{detilCraftItem?.status}</div>
+
+                    {detilCraftItem.id === detailCraft?.id && canUpdate && (
+                      <Button
+                        text={
+                          detailCraftStatuses[detilCraftItem.status].buttonText
+                        }
+                        type="confirm"
+                        onClick={() => handleUpdateClick(detilCraftItem)}
+                      />
+                      // <div>
+                      //   <button
+                      //     onClick={() => handleUpdateClick(detilCraftItem)}
+                      //   >
+                      //     Учет
+                      //   </button>
+                      // </div>
+                    )}
                   </li>
                 ))}
               </ul>
-              {listError && <div>{(listError as Error).message}</div>}
-            </>
+
+              {listError && (
+                <StatusLabel text={(listError as Error).message} type="error" />
+              )}
+            </div>
           )}
-          <br />
 
-          {detailCraft && <button onClick={handleUpdateClick}>Учет</button>}
-          {updateError && <div>{(updateError as Error)?.message}</div>}
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          {/* <p>{detailCraft && JSON.stringify(detailCraft)}</p> */}
-          {/* <p>{detailCraft && <JSONTree data={detailCraft} />}</p> */}
+          {updateError && (
+            <StatusLabel text={(updateError as Error).message} type="error" />
+          )}
         </>
       )}
     </div>

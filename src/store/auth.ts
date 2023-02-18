@@ -5,7 +5,7 @@ import { persist } from "zustand/middleware";
 import { IUser } from "@src/types/user";
 
 interface IAuthStore {
-  user: IUser;
+  user: IUser | undefined;
   isAuthorized: boolean;
   // accessToken: string;
   // refreshToken: string;
@@ -17,19 +17,19 @@ interface IAuthStore {
   logout: () => void;
 }
 
-const initialUser: IUser = {
-  id: undefined,
-  lastName: "",
-  name: "",
-  middleName: "",
-  role: "",
-  jobs: [],
-};
+// const initialUser: IUser = {
+//   id: undefined,
+//   lastName: "",
+//   name: "",
+//   middleName: "",
+//   role: "",
+//   jobs: [],
+// };
 
 const useAuthStore = create<IAuthStore>()(
   persist(
     (set) => ({
-      user: initialUser,
+      user: undefined,
       isAuthorized: false,
       error: "",
       isLoading: false,
@@ -45,7 +45,7 @@ const useAuthStore = create<IAuthStore>()(
       },
       logout: () => {
         set({
-          user: initialUser,
+          user: undefined,
           isAuthorized: false,
         });
       },

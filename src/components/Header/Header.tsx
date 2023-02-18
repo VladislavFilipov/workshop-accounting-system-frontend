@@ -5,11 +5,12 @@ import useAuthStore from "@src/store/auth";
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  const logout = useAuthStore((state) => state.logout);
-  const isAuthorized = useAuthStore((state) => state.isAuthorized);
   return (
     <div className={styles.header}>
-      {isAuthorized && <button onClick={logout}>Сменить пользователя</button>}
+      <div>
+        {/* {isAuthorized && <button onClick={logout}>Сменить пользователя</button>} */}
+      </div>
+
       <UserInfo />
     </div>
   );
