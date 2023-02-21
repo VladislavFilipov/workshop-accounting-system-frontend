@@ -1,8 +1,7 @@
-import { TDetailStatus } from "@src/types/detail";
 import { TDetailCraftStatus } from "@src/types/detailCraft";
 
-export const detailCraftStatuses: {
-  [key: string]: {
+const detailCraftStatuses: {
+  [key in TDetailCraftStatus]: {
     next: TDetailCraftStatus | null;
     name: string;
     buttonText: string;
@@ -17,12 +16,4 @@ export const detailCraftStatuses: {
   COMPLETE: { next: null, name: "Завершено", buttonText: "" },
 };
 
-export const detailStatuses: {
-  [key: string]: { name: string };
-} = {
-  INACTIVE: { name: "Неактивна" },
-  WAITING: { name: "Ожидание" },
-  ASSEMBLY: { name: "В производстве" },
-  DEFECT: { name: "Дефект" },
-  COMPLETE: { name: "Завершена" },
-};
+export default detailCraftStatuses;

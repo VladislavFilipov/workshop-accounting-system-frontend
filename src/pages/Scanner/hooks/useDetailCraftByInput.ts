@@ -7,9 +7,7 @@ import { IDetailCraft } from "@src/types/detailCraft";
 
 type TTypeOfScanning = "item" | "stamp";
 
-const useDetailCraftByInput = (
-  onSuccess?: (detailCraft: IDetailCraft) => void,
-) => {
+const useDetailCraftByInput = () => {
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const [typeOfScanning, setTypeOfScanning] = useState<
     TTypeOfScanning | undefined

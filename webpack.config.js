@@ -37,7 +37,18 @@ module.exports = (env) => {
           test: /\.s?css$/,
           use: [
             mode === PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
-            "css-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName:
+                    mode === PRODUCTION
+                      ? "[hash:base64]"
+                      : "[local]_[hash:base64]",
+                  localIdentHashDigestLength: 7,
+                },
+              },
+            },
             "postcss-loader",
             "sass-loader",
           ],

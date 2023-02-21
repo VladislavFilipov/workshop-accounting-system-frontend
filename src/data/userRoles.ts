@@ -1,5 +1,3 @@
-import { TUserRole } from "@src/types/user";
-
 const userRoles = {
   ADMIN: "Администратор",
   MODERATOR: "Модератор",

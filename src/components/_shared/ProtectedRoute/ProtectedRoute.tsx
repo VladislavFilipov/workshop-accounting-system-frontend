@@ -1,11 +1,5 @@
 import { FC } from "react";
-import {
-  Navigate,
-  Outlet,
-  Route,
-  RouteProps,
-  useLocation,
-} from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import useAuthStore from "@src/store/auth";
 

@@ -1,13 +1,7 @@
 @import "../../styles/mixins";
 
 .menu {
-  @include pageStyle();
-
   .list {
     flex-grow: 1;
-  }
-
-  .linkButton {
-    @include linkButtonStyle();
   }
 }

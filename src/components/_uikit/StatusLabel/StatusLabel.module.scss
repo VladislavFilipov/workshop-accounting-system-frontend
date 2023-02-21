@@ -9,13 +9,13 @@ $types: (
 $selectors: map-keys($types);
 
 @mixin setType($selector) {
-  &_#{$selector} {
+  &.#{$selector} {
     @include setFont(24px, 600, 24px, map-get($types, $selector));
     background-color: lighten(map-get($types, $selector), 40%);
   }
 }
 
-.status-label {
+.statusLabel {
   padding: 7px 15px;
   border-radius: 4px;
   height: max-content;
@@ -25,7 +25,7 @@ $selectors: map-keys($types);
     @include setType(nth($selectors, $i));
   }
 
-  &__status {
+  .status {
     font-weight: 600 !important;
     margin-right: 15px;
   }
