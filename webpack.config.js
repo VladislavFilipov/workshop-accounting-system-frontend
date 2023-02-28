@@ -9,7 +9,6 @@ const PRODUCTION = "production",
   DEVELOPMENT = "development";
 
 module.exports = (env) => {
-  console.log("env", env);
   let mode = DEVELOPMENT;
   let target = "web";
 
@@ -22,7 +21,7 @@ module.exports = (env) => {
     mode,
     target,
     entry: "./src/index.tsx",
-    devtool: "source-map",
+    devtool: mode === DEVELOPMENT ? "source-map" : false,
     output: {
       filename: "[name].bundle.js",
       chunkFilename: "[name].bundle.js",
@@ -36,7 +35,7 @@ module.exports = (env) => {
         {
           test: /\.s?css$/,
           use: [
-            mode === PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
+            MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
@@ -51,6 +50,15 @@ module.exports = (env) => {
             },
             "postcss-loader",
             "sass-loader",
+            // {
+            //   loader: "sass-loader",
+            //   options: {
+            //     sassOptions: {
+            //       indentWidth: 2,
+            //       includePaths: [path.resolve(__dirname, "./src")],
+            //     },
+            //   },
+            // },
           ],
         },
         {

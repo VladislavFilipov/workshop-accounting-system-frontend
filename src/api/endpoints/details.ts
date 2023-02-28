@@ -1,10 +1,10 @@
+import request from "../request";
+
 import { GET, PATCH } from "@src/const/httpMethods";
 import { IDetail, TDetailStatus } from "@src/types/detail";
 
-import request from "../request";
-
 const baseUrl = "/details";
-const detailsApi = {
+const details = {
   getByToken: async (token: string) =>
     request<IDetail>({
       method: GET,
@@ -22,4 +22,4 @@ const detailsApi = {
   // })
 };
 
-export default detailsApi;
+export default details;

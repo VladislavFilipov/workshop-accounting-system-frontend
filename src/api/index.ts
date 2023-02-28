@@ -1,13 +1,13 @@
-import detailsApi from "@src/api/endpoints/detailsApi";
-import detailsCraftApi from "@src/api/endpoints/detailsCraftApi";
-import itemsApi from "@src/api/endpoints/itemsApi";
-import usersApi from "@src/api/endpoints/usersApi";
+import detailCraft from "@src/api/endpoints/detailCraft";
+import details from "@src/api/endpoints/details";
+import items from "@src/api/endpoints/items";
+import users from "@src/api/endpoints/users";
 
 const Api = {
-  usersApi,
-  detailsCraftApi,
-  itemsApi,
-  detailsApi,
+  users,
+  detailCraft,
+  items,
+  details,
 };
 
 export default Api;

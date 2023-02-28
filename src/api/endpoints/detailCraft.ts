@@ -1,11 +1,11 @@
+import request from "../request";
+
 import { GET, PATCH } from "@src/const/httpMethods";
 import { IDetailCraft, TDetailCraftStatus } from "@src/types/detailCraft";
 import { IUser } from "@src/types/user";
 
-import request from "../request";
-
 const url = "/details/craft";
-const detailsCraftApi = {
+const detailsCraft = {
   getByToken: async (token: string) =>
     request<IDetailCraft>({
       method: GET,
@@ -38,4 +38,4 @@ const detailsCraftApi = {
   // })
 };
 
-export default detailsCraftApi;
+export default detailsCraft;

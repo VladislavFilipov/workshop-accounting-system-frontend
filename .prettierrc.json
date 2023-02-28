@@ -4,6 +4,13 @@
   "semi": true,
   "singleQuote": false,
   "printWidth": 80,
-  "importOrder": ["^react(.*)", "<THIRD_PARTY_MODULES>", "@src/(.*)", "^[./]"],
+  "importOrder": [
+    "^react(.*)",
+    "<THIRD_PARTY_MODULES>",
+    "^@src/(.*)(?!.scss)",
+    "^[./]!(?!.scss)",
+    "^[../]!(?!.scss)",
+    "^(.*).scss"
+  ],
   "importOrderSeparation": true
 }

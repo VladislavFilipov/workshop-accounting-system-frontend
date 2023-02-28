@@ -1,10 +1,10 @@
+import request from "../request";
+
 import { GET } from "@src/const/httpMethods";
 import { IItem } from "@src/types/item";
 
-import request from "../request";
-
 const baseUrl = "/items";
-const itemsApi = {
+const items = {
   getById: async (id: number) =>
     request<IItem>({
       method: GET,
@@ -12,4 +12,4 @@ const itemsApi = {
     }),
 };
 
-export default itemsApi;
+export default items;

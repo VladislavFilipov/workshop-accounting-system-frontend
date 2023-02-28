@@ -1,20 +1,18 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Api from "@src/api";
 import { DETAILS_CRAFT_LIST_KEY } from "@src/const/queryKeys";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
+import { IUpdateDetailStatus } from "@src/pages/Scanner/_types";
 import { IDetail, TDetailStatus } from "@src/types/detail";
 import { IDetailCraft } from "@src/types/detailCraft";
 
 const useUpdateDetailCraft = (
   detailCraft: IDetailCraft | undefined,
-  updateDetailStatus: (options: {
-    detailCraft: IDetailCraft;
-    status: TDetailStatus;
-  }) => Promise<IDetail>,
+  updateDetailStatus: IUpdateDetailStatus,
   getDetailCraft: () => void,
-  queryClient: any,
 ) => {
+  const queryClient = useQueryClient();
   const { mutateAsync: updateDetailCraft, error: updateError } = useMutation(
     [DETAILS_CRAFT_LIST_KEY, detailCraft],
     (detailCraft: IDetailCraft) => {
@@ -24,7 +22,7 @@ const useUpdateDetailCraft = (
         throw new Error("Процесс производства уже завершен.");
       }
 
-      return Api.detailsCraftApi.update(
+      return Api.detailCraft.update(
         {
           status,
         },
@@ -37,7 +35,7 @@ const useUpdateDetailCraft = (
           await updateDetailStatus({ status: "ASSEMBLY", detailCraft });
         getDetailCraft();
         // queryClient.invalidateQueries(DETAILS_CRAFT_KEY);
-        queryClient.invalidateQueries(DETAILS_CRAFT_LIST_KEY);
+        queryClient.invalidateQueries([DETAILS_CRAFT_LIST_KEY]);
       },
     },
   );

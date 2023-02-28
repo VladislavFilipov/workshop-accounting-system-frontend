@@ -23,5 +23,5 @@ export const formatDetailCraftsList = (
     ? workingDetailCraft.id === scannedDetailCraft.id
     : false;
 
-  return { sortedList, canUpdate, canDetailComplete: currentIndex === -1 };
+  return { sortedList, canUpdate, canDetailFinish: currentIndex === -1 };
 };

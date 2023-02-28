@@ -1,0 +1,28 @@
+@use "sass:map";
+// @import "../../../styles/mixins";
+@import "../../../styles/mixins";
+
+$levels: (
+  1: 38,
+  2: 34,
+  3: 30,
+  4: 26,
+  5: 22,
+  6: 18,
+);
+$selectors: map-keys($levels);
+
+@mixin setTitle($level) {
+  &.h#{$level}tag {
+    $size: map-get($levels, $level);
+    @include setFont(#{$size}px, 600, #{$size + floor(calc($size / 4))}px);
+  }
+}
+
+.title {
+  margin: 0;
+
+  @for $i from 1 through length($selectors) {
+    @include setTitle(nth($selectors, $i));
+  }
+}

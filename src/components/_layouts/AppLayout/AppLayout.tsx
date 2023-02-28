@@ -1,22 +1,19 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 import Header from "@src/components/Header";
-import useAuthStore from "@src/store/auth";
 
 import style from "./AppLayout.module.scss";
 
 const AppLayout = () => {
-  const auth = useAuthStore();
-  console.log("auth", auth);
-
   return (
     <div className={style.appLayout}>
       <Header />
       <div className={style.content}>
-        <Outlet />
+        <Suspense fallback={<>SUSPENSE</>}>
+          <Outlet />
+        </Suspense>
       </div>
-
-      {/* <footer>footer</footer> */}
     </div>
   );
 };

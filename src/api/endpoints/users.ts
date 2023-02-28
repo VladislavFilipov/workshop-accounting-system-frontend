@@ -1,10 +1,10 @@
+import request from "../request";
+
 import { GET } from "@src/const/httpMethods";
 import { IUser } from "@src/types/user";
 
-import request from "../request";
-
 const url = "/users";
-const usersApi = {
+const users = {
   getAll: async () =>
     request<IUser[]>({
       method: GET,
@@ -22,4 +22,4 @@ const usersApi = {
   // })
 };
 
-export default usersApi;
+export default users;

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { useQuery } from "react-query";
+
+import { useQuery } from "@tanstack/react-query";
 
 import Api from "@src/api";
 import { DETAILS_CRAFT_KEY } from "@src/const/queryKeys";
@@ -19,7 +20,7 @@ const useDetailCraftByInput = () => {
     isFetching,
     refetch: getDetailCraft,
   } = useQuery(
-    DETAILS_CRAFT_KEY,
+    [DETAILS_CRAFT_KEY],
     () => {
       if (inputRef && inputRef.current && inputRef.current.value) {
         // try {
@@ -31,7 +32,7 @@ const useDetailCraftByInput = () => {
         }
         setTypeOfScanning(type as TTypeOfScanning);
 
-        return Api.detailsCraftApi.getByToken(token);
+        return Api.detailCraft.getByToken(token);
       } else {
         throw new Error("Отсканируйте QR-код");
       }

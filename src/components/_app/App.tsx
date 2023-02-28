@@ -1,11 +1,10 @@
 import { FC } from "react";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, RouterProviderProps } from "react-router-dom";
 
-import router from "@src/pages/router";
-
-const App: FC = () => {
+const App: FC<{ router: RouterProviderProps["router"] }> = ({ router }) => {
   return (
     <div className="App">
+      123
       <RouterProvider router={router} />
     </div>
   );

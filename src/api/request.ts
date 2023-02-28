@@ -11,7 +11,9 @@ const axios = Axios.create({
 
 const getCustomError = (error: AxiosError) => {
   try {
-    return (error as CustomAxiosError).response?.data.apierror.message;
+    const message = (error as CustomAxiosError).response?.data.apierror.message;
+    if (!message) throw new Error(error.message);
+    return message;
   } catch (e) {
     return error.message;
   }

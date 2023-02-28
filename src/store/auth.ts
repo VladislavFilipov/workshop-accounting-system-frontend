@@ -35,10 +35,6 @@ const useAuthStore = create<IAuthStore>()(
       isAuthorized: false,
       error: undefined,
       isLoading: false,
-      // setUserData: (user: IUser) =>
-      //   set({
-      //     user,
-      //   }),
       login: async (user: IUser) => {
         // plug, in future real authentication will be there
         if (user) {

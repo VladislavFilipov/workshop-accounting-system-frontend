@@ -1,7 +1,4 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
-
-import cn from "classnames";
 
 import exitIcon from "@src/assets/exit-icon.png";
 import qrScanIcon from "@src/assets/qr-scan-icon.png";
