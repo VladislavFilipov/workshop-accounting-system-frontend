@@ -18,6 +18,7 @@ import Menu from "@src/pages/Menu";
 import Scanner from "@src/pages/Scanner";
 import Users from "@src/pages/Users";
 
+// has temporary login simulation
 export const routes = createRoutesFromElements(
   <Route path="/" element={<AppLayout />}>
     <Route path="/" element={<ProtectedRoute />}>
@@ -26,7 +27,7 @@ export const routes = createRoutesFromElements(
     <Route path="/scanner" element={<ProtectedRoute />}>
       <Route index element={<Scanner />} />
     </Route>
-    <Route path="/login" element={<Users />} /> // temporary login simulation
+    <Route path="/login" element={<Users />} />
   </Route>,
 );
 

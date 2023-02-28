@@ -1,8 +1,8 @@
 export const sortArrayOfObjects = (
   array: any[],
   objField: string,
-  objFieldType: string = "string",
-  order: string = "inc",
+  objFieldType = "string",
+  order = "inc",
 ) => {
   if (objFieldType === "string" || objFieldType === "date") {
     return array.sort((a, b) => {

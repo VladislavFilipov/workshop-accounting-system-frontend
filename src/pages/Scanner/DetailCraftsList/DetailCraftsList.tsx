@@ -51,9 +51,8 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({
           <ul>
             {detailCraft &&
               detailCraftsList?.map((detilCraftItem) => (
-                <li className={styles.stageItemWrap}>
+                <li key={detilCraftItem.id} className={styles.stageItemWrap}>
                   <div
-                    key={detilCraftItem.id}
                     className={`${styles.stageItem} ${
                       styles[detilCraftItem.status]
                     } ${
