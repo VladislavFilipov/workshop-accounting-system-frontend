@@ -1,12 +1,12 @@
 name: Check push
 on: [push]
 jobs:
-  lint:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Lint
-      run: npm run lint
-    - name: Test
-      run: npm run test
+  Check Code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test
