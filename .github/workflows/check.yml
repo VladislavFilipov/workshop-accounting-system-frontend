@@ -1,7 +1,7 @@
 name: Check push
 on: [push]
 jobs:
-  Check Code:
+  Check-Code:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
