@@ -87,5 +87,12 @@
     "last 1 version",
     "> 1%",
     "IE 10"
-  ]
+  ],
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "npx eslint --fix",
+      "npm run lint:css"
+    ]
+  }
 }
