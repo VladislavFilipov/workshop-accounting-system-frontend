@@ -10,8 +10,8 @@
     "test": "jest",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:es:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "lint:css": "stylelint src",
-    "lint:css:fix": "npm run lint:css -- --fix",
+    "lint:scss": "stylelint src",
+    "lint:scss:fix": "npm run lint:scss -- --fix",
     "prepare": "husky install",
     "lint:ts": "tsc --pretty --noEmit"
   },
@@ -93,6 +93,9 @@
     "src/**/*.{ts,tsx}": [
       "npx prettier --write",
       "npm run lint:es"
+    ],
+    "src/**/*.{scss}": [
+      "npm run lint:scss"
     ]
   }
 }
