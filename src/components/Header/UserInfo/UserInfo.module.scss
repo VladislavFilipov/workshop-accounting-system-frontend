@@ -2,10 +2,10 @@
 
 .container {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
   flex-wrap: nowrap;
   gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
 
   .info {
     text-align: right;
@@ -31,6 +31,7 @@
   .avatar {
     width: 85px;
     height: 85px;
+
     // background-color: blue;
   }
 }

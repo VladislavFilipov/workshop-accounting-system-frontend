@@ -1,21 +1,25 @@
+@use "sass:color";
 @import "../../../styles/mixins";
 
 .button {
-  border: none;
-  outline: none;
-  background-color: $black;
-  border-radius: 15px;
-  height: 60px;
+  cursor: pointer;
+
   display: flex;
   align-items: center;
+
+  height: 60px;
   padding: 0 30px;
-  cursor: pointer;
+
+  background-color: $black;
+  border: none;
+  border-radius: 15px;
+  outline: none;
 
   &.confirm {
     background-color: $success-color;
 
     &:hover {
-      background-color: darken($success-color, 10%);
+      background-color: color.adjust($success-color, $lightness: -10%);
     }
   }
 
@@ -23,7 +27,7 @@
     background-color: $danger-color;
 
     &:hover {
-      background-color: darken($success-color, 10%);
+      background-color: color.adjust($success-color, $lightness: -10%);
     }
   }
 

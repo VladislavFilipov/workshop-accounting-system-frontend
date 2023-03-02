@@ -2,13 +2,15 @@
 
 .scannerPage {
   .inputToken {
-    border: 5px solid $black;
-    border-radius: 10px;
-    font-size: 30px;
     width: 800px;
     height: 150px;
     margin-bottom: 30px;
     padding: 20px;
+
+    font-size: 30px;
+
+    border: 5px solid $black;
+    border-radius: 10px;
   }
 
   .titleH2 {

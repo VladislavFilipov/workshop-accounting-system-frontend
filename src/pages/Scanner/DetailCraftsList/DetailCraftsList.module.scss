@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @import "../../../styles/mixins";
 
 $statuses: (
@@ -6,17 +7,18 @@ $statuses: (
   "WORKING": $detail-craft-working,
   "COMPLETE": $detail-craft-complete,
 );
-$selectors: map-keys($statuses);
+$selectors: map.keys($statuses);
 
 @mixin setType($selector) {
   &.#{$selector} {
-    $color: map-get($statuses, $selector);
+    $color: map.get($statuses, $selector);
 
-    background-color: lighten($color, 30%);
+    background-color: color.adjust($color, $lightness: 30%);
+
     // border: 5px solid $color;
     .stageStatus {
-      background-color: $color;
       color: white;
+      background-color: $color;
     }
   }
 }
@@ -38,26 +40,30 @@ $selectors: map-keys($statuses);
       margin-top: 10px;
     }
   }
+
   .stageItem {
     // display: grid;
     // grid-template-columns: 240px 1fr;
     gap: 20px;
 
-    // width: max-content;
-
-    border-radius: 10px;
     width: 600px;
     max-width: 600px;
     padding: 10px;
 
+    // width: max-content;
+
+    border-radius: 10px;
+
     .stageStatus {
-      padding: 10px 10px 12px;
-      width: max-content;
-      margin-bottom: 10px;
-      text-align: center;
-      height: max-content;
-      border-radius: 10px;
       @include setFont(24px, 600, 24px);
+      width: max-content;
+      height: max-content;
+      margin-bottom: 10px;
+      padding: 10px 10px 12px;
+
+      text-align: center;
+
+      border-radius: 10px;
     }
 
     .stageName {
