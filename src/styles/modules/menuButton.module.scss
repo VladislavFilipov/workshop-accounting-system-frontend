@@ -1,0 +1,42 @@
+@use "sass:color";
+@import "../mixins";
+
+.menuButton {
+  cursor: pointer;
+
+  display: block;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  width: max-content;
+  padding: 15px;
+
+  text-decoration: none;
+
+  background-color: $black;
+  border-radius: 20px;
+
+  &.default {
+    width: 700px;
+  }
+
+  &:hover {
+    // .text {
+    box-shadow: 0 0 50px -25px rgb(64 65 102);
+
+    // }
+  }
+
+  &:active {
+    background-color: color.adjust($black, $lightness: 15%);
+  }
+
+  .img {
+    height: 100px;
+  }
+
+  .text {
+    @include setFont(35px, 600, 35px, white);
+  }
+}

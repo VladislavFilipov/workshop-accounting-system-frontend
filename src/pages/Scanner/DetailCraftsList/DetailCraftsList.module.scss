@@ -1,0 +1,88 @@
+@use "sass:map";
+@use "sass:color";
+@import "../../../styles/mixins";
+
+$statuses: (
+  "WAITING": $detail-craft-waiting,
+  "WORKING": $detail-craft-working,
+  "COMPLETE": $detail-craft-complete,
+);
+$selectors: map.keys($statuses);
+
+@mixin setType($selector) {
+  &.#{$selector} {
+    $color: map.get($statuses, $selector);
+
+    background-color: color.adjust($color, $lightness: 30%);
+
+    // border: 5px solid $color;
+    .stageStatus {
+      color: white;
+      background-color: $color;
+    }
+  }
+}
+
+.stages {
+  margin-top: 30px;
+
+  .titleH2 {
+    @include setFont(40px, 600, 40px);
+    margin-bottom: 20px;
+  }
+
+  .stageItemWrap {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+
+    button {
+      margin-top: 10px;
+    }
+  }
+
+  .stageItem {
+    // display: grid;
+    // grid-template-columns: 240px 1fr;
+    gap: 20px;
+
+    width: 600px;
+    max-width: 600px;
+    padding: 10px;
+
+    // width: max-content;
+
+    border-radius: 10px;
+
+    .stageStatus {
+      @include setFont(24px, 600, 24px);
+      width: max-content;
+      height: max-content;
+      margin-bottom: 10px;
+      padding: 10px 10px 12px;
+
+      text-align: center;
+
+      border-radius: 10px;
+    }
+
+    .stageName {
+      @include setFont(28px, 600, 28px, rgb(188, 187, 187));
+    }
+
+    .stageDesc {
+      @include setFont(24px, 500, 24px, rgb(188, 187, 187));
+    }
+
+    @for $i from 1 through length($selectors) {
+      @include setType(nth($selectors, $i));
+    }
+
+    &.selected {
+      .stageName,
+      .stageDesc {
+        color: $black;
+      }
+    }
+  }
+}

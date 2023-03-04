@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "sass:color";
+@import "../../../styles/mixins";
+
+$types: (
+  "error": $danger-color,
+  "success": $success-color,
+  "warning": $warning-color,
+);
+$selectors: map.keys($types);
+
+@mixin setType($selector) {
+  &.#{$selector} {
+    @include setFont(24px, 600, 24px, map.get($types, $selector));
+    background-color: color.adjust(map.get($types, $selector), $lightness: 40%);
+  }
+}
+
+.statusLabel {
+  height: max-content;
+  margin: 30px 0;
+  padding: 7px 15px;
+  border-radius: 4px;
+
+  @for $i from 1 through length($selectors) {
+    @include setType(nth($selectors, $i));
+  }
+
+  .status {
+    margin-right: 15px;
+    font-weight: 600 !important;
+  }
+}

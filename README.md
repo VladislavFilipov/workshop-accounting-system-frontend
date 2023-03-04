@@ -1,13 +1,5 @@
-# React/TypeScript Template
+# Система учета производства в цехах
 
-**Includes:**
-- React
-- TypeScript (with alias)
-- Webpack Config
-- ESLint
-- Prettier (with sort imports)
+Клиентская часть системы для учета работниками этапов производства продукции и деталей.
 
-**VS Code setting (settings.json) for correct auto-imports with alias**
-```
-"typescript.preferences.importModuleSpecifier": "non-relative"
-```
+**Используется: React/TS/React-Router/React-Query/Zustand**

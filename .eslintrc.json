@@ -1,14 +1,14 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -16,27 +16,22 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "prettier"
-    //    "import"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "linebreak-style": 0,
     "semi": ["warn", "always"],
-    "no-unused-vars": "warn"
-    // "sort-imports": [
-    //   "error",
-    //   {
-    //     "ignoreCase": false,
-    //     "ignoreDeclarationSort": true, // don"t want to sort import lines, use eslint-plugin-import instead
-    //     "ignoreMemberSort": false,
-    //     "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-    //     "allowSeparatedGroups": true
-    //   }
-    // ]
+    "no-unused-vars": "warn",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }

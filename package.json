@@ -4,8 +4,16 @@
   "description": "Система учета производства в цехах",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --open --hot",
-    "build": "webpack --mode=production"
+    "start": "webpack-dev-server --env=mode=development --open --hot",
+    "build": "webpack --env=mode=production",
+    "server": "json-server -w db.json -p 5000",
+    "test": "jest",
+    "lint:es": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:es:fix": "npm run lint:es -- --fix",
+    "lint:scss": "stylelint src",
+    "lint:scss:fix": "npm run lint:scss -- --fix",
+    "prepare": "husky install",
+    "lint:ts": "tsc --pretty --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +23,10 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/jest": "^29.4.0",
     "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
@@ -26,9 +37,19 @@
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.4.3",
+    "jest-environment-jsdom": "^29.4.3",
+    "jest-fetch-mock": "^3.0.3",
+    "json-server": "^0.17.1",
+    "lint-staged": "^13.1.2",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-loader": "^7.0.0",
     "postcss-preset-env": "^7.7.1",
@@ -36,7 +57,13 @@
     "sass": "^1.52.3",
     "sass-loader": "^13.0.0",
     "style-loader": "^3.3.1",
+    "stylelint": "^15.2.0",
+    "stylelint-config-clean-order": "^5.0.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^7.0.1",
+    "ts-jest": "^29.0.5",
     "ts-loader": "^9.3.0",
+    "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.7.3",
     "typescript-plugin-css-modules": "^4.1.1",
@@ -45,12 +72,32 @@
     "webpack-dev-server": "^4.9.2"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.24.10",
+    "@tanstack/react-query-devtools": "^4.24.10",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.3.3",
+    "classnames": "^2.3.2",
+    "localforage": "^1.10.0",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-error-boundary": "^3.1.4",
+    "react-json-tree": "^0.18.0",
+    "react-router-dom": "^6.8.1",
+    "zustand": "^4.3.3"
   },
   "browserslist": [
     "last 1 version",
     "> 1%",
     "IE 10"
-  ]
+  ],
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "npx prettier --write",
+      "npm run lint:es"
+    ],
+    "src/**/*.{scss}": [
+      "npm run lint:scss"
+    ]
+  }
 }

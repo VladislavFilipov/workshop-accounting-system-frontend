@@ -1,0 +1,37 @@
+@use "sass:color";
+@import "../../../styles/mixins";
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  height: 60px;
+  padding: 0 30px;
+
+  background-color: $black;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+
+  &.confirm {
+    background-color: $success-color;
+
+    &:hover {
+      background-color: color.adjust($success-color, $lightness: -10%);
+    }
+  }
+
+  &.danger {
+    background-color: $danger-color;
+
+    &:hover {
+      background-color: color.adjust($success-color, $lightness: -10%);
+    }
+  }
+
+  .text {
+    @include setFont(24px, 600, 24px, white);
+  }
+}

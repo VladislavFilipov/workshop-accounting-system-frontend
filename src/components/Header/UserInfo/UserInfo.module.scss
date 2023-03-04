@@ -1,0 +1,37 @@
+@import "../../../styles/mixins";
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+
+  .info {
+    text-align: right;
+
+    .username {
+      @include setFont(30px, 600, 30px);
+    }
+
+    .role {
+      @include setFont(22px, 500, 26px);
+      margin-bottom: 2px;
+    }
+
+    .jobs {
+      @include setFont(14px, 500, 18px, #727477);
+
+      .job {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .avatar {
+    width: 85px;
+    height: 85px;
+
+    // background-color: blue;
+  }
+}
