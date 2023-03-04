@@ -19,7 +19,7 @@ import Scanner from "@src/pages/Scanner";
 import Users from "@src/pages/Users";
 
 // has temporary login simulation
-export const routes = createRoutesFromElements(
+export const routes2 = createRoutesFromElements(
   <Route path="/" element={<AppLayout />}>
     <Route path="/" element={<ProtectedRoute />}>
       <Route index element={<Menu />} />
@@ -30,6 +30,29 @@ export const routes = createRoutesFromElements(
     <Route path="/login" element={<Users />} />
   </Route>,
 );
+
+export const routes = [
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <Menu /> }],
+      },
+      {
+        path: "/scanner",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <Scanner /> }],
+      },
+      {
+        path: "/login",
+        element: <Users />,
+      },
+    ],
+  },
+];
 
 const router = createBrowserRouter(routes);
 

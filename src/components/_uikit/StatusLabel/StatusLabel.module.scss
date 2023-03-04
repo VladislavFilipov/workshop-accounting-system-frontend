@@ -11,7 +11,7 @@ $selectors: map.keys($types);
 
 @mixin setType($selector) {
   &.#{$selector} {
-    @include setFont(24px, 600, 24px, map-get($types, $selector));
+    @include setFont(24px, 600, 24px, map.get($types, $selector));
     background-color: color.adjust(map.get($types, $selector), $lightness: 40%);
   }
 }

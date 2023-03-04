@@ -1,8 +1,6 @@
-import localforage from "localforage";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import Api from "@src/api";
 import router from "@src/pages/router";
 import { IUser } from "@src/types/user";
 
@@ -15,18 +13,8 @@ interface IAuthStore {
   error: string | undefined;
   isLoading: boolean;
   login: (user: IUser) => void;
-  // login: () => void;
   logout: () => void;
 }
-
-// const initialUser: IUser = {
-//   id: undefined,
-//   lastName: "",
-//   name: "",
-//   middleName: "",
-//   role: "",
-//   jobs: [],
-// };
 
 const useAuthStore = create<IAuthStore>()(
   persist(
@@ -36,7 +24,7 @@ const useAuthStore = create<IAuthStore>()(
       error: undefined,
       isLoading: false,
       login: async (user: IUser) => {
-        // plug, in future real authentication will be there
+        // plug, in future real authentication will be here
         if (user) {
           set({
             user,

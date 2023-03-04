@@ -1,25 +1,22 @@
 import "@testing-library/jest-dom";
-import { act, screen } from "@testing-library/react";
+import { act } from "@testing-library/react";
 
-import App from "@src/components/_app/App";
-import { renderApp, renderWithQueryProvider } from "@src/tests/_helpers";
+import { renderApp } from "@src/tests/_helpers/renders";
 
 describe("App", () => {
-  let container: any;
+  let container: HTMLElement | null = null;
 
-  // beforeEach(() => {
-  //   container = renderWithQueryProvider(<App />);
-  // });
+  afterEach(() => {
+    container = null;
+  });
 
-  it("render", () => {
+  it("base render", () => {
     act(() => {
       container = renderApp().container;
     });
-    // const { container } = renderApp();
-    // console.log("container", container);
-    // const appComponent = container.querySelector(".App");
-    // console.log("appComponent", appComponent);
 
-    expect(screen.getByText("123")).toBeInTheDocument();
+    const appComponent = container?.getElementsByClassName("App")[0];
+
+    expect(appComponent).toBeInTheDocument();
   });
 });

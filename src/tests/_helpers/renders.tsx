@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { createMemoryRouter } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render } from "@testing-library/react";
+import { render, RenderResult } from "@testing-library/react";
 
 import App from "@src/components/_app/App";
 import { routes } from "@src/pages/router";
@@ -21,11 +21,9 @@ export const renderWithQueryProvider = (children: ReactNode) =>
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>,
   );
 
-export const renderApp = () => {
-  const router = createMemoryRouter(routes, {
-    // initialEntries: ["/", ],
-    // initialIndex: 1,
-  });
+export const renderApp = (initialEntries?: string[]): RenderResult => {
+  const options = initialEntries ? { initialEntries } : {};
+  const router = createMemoryRouter(routes, options);
 
   return render(
     <QueryClientProvider client={queryClient}>

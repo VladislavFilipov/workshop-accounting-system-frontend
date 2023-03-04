@@ -1,17 +1,17 @@
-// import Clock from "@src/components/Header/Clock";
+import { ErrorBoundary } from "react-error-boundary";
+
 import UserInfo from "@src/components/Header/UserInfo";
-import useAuthStore from "@src/store/auth";
 
 import styles from "./Header.module.scss";
 
 const Header = () => {
   return (
     <div className={styles.header}>
-      <div>
-        {/* {isAuthorized && <button onClick={logout}>Сменить пользователя</button>} */}
-      </div>
+      <div>{/* clock will be here */}</div>
 
-      <UserInfo />
+      <ErrorBoundary FallbackComponent={() => <>Error</>}>
+        <UserInfo />
+      </ErrorBoundary>
     </div>
   );
 };
