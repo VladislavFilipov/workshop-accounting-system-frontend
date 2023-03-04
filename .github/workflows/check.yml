@@ -1,5 +1,14 @@
 name: Check push
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+
 jobs:
   Check-Code:
     runs-on: ubuntu-latest
