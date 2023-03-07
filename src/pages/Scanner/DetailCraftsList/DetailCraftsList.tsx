@@ -6,7 +6,7 @@ import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
 import useDetailCraftList from "@src/pages/Scanner/_hooks/useDetailCraftList";
 import useUpdateDetailCraft from "@src/pages/Scanner/_hooks/useUpdateDetailCraft";
-import { IUpdateDetailStatus } from "@src/pages/Scanner/_types";
+import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
 import useScannerData from "@src/store/scanner";
 import { IDetailCraft } from "@src/types/detailCraft";
 
@@ -14,35 +14,32 @@ import styles from "./DetailCraftsList.module.scss";
 
 interface IDetailCraftsListProps {
   detailCraft: IDetailCraft;
-  updateDetailStatus: IUpdateDetailStatus;
-  getDetailCraft: () => void;
 }
 
-const DetailCraftsList: FC<IDetailCraftsListProps> = ({
-  detailCraft,
-  updateDetailStatus,
-  getDetailCraft,
-}) => {
+const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
   const canUpdate = useScannerData((state) => state.canUpdate);
 
   const { detailCraftsList, listError, listIsFetching } =
     useDetailCraftList(detailCraft);
 
-  const { updateDetailCraft, updateError } = useUpdateDetailCraft(
-    detailCraft,
-    updateDetailStatus,
-    getDetailCraft,
-  );
+  const { updateDetailCraft, updateError } = useUpdateDetailCraft(detailCraft);
+
+  const { updateDetailStatus } = useUpdateDetailStatus(detailCraft);
 
   const handleUpdateClick = (detailCraft: IDetailCraft) => {
-    updateDetailCraft(detailCraft);
+    updateDetailCraft(detailCraft, {
+      onSuccess: () => {
+        updateDetailStatus({ status: "ASSEMBLY", detailCraft });
+      },
+    });
   };
+
+  console.log("canUpdate", canUpdate);
 
   return (
     <div className={styles.stages}>
       <>
         <Title variant="h2">Этапы производства</Title>
-        {/* <h2 className={styles.titleH2}>Этапы производства</h2> */}
         {listIsFetching ? (
           <>Загрузка...</>
         ) : listError ? (

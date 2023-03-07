@@ -16,21 +16,10 @@ import AppLayout from "@src/components/_layouts/AppLayout";
 import ProtectedRoute from "@src/components/_shared/ProtectedRoute/ProtectedRoute";
 import Menu from "@src/pages/Menu";
 import Scanner from "@src/pages/Scanner";
+import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
 import Users from "@src/pages/Users";
 
 // has temporary login simulation
-export const routes2 = createRoutesFromElements(
-  <Route path="/" element={<AppLayout />}>
-    <Route path="/" element={<ProtectedRoute />}>
-      <Route index element={<Menu />} />
-    </Route>
-    <Route path="/scanner" element={<ProtectedRoute />}>
-      <Route index element={<Scanner />} />
-    </Route>
-    <Route path="/login" element={<Users />} />
-  </Route>,
-);
-
 export const routes = [
   {
     path: "/",
@@ -44,7 +33,22 @@ export const routes = [
       {
         path: "/scanner",
         element: <ProtectedRoute />,
-        children: [{ index: true, element: <Scanner /> }],
+        children: [
+          {
+            path: "/scanner",
+            element: <Scanner />,
+            children: [
+              {
+                path: "/scanner/stamps",
+                element: <Stamps />,
+              },
+              {
+                path: "/scanner/items",
+                element: <div>Items</div>,
+              },
+            ],
+          },
+        ],
       },
       {
         path: "/login",

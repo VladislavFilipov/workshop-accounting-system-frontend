@@ -1,8 +1,4 @@
-import {
-  QueryObserverResult,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Api from "@src/api";
 import {
@@ -12,10 +8,8 @@ import {
 import { TDetailStatus } from "@src/types/detail";
 import { IDetailCraft } from "@src/types/detailCraft";
 
-const useUpdateDetailStatus = (
-  detailCraft: IDetailCraft | undefined,
-  getDetailCraft: () => Promise<QueryObserverResult<IDetailCraft, unknown>>,
-) => {
+const useUpdateDetailStatus = (detailCraft: IDetailCraft | undefined) => {
+  const queryClient = useQueryClient();
   const { mutateAsync: updateDetailStatus, error: updateDetailError } =
     useMutation(
       [DETAILS_CRAFT_DETAIL_KEY, detailCraft],
@@ -34,7 +28,7 @@ const useUpdateDetailStatus = (
         ),
       {
         onSuccess: () => {
-          getDetailCraft();
+          queryClient.invalidateQueries([DETAILS_CRAFT_KEY]);
         },
       },
     );
