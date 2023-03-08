@@ -3,11 +3,11 @@ on:
   push:
     branches-ignore:
       - main
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types:
+  #     - opened
 
 jobs:
   Check-Code:
