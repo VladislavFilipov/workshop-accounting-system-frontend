@@ -9,7 +9,7 @@ import { IJob } from "@src/types/job";
 //   jobs: IJob[];
 // }
 
-export type TUserStatus = "ACTIVE" | "NOT ACTIVE" | "DELETED";
+export type TUserStatus = "ACTIVE" | "NOT_ACTIVE" | "DELETED";
 export type TUserRole = "ADMIN" | "MODERATOR" | "USER";
 
 export interface IUser {
