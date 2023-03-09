@@ -1,10 +1,5 @@
 import "@testing-library/jest-dom";
-import {
-  act,
-  fireEvent,
-  renderHook,
-  RenderResult,
-} from "@testing-library/react";
+import { act, renderHook, RenderResult } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import useAuthStore from "@src/store/auth";
