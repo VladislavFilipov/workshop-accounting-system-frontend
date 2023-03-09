@@ -1,10 +1,6 @@
-import { lazy } from "react";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
+import ErrorScreen from "@src/components/ErrorScreen";
 // const AppLayout = lazy(() => import("@src/components/_layouts/AppLayout"));
 // const ProtectedRoute = lazy(
 //   () => import("@src/components/_shared/ProtectedRoute/ProtectedRoute"),
@@ -24,6 +20,7 @@ export const routes = [
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <ErrorScreen type="error" />,
     children: [
       {
         path: "/",
@@ -55,6 +52,10 @@ export const routes = [
         element: <Users />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorScreen type="pageNotFound" />,
   },
 ];
 
