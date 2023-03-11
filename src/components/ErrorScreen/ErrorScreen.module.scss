@@ -1,0 +1,25 @@
+@import "../../styles/mixins";
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+
+  background-color: #44475aff;
+
+  .text {
+    color: white;
+  }
+
+  .btns {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+}

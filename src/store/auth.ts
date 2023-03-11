@@ -42,6 +42,7 @@ const useAuthStore = create<IAuthStore>()(
           user: undefined,
           isAuthorized: false,
         });
+        router.navigate("/login");
       },
     }),
     {
