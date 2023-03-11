@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import DataContainer from "@src/components/DataContainer/DataContainer";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
@@ -40,11 +41,13 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
     <div className={styles.stages}>
       <>
         <Title variant="h2">Этапы производства</Title>
-        {listIsFetching ? (
+        {/* {listIsFetching ? (
           <>Загрузка...</>
         ) : listError ? (
           <StatusLabel text={(listError as Error).message} type="error" />
-        ) : (
+        ) : ( */}
+
+        <DataContainer isLoading={listIsFetching} error={listError}>
           <ul>
             {detailCraft &&
               detailCraftsList?.map((detilCraftItem) => (
@@ -83,7 +86,8 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
                 </li>
               ))}
           </ul>
-        )}
+        </DataContainer>
+        {/* )} */}
 
         {updateError && (
           <StatusLabel text={(updateError as Error).message} type="error" />
