@@ -33,9 +33,9 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.s?css$/,
+          test: /\.module\.s?css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            mode === DEVELOPMENT ? "style-loader" : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
@@ -50,15 +50,16 @@ module.exports = (env) => {
             },
             "postcss-loader",
             "sass-loader",
-            // {
-            //   loader: "sass-loader",
-            //   options: {
-            //     sassOptions: {
-            //       indentWidth: 2,
-            //       includePaths: [path.resolve(__dirname, "./src")],
-            //     },
-            //   },
-            // },
+          ],
+        },
+        {
+          test: /\.s?css$/,
+          exclude: /\.module\.s?css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            "postcss-loader",
+            "sass-loader",
           ],
         },
         {
@@ -109,6 +110,7 @@ module.exports = (env) => {
     devServer: {
       static: "./dist",
       historyApiFallback: true,
+      hot: true,
     },
     optimization: {
       nodeEnv: DEVELOPMENT,

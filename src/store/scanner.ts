@@ -22,11 +22,15 @@ const useScannerData = create<IScannerData>((set) => ({
   parseInput: (value: string) => {
     const [type, token] = value.split("\n");
 
+    set({
+      typeOfScanning: undefined,
+    });
+
     if (!types.includes(type as TTypeOfScanning)) {
       set({
         typeOfScanning: undefined,
         scannedToken: "",
-        parseError: new Error("Некорректные данные"),
+        parseError: new Error("Некорректный тип."),
       });
     } else {
       set({

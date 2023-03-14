@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import cn from "classnames";
 
 import Api from "@src/api";
+import DataContainer from "@src/components/DataContainer/DataContainer";
 import PageLayout from "@src/components/_layouts/PageLayout/PageLayout";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import { USERS_KEY } from "@src/const/queryKeys";
@@ -34,11 +35,12 @@ const UsersPage: FC = () => {
       subtitle="Пожалуйста, выберите пользователя"
       className={styles.usersPage}
     >
-      {isLoading ? (
+      <DataContainer isLoading={isLoading} error={error}>
+        {/* {isLoading ? (
         <>Загрузка...</>
       ) : error ? (
         <StatusLabel text={(error as Error).message} type="error" />
-      ) : (
+      ) : ( */}
         <ul>
           {users?.map((user) => (
             <div
@@ -52,8 +54,8 @@ const UsersPage: FC = () => {
             </div>
           ))}
         </ul>
-      )}
-
+        {/* )} */}
+      </DataContainer>
       {loginError && <StatusLabel text={loginError} type="error" />}
     </PageLayout>
   );

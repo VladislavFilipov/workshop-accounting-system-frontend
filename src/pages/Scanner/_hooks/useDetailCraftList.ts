@@ -40,6 +40,7 @@ const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
     },
     {
       enabled: !!detailCraft,
+      // suspense: true,
     },
   );
   return { detailCraftsList, listError, listIsFetching };
