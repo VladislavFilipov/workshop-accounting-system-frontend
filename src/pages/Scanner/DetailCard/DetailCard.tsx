@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
+import Title from "@src/components/_uikit/Title";
 import detailStatuses from "@src/data/detailStatuses";
 import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
 import useScannerData from "@src/store/scanner";
@@ -28,7 +29,10 @@ const DetailCard: FC<IDetailCardProps> = ({ detailCraft }) => {
       <>
         {detailCraft && (
           <div className={styles.detailCard}>
-            <h2 className={styles.titleH2}>Деталь</h2>
+            {/* <h2 className={styles.titleH2}>Деталь</h2> */}
+            <Title variant="h2" className={styles.titleH2}>
+              Деталь
+            </Title>
             <div className={styles.line}>
               <span>Номер</span> {detailCraft.details_id.tech_number}
             </div>

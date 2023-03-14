@@ -1,9 +1,11 @@
 import { FC } from "react";
 
+import DataContainer from "@src/components/DataContainer/DataContainer";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
+import SkeletonDetailCraftList from "@src/pages/Scanner/DetailCraftsList/Skeleton";
 import useDetailCraftList from "@src/pages/Scanner/_hooks/useDetailCraftList";
 import useUpdateDetailCraft from "@src/pages/Scanner/_hooks/useUpdateDetailCraft";
 import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
@@ -40,11 +42,11 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
     <div className={styles.stages}>
       <>
         <Title variant="h2">Этапы производства</Title>
-        {listIsFetching ? (
-          <>Загрузка...</>
-        ) : listError ? (
-          <StatusLabel text={(listError as Error).message} type="error" />
-        ) : (
+        <DataContainer
+          isLoading={listIsFetching}
+          error={listError}
+          skeleton={<SkeletonDetailCraftList />}
+        >
           <ul>
             {detailCraft &&
               detailCraftsList?.map((detilCraftItem) => (
@@ -83,7 +85,7 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
                 </li>
               ))}
           </ul>
-        )}
+        </DataContainer>
 
         {updateError && (
           <StatusLabel text={(updateError as Error).message} type="error" />

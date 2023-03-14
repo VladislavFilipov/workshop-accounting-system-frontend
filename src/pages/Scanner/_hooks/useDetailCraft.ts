@@ -11,21 +11,18 @@ const useDetailCraft = () => {
   const {
     data: detailCraft,
     error,
-    isFetching,
+    isLoading,
     refetch: getDetailCraft,
   } = useQuery([DETAILS_CRAFT_KEY], () => {
-    try {
-      return Api.detailCraft.getByToken(scannedToken);
-    } catch (error) {
-      throw new Error("Данные некорректны.");
-    }
+    if (!scannedToken) throw new Error("Некорректный токен.");
+    return Api.detailCraft.getByToken(scannedToken);
   });
 
   return {
     detailCraft,
     getDetailCraft,
     error,
-    isFetching,
+    isLoading,
   };
 };
 

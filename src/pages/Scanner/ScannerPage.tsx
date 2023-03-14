@@ -23,14 +23,14 @@ const ScannerPage = () => {
       <>
         <textarea className={styles.inputToken} ref={inputRef} autoFocus />
 
-        {/* <Button
+        <Button
           text="Test fill"
           onClick={() => {
             if (inputRef && inputRef.current)
               // inputRef.current.value = `stamp\n7a103371-7548-48a5-aa3a-efd289472ed4`;
               inputRef.current.value = `stamp\n210b91bd-55da-4166-9e18-68c7258da871`;
           }}
-        /> */}
+        />
         <Button text="Получить данные" onClick={handleGetDataClick} />
         {parseError && <StatusLabel text={parseError.message} type="error" />}
         <Outlet />

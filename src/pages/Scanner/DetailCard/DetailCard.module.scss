@@ -7,11 +7,10 @@
   border-radius: 10px;
 
   .titleH2 {
-    margin-left: 192px;
+    margin: 0 0 20px 192px;
   }
 
   .line {
-
     @include setFont(24px, 600, 24px);
     display: grid;
     grid-template-columns: 172px 1fr;

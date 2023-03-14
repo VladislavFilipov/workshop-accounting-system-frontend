@@ -85,4 +85,15 @@ $selectors: map.keys($statuses);
       }
     }
   }
+
+  .skeleton {
+    .stageItem {
+      margin-bottom: 20px;
+      background-color: rgb(250 250 248);
+
+      .stageName {
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
