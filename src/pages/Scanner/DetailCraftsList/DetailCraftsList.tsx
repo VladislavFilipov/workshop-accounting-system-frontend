@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "react-loading-skeleton/dist/skeleton.css";
 
 import DataContainer from "@src/components/DataContainer/DataContainer";
 import Button from "@src/components/_uikit/Button/Button";
