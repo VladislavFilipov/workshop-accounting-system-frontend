@@ -12,7 +12,21 @@
   // font-family: Arial, Helvetica, sans-serif;
 }
 
+:root {
+  --text-color: #44475aff;
+  --text-color-light: rgb(118 121 139);
+}
+
+html {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
 body {
-  font-size: 16px;
   background-color: #eee;
+}
+
+ul,
+li {
+  list-style: none;
 }

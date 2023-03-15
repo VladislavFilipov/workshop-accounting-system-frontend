@@ -19,7 +19,7 @@
 //     }
 // }
 
-@mixin setFont($size, $weight, $lineHeight: $size, $color: $black) {
+@mixin setFont($size, $weight, $lineHeight: $size, $color: var(--text-color)) {
   font-size: $size;
   font-weight: $weight;
   line-height: $lineHeight;

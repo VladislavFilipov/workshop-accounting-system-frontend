@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "sass:math";
+
+// @import "../../../styles/mixins";
+@import "../../../styles/mixins";
+
+// "xs" | "s" | "m" | "l" | "xl"
+$sizes: (
+  "xl": 1.4,
+  "l": 1.2,
+  "m": 1,
+  "s": 0.8,
+  "xs": 0.6,
+);
+$selectors: map.keys($sizes);
+
+@mixin setText($size) {
+  &.#{$size} {
+    $cur: map.get($sizes, $size);
+
+    font-size: #{$cur}rem;
+    line-height: #{$cur + math.floor(calc($cur / 4))}rem;
+
+    // @include setFont(
+    //   #{$cur}rem,
+    //   500,
+    //   #{$cur + floor(calc($cur / 4))}rem,
+    //   inherit
+    // );
+  }
+}
+
+.text {
+  margin: 0;
+
+  @for $i from 1 through length($selectors) {
+    @include setText(nth($selectors, $i));
+  }
+}

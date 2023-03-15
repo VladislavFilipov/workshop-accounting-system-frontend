@@ -24,6 +24,12 @@ const MenuPage: FC = () => {
             pathTo="/scanner"
             isDefault
           />
+          <MenuButton
+            imgSrc={qrScanIcon}
+            text="Активные работы"
+            pathTo="/active-works"
+            isDefault
+          />
         </div>
 
         <MenuButton imgSrc={exitIcon} text="Выход" onClick={logout} />

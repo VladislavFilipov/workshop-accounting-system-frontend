@@ -10,6 +10,7 @@ import ErrorScreen from "@src/components/ErrorScreen";
 // const Users = lazy(() => import("@src/pages/Users"));
 import AppLayout from "@src/components/_layouts/AppLayout";
 import ProtectedRoute from "@src/components/_shared/ProtectedRoute/ProtectedRoute";
+import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
 import Menu from "@src/pages/Menu";
 import Scanner from "@src/pages/Scanner";
 import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
@@ -46,6 +47,11 @@ export const routes = [
             ],
           },
         ],
+      },
+      {
+        path: "/active-works",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <ActiveWorks /> }],
       },
       {
         path: "/login",
