@@ -1,0 +1,35 @@
+@import "../../../styles/mixins";
+
+.list {
+  text-transform: uppercase;
+
+  .work {
+    // @include setFont();
+    display: grid;
+    grid-template-columns: 5rem 10rem 10rem 10rem;
+    align-items: center;
+    justify-items: center;
+
+    // gap: 20px;
+    width: 35rem;
+
+    font-weight: 600;
+    color: var(--text-color-light);
+
+    & > * {
+      padding: 0.7rem 0.5rem;
+      text-align: center;
+    }
+
+    &.head {
+      font-weight: 600;
+      color: var(--text-color);
+
+      // border-bottom: 0.rem solid var(--text-color-light);
+    }
+
+    &:nth-child(odd) {
+      background-color: $gray240;
+    }
+  }
+}
