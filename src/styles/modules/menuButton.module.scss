@@ -1,5 +1,6 @@
 @use "sass:color";
-@import "../mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 .menuButton {
   cursor: pointer;
@@ -14,7 +15,7 @@
 
   text-decoration: none;
 
-  background-color: $black;
+  background-color: vars.$black;
   border-radius: 20px;
 
   &.default {
@@ -29,7 +30,7 @@
   }
 
   &:active {
-    background-color: color.adjust($black, $lightness: 15%);
+    background-color: color.adjust(vars.$black, $lightness: 15%);
   }
 
   .img {
@@ -37,6 +38,6 @@
   }
 
   .text {
-    @include setFont(35px, 600, 35px, white);
+    @include mixins.setFont(35px, 600, 35px, white);
   }
 }

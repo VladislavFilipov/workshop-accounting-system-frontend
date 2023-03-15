@@ -1,4 +1,4 @@
-@import "../../styles/mixins";
+@use "src/styles/mixins" as mixins;
 
 .menu {
   .list {

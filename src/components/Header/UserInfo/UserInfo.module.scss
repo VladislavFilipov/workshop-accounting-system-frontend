@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@use "src/styles/mixins" as mixins;
 
 .container {
   display: flex;
@@ -11,16 +11,16 @@
     text-align: right;
 
     .username {
-      @include setFont(30px, 600, 30px);
+      @include mixins.setFont(30px, 600, 30px);
     }
 
     .role {
-      @include setFont(22px, 500, 26px);
+      @include mixins.setFont(22px, 500, 26px);
       margin-bottom: 2px;
     }
 
     .jobs {
-      @include setFont(14px, 500, 18px, #727477);
+      @include mixins.setFont(14px, 500, 18px, #727477);
 
       .job {
         margin-left: 10px;

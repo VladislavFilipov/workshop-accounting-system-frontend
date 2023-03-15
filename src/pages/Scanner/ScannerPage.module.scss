@@ -1,4 +1,5 @@
-@import "../../styles/mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 .scannerPage {
   .inputToken {
@@ -9,12 +10,12 @@
 
     font-size: 30px;
 
-    border: 5px solid $black;
+    border: 5px solid vars.$black;
     border-radius: 10px;
   }
 
   .titleH2 {
-    @include setFont(40px, 600, 40px);
+    @include mixins.setFont(40px, 600, 40px);
     margin-bottom: 20px;
   }
 }

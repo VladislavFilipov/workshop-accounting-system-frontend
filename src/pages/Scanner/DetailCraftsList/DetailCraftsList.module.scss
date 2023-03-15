@@ -1,11 +1,12 @@
 @use "sass:map";
 @use "sass:color";
-@import "../../../styles/mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 $statuses: (
-  "WAITING": $detail-craft-waiting,
-  "WORKING": $detail-craft-working,
-  "COMPLETE": $detail-craft-complete,
+  "WAITING": vars.$detail-craft-waiting,
+  "WORKING": vars.$detail-craft-working,
+  "COMPLETE": vars.$detail-craft-complete,
 );
 $selectors: map.keys($statuses);
 
@@ -27,7 +28,7 @@ $selectors: map.keys($statuses);
   margin-top: 30px;
 
   .titleH2 {
-    @include setFont(40px, 600, 40px);
+    @include mixins.setFont(40px, 600, 40px);
     margin-bottom: 20px;
   }
 
@@ -55,7 +56,7 @@ $selectors: map.keys($statuses);
     border-radius: 10px;
 
     .stageStatus {
-      @include setFont(24px, 600, 24px);
+      @include mixins.setFont(24px, 600, 24px);
       width: max-content;
       height: max-content;
       margin-bottom: 10px;
@@ -67,11 +68,11 @@ $selectors: map.keys($statuses);
     }
 
     .stageName {
-      @include setFont(28px, 600, 28px, rgb(188, 187, 187));
+      @include mixins.setFont(28px, 600, 28px, rgb(188, 187, 187));
     }
 
     .stageDesc {
-      @include setFont(24px, 500, 24px, rgb(188, 187, 187));
+      @include mixins.setFont(24px, 500, 24px, rgb(188, 187, 187));
     }
 
     @for $i from 1 through length($selectors) {
@@ -81,7 +82,7 @@ $selectors: map.keys($statuses);
     &.selected {
       .stageName,
       .stageDesc {
-        color: $black;
+        color: vars.$black;
       }
     }
   }

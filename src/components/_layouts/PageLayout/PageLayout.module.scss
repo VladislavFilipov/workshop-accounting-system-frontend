@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@use "src/styles/mixins" as mixins;
 
 .menu {
   display: flex;
@@ -9,18 +9,18 @@
   padding-bottom: 200px;
 
   .titleLarge {
-    @include setFont(100px, 600, 100px);
+    @include mixins.setFont(100px, 600, 100px);
     margin-bottom: 20px;
     text-transform: uppercase;
   }
 
   .title {
-    @include setFont(60px, 600, 60px);
+    @include mixins.setFont(60px, 600, 60px);
     margin-bottom: 20px;
   }
 
   .subtitle {
-    @include setFont(30px, 400, 30px, #adadad);
+    @include mixins.setFont(30px, 400, 30px, #adadad);
     margin-bottom: 80px;
   }
 }

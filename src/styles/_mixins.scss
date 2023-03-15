@@ -1,4 +1,4 @@
-@import "variables";
+@use "src/styles/variables" as vars;
 
 @keyframes rotation {
   0% {
@@ -19,7 +19,7 @@
 //     }
 // }
 
-@mixin setFont($size, $weight, $lineHeight: $size, $color: var(--text-color)) {
+@mixin setFont($size, $weight, $lineHeight: $size, $color: vars.$text-color) {
   font-size: $size;
   font-weight: $weight;
   line-height: $lineHeight;
@@ -37,17 +37,17 @@
   padding-bottom: 200px;
 
   .title {
-    @include setFont(100px, 600, 100px);
+    @include mixins.setFont(100px, 600, 100px);
     margin-bottom: 20px;
   }
 
   .titleMini {
-    @include setFont(60px, 600, 60px);
+    @include mixins.setFont(60px, 600, 60px);
     margin-bottom: 20px;
   }
 
   .subtitle {
-    @include setFont(30px, 400, 30px, #adadad);
+    @include mixins.setFont(30px, 400, 30px, #adadad);
     margin-bottom: 80px;
   }
 }
@@ -65,7 +65,7 @@
 
   text-decoration: none;
 
-  background-color: $black;
+  background-color: vars.$black;
   border-radius: 20px;
 
   &.default {
@@ -80,7 +80,7 @@
   }
 
   &:active {
-    background-color: color.adjust($black, $lightness: 15%);
+    background-color: color.adjust(vars.$black, $lightness: 15%);
   }
 
   .img {
@@ -88,6 +88,6 @@
   }
 
   .text {
-    @include setFont(35px, 600, 35px, white);
+    @include mixins.setFont(35px, 600, 35px, white);
   }
 }

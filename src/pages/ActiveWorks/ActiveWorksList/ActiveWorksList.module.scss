@@ -1,20 +1,18 @@
-@import "../../../styles/mixins";
+@use "src/styles/variables" as vars;
 
 .list {
   text-transform: uppercase;
 
   .work {
-    // @include setFont();
     display: grid;
     grid-template-columns: 5rem 10rem 10rem 10rem;
     align-items: center;
     justify-items: center;
 
-    // gap: 20px;
     width: 35rem;
 
     font-weight: 600;
-    color: var(--text-color-light);
+    color: vars.$text-color;
 
     & > * {
       padding: 0.7rem 0.5rem;
@@ -23,13 +21,13 @@
 
     &.head {
       font-weight: 600;
-      color: var(--text-color);
+      color: vars.$text-color;
 
-      // border-bottom: 0.rem solid var(--text-color-light);
+      // border-bottom: 0.rem solid vars.$text-color;
     }
 
     &:nth-child(odd) {
-      background-color: $gray240;
+      background-color: vars.$gray240;
     }
   }
 }

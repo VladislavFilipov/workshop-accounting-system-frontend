@@ -1,7 +1,7 @@
 @use "sass:map";
 
-// @import "../../../styles/mixins";
-@import "../../../styles/mixins";
+// @use "src/styles/mixins" as mixins;
+@use "src/styles/mixins" as mixins;
 
 $levels: (
   1: 38,
@@ -16,7 +16,11 @@ $selectors: map.keys($levels);
 @mixin setTitle($level) {
   &.h#{$level}tag {
     $size: map.get($levels, $level);
-    @include setFont(#{$size}px, 600, #{$size + floor(calc($size / 4))}px);
+    @include mixins.setFont(
+      #{$size}px,
+      600,
+      #{$size + floor(calc($size / 4))}px
+    );
   }
 }
 

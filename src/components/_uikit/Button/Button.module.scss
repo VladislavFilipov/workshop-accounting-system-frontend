@@ -1,5 +1,6 @@
 @use "sass:color";
-@import "../../../styles/mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 .button {
   cursor: pointer;
@@ -19,12 +20,12 @@
   transition: all 0.1s;
 
   .text {
-    @include setFont(24px, 600, 24px, white);
+    @include mixins.setFont(24px, 600, 24px, white);
   }
 
   &.default {
-    background-color: $black;
-    border: 5px solid $black;
+    background-color: vars.$black;
+    border: 5px solid vars.$black;
 
     &:hover {
       background-color: white;
@@ -32,24 +33,24 @@
       // border: 5px solid $black;
 
       .text {
-        color: $black;
+        color: vars.$black;
       }
     }
   }
 
   &.confirm {
-    background-color: $success-color;
+    background-color: vars.$success-color;
 
     &:hover {
-      background-color: color.adjust($success-color, $lightness: -10%);
+      background-color: color.adjust(vars.$success-color, $lightness: -10%);
     }
   }
 
   &.danger {
-    background-color: $danger-color;
+    background-color: vars.$danger-color;
 
     &:hover {
-      background-color: color.adjust($success-color, $lightness: -10%);
+      background-color: color.adjust(vars.$success-color, $lightness: -10%);
     }
   }
 }
