@@ -1,11 +1,12 @@
 @use "sass:map";
 @use "sass:color";
-@import "../../../styles/mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 $statuses: (
-  "WAITING": $detail-craft-waiting,
-  "WORKING": $detail-craft-working,
-  "COMPLETE": $detail-craft-complete,
+  "WAITING": vars.$detail-craft-waiting,
+  "WORKING": vars.$detail-craft-working,
+  "COMPLETE": vars.$detail-craft-complete,
 );
 $selectors: map.keys($statuses);
 
@@ -24,71 +25,76 @@ $selectors: map.keys($statuses);
 }
 
 .stages {
-  margin-top: 30px;
+  margin-top: 1.2rem;
 
-  .titleH2 {
-    @include setFont(40px, 600, 40px);
-    margin-bottom: 20px;
+  .titleH3 {
+    margin-bottom: 0.8rem;
   }
 
   .stageItemWrap {
     display: flex;
-    gap: 30px;
-    margin-bottom: 20px;
+    gap: 1.2rem;
+    justify-content: space-between;
+    margin-bottom: 0.4rem 0;
 
     button {
-      margin-top: 10px;
+      margin-top: 0.4rem;
     }
   }
 
   .stageItem {
     // display: grid;
-    // grid-template-columns: 240px 1fr;
-    gap: 20px;
+    // grid-template-columns: 21.6rem 1fr;
+    gap: 0.8rem;
 
-    width: 600px;
-    max-width: 600px;
-    padding: 10px;
+    width: 26rem;
+    max-width: 26rem;
+    padding: 0.4rem;
 
     // width: max-content;
 
-    border-radius: 10px;
+    border-radius: 0.4rem;
 
     .stageStatus {
-      @include setFont(24px, 600, 24px);
+      @include mixins.setFont(1rem, 600, 1rem);
       width: max-content;
       height: max-content;
-      margin-bottom: 10px;
-      padding: 10px 10px 12px;
+      margin-bottom: 0.4rem;
+      padding: 0.4rem 0.4rem 0.5rem;
 
       text-align: center;
 
-      border-radius: 10px;
+      border-radius: 0.4rem;
     }
 
     .stageName {
-      @include setFont(28px, 600, 28px, rgb(188, 187, 187));
+      @include mixins.setFont(1.2rem, 600, 1.2rem, rgb(188, 187, 187));
     }
 
     .stageDesc {
-      @include setFont(24px, 500, 24px, rgb(188, 187, 187));
+      @include mixins.setFont(1rem, 500, 1rem, rgb(188, 187, 187));
     }
 
     @for $i from 1 through length($selectors) {
       @include setType(nth($selectors, $i));
     }
+  }
 
-    &.selected {
-      .stageName,
-      .stageDesc {
-        color: $black;
-      }
+  .selected {
+    width: calc(100% + 4rem);
+    margin: 0.4rem -2rem;
+    padding: 0.4rem 2rem;
+    background-color: vars.$gray-light;
+
+    .stageName,
+    .stageDesc {
+      color: vars.$black;
     }
   }
 
   .skeleton {
     .stageItem {
-      margin-bottom: 20px;
+      margin-bottom: 0.8rem;
       background-color: rgb(250 250 248);
 
       .stageName {

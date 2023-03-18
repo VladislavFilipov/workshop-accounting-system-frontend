@@ -1,15 +1,19 @@
 $black: #000f;
 
 // text
-$text: var(--text-color);
-$text-light: #44475aff;
+$text-color: #44475aff;
+$text-color-light: rgb(118 121 139);
 
 // gray
-$gray180: rgb(180 180 180);
-$gray200: rgb(200 200 200);
-$gray220: rgb(220 220 220);
-$gray240: rgb(240 240 240);
-$gray250: rgb(250 250 250);
+$gray-light: rgb(250 250 250);
+$gray: rgb(200 200 200);
+$gray-dark: rgb(150 150 150);
+
+// $gray180: rgb(180 180 180);
+// $gray200: rgb(200 200 200);
+// $gray220: rgb(220 220 220);
+// $gray240: rgb(240 240 240);
+// $gray250: rgb(250 250 250);
 
 // actions
 $danger-color: rgb(212 71 71);
@@ -20,3 +24,10 @@ $warning-color: rgb(212 210 71);
 $detail-craft-waiting: #e4ea48;
 $detail-craft-working: #2ba9fd;
 $detail-craft-complete: #47d85d;
+
+// media
+// prettier-ignore
+$desktop-screen: "screen and (orientation: landscape) and (min-width: 1080px)";
+
+// prettier-ignore
+$workplace-screen: "screen and (orientation: portrait) and (max-width: 1080px)";

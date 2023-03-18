@@ -1,26 +1,29 @@
-@import "../../../styles/mixins";
+@use "src/styles/mixins" as mixins;
+@use "src/styles/variables" as vars;
 
 .container {
   display: flex;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 1rem;
   align-items: center;
   justify-content: flex-end;
+
+  max-height: max-content;
 
   .info {
     text-align: right;
 
     .username {
-      @include setFont(30px, 600, 30px);
+      @include mixins.setFont(1.25rem, 600, 1.25rem);
     }
 
     .role {
-      @include setFont(22px, 500, 26px);
+      @include mixins.setFont(0.9rem, 500, 1.1rem);
       margin-bottom: 2px;
     }
 
     .jobs {
-      @include setFont(14px, 500, 18px, #727477);
+      @include mixins.setFont(0.6rem, 500, 0.7rem, vars.$gray-dark);
 
       .job {
         margin-left: 10px;
@@ -29,9 +32,11 @@
   }
 
   .avatar {
-    width: 85px;
-    height: 85px;
+    height: 3.5rem;
 
-    // background-color: blue;
+    img {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
   }
 }

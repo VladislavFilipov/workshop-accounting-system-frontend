@@ -2,6 +2,9 @@ import { FC, PropsWithChildren } from "react";
 
 import cn from "classnames";
 
+import Text from "@src/components/_uikit/Text";
+import Title from "@src/components/_uikit/Title";
+
 import styles from "./PageLayout.module.scss";
 
 interface IPageLayoutProps {
@@ -20,10 +23,15 @@ const PageLayout: FC<PropsWithChildren<IPageLayoutProps>> = ({
 }) => {
   return (
     <div className={cn(styles.menu, { [`${className}`]: !!className })}>
-      <div className={isLargeTitle ? styles.titleLarge : styles.title}>
+      <Title
+        variant="h1"
+        className={cn(styles.title, { [styles.titleSmall]: !isLargeTitle })}
+      >
         {title}
-      </div>
-      <div className={styles.subtitle}>{subtitle}</div>
+      </Title>
+      <Text size="xl" inline className={styles.subtitle}>
+        {subtitle}
+      </Text>
       {children}
     </div>
   );

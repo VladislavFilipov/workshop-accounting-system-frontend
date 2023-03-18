@@ -5,11 +5,17 @@ import DetailCard from "@src/pages/Scanner/DetailCard/DetailCard";
 import DetailCraftsList from "@src/pages/Scanner/DetailCraftsList/DetailCraftsList";
 import useDetailCraft from "@src/pages/Scanner/_hooks/useDetailCraft";
 
+import styles from "./Stamps.module.scss";
+
 const Stamps: FC = () => {
   const { detailCraft, error, isLoading } = useDetailCraft();
 
   return (
-    <DataContainer isLoading={isLoading} error={error}>
+    <DataContainer
+      className={styles.stamps}
+      isLoading={isLoading}
+      error={error}
+    >
       {detailCraft && (
         <>
           <DetailCard detailCraft={detailCraft} />

@@ -29,8 +29,8 @@ const DetailCard: FC<IDetailCardProps> = ({ detailCraft }) => {
       <>
         {detailCraft && (
           <div className={styles.detailCard}>
-            {/* <h2 className={styles.titleH2}>Деталь</h2> */}
-            <Title variant="h2" className={styles.titleH2}>
+            {/* <h2 className={styles.titleH3}>Деталь</h2> */}
+            <Title variant="h3" className={styles.titleH3}>
               Деталь
             </Title>
             <div className={styles.line}>

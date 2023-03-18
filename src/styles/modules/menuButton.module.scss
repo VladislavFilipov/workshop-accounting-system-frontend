@@ -1,42 +1,44 @@
 @use "sass:color";
-@import "../mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 .menuButton {
   cursor: pointer;
 
   display: block;
   display: flex;
-  gap: 15px;
+  gap: 0.6rem;
   align-items: center;
 
   width: max-content;
-  padding: 15px;
+  padding: 0.6rem;
 
   text-decoration: none;
 
-  background-color: $black;
-  border-radius: 20px;
+  background-color: vars.$black;
+  border-radius: 0.8rem;
 
   &.default {
-    width: 700px;
+    width: 29rem;
   }
 
   &:hover {
     // .text {
-    box-shadow: 0 0 50px -25px rgb(64 65 102);
+    // box-shadow: 0 0 50px -25px vars.$text-color;
+    background-color: vars.$text-color;
 
     // }
   }
 
   &:active {
-    background-color: color.adjust($black, $lightness: 15%);
+    background-color: color.adjust(vars.$text-color, $lightness: 15%);
   }
 
   .img {
-    height: 100px;
+    height: 4rem;
   }
 
   .text {
-    @include setFont(35px, 600, 35px, white);
+    @include mixins.setFont(1.5rem, 600, 1.5rem, white);
   }
 }

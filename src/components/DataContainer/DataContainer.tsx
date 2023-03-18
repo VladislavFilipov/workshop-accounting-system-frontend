@@ -7,6 +7,7 @@ interface IDataContainerProps {
   isLoading: boolean;
   error: unknown;
   skeleton?: ReactNode;
+  className?: string;
 }
 
 const DataContainer: FC<PropsWithChildren<IDataContainerProps>> = ({
@@ -14,9 +15,10 @@ const DataContainer: FC<PropsWithChildren<IDataContainerProps>> = ({
   error,
   skeleton,
   children,
+  className,
 }) => {
   return (
-    <div>
+    <div className={className}>
       {isLoading ? (
         skeleton ?? <Spinner />
       ) : error ? (
