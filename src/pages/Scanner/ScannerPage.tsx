@@ -16,7 +16,7 @@ const ScannerPage = () => {
 
   return (
     <PageLayout
-      title="УЧЕТ РАБОТ"
+      title="Учёт работ"
       subtitle="Отсканируйте QR-код этапа производства"
       className={styles.scannerPage}
     >

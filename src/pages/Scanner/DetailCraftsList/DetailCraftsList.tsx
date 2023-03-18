@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import cn from "classnames";
+
 import DataContainer from "@src/components/DataContainer/DataContainer";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
@@ -41,24 +43,28 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
   return (
     <div className={styles.stages}>
       <>
-        <Title variant="h2">Этапы производства</Title>
+        <Title variant="h3" className={styles.titleH3}>
+          Этапы производства
+        </Title>
         <DataContainer
           isLoading={listIsFetching}
           error={listError}
           skeleton={<SkeletonDetailCraftList />}
         >
-          <ul>
+          <ul className={styles.list}>
             {detailCraft &&
               detailCraftsList?.map((detilCraftItem) => (
-                <li key={detilCraftItem.id} className={styles.stageItemWrap}>
+                <li
+                  key={detilCraftItem.id}
+                  className={cn(styles.stageItemWrap, {
+                    [styles.selected]: detilCraftItem.id === detailCraft?.id,
+                  })}
+                >
                   <div
-                    className={`${styles.stageItem} ${
-                      styles[detilCraftItem.status]
-                    } ${
-                      detilCraftItem.id === detailCraft?.id
-                        ? styles.selected
-                        : ""
-                    }`}
+                    className={cn(
+                      styles.stageItem,
+                      styles[detilCraftItem.status],
+                    )}
                   >
                     <div className={styles.stageStatus}>
                       {detailCraftStatuses[detilCraftItem.status].name}

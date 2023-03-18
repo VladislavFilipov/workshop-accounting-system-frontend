@@ -1,17 +1,18 @@
 @use "src/styles/mixins" as mixins;
+@use "src/styles/variables" as vars;
 
 .screen {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
 
   width: 100vw;
   height: 100vh;
-  padding: 20px;
+  padding: 1rem;
 
-  background-color: #44475aff;
+  background-color: vars.$text-color;
 
   .text {
     color: white;
@@ -19,7 +20,7 @@
 
   .btns {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
     align-items: center;
   }
 }

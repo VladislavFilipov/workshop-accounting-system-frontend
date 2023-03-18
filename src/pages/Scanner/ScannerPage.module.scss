@@ -3,19 +3,19 @@
 
 .scannerPage {
   .inputToken {
-    width: 800px;
-    height: 150px;
-    margin-bottom: 30px;
-    padding: 20px;
+    width: 32rem;
+    height: 6rem;
+    margin-bottom: 1.2rem;
+    padding: 0.8rem;
 
-    font-size: 30px;
+    font-size: 1.2rem;
 
-    border: 5px solid vars.$black;
-    border-radius: 10px;
+    border: 0.2rem solid vars.$black;
+    border-radius: 0.4rem;
   }
 
-  .titleH2 {
-    @include mixins.setFont(40px, 600, 40px);
-    margin-bottom: 20px;
-  }
+  // .titleH3 {
+  //   @include mixins.setFont(40px, 600, 40px);
+  //   margin-bottom: 0.8rem;
+  // }
 }

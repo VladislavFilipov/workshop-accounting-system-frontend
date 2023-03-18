@@ -3,6 +3,7 @@ import { FC } from "react";
 import { errors } from "@src/components/ErrorScreen/errorsData";
 import Button from "@src/components/_uikit/Button/Button";
 import LinkButton from "@src/components/_uikit/Button/LinkButton";
+import Text from "@src/components/_uikit/Text";
 import Title from "@src/components/_uikit/Title";
 import useAuthStore from "@src/store/auth";
 
@@ -20,9 +21,7 @@ const ErrorScreen: FC<IErrorScreenprops> = ({ type, cause }) => {
       <Title variant="h1" className={styles.text}>
         {errors[type].title}
       </Title>
-      <Title variant="h3" className={styles.text}>
-        {cause ?? errors[type].subtitle}
-      </Title>
+      <Text className={styles.text}>{cause ?? errors[type].subtitle}</Text>
       <br />
       <LinkButton text="Меню" to="/" />
       {type === "error" && (

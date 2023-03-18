@@ -1,10 +1,6 @@
 @use "sass:map";
 @use "sass:math";
 
-// @use "src/styles/mixins" as mixins;
-@use "src/styles/mixins" as mixins;
-
-// "xs" | "s" | "m" | "l" | "xl"
 $sizes: (
   "xl": 1.4,
   "l": 1.2,
@@ -20,13 +16,6 @@ $selectors: map.keys($sizes);
 
     font-size: #{$cur}rem;
     line-height: #{$cur + math.floor(calc($cur / 4))}rem;
-
-    // @include mixins.setFont(
-    //   #{$cur}rem,
-    //   500,
-    //   #{$cur + floor(calc($cur / 4))}rem,
-    //   inherit
-    // );
   }
 }
 
