@@ -1,0 +1,29 @@
+@use "src/styles/mixins" as mixins;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // width: 100px;
+  // height: 100px;
+
+  .svg {
+    animation: rotation 1s infinite linear;
+
+    &.s {
+      width: 30px;
+      height: 30px;
+    }
+
+    &.m {
+      width: 60px;
+      height: 60px;
+    }
+
+    &.l {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

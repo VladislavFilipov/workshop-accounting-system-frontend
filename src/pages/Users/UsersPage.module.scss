@@ -1,9 +1,7 @@
-@import "../../styles/mixins";
+@use "src/styles/mixins" as mixins;
 
 .usersPage {
-  .linkButton {
-    margin-bottom: 20px;
-    padding: 20px 30px;
-    background-color: #44475aff;
+  .userButton {
+    margin-bottom: 0.6rem;
   }
 }

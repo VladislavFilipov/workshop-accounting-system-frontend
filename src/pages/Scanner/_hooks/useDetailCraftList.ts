@@ -19,7 +19,7 @@ const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
   const {
     data: detailCraftsList,
     error: listError,
-    isFetching: listIsFetching,
+    isLoading: listIsFetching,
     // refetch: getDetailCraftsList,
   } = useQuery(
     [DETAILS_CRAFT_KEY + "list", detailCraft],
@@ -40,6 +40,7 @@ const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
     },
     {
       enabled: !!detailCraft,
+      // suspense: true,
     },
   );
   return { detailCraftsList, listError, listIsFetching };

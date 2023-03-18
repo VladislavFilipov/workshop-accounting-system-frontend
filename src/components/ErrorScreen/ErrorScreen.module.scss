@@ -1,0 +1,26 @@
+@use "src/styles/mixins" as mixins;
+@use "src/styles/variables" as vars;
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+
+  background-color: vars.$text-color;
+
+  .text {
+    color: white;
+  }
+
+  .btns {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}

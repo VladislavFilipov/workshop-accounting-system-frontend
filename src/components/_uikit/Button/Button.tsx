@@ -1,5 +1,7 @@
 import { FC, HTMLAttributes } from "react";
 
+import cn from "classnames";
+
 import styles from "./Button.module.scss";
 
 interface IButtonProps {
@@ -10,11 +12,14 @@ interface IButtonProps {
 const Button: FC<IButtonProps & HTMLAttributes<HTMLButtonElement>> = ({
   text,
   type,
+  className,
   ...props
 }) => {
   return (
     <button
-      className={`${styles.button} ${type ? styles[type] : ""}`}
+      className={cn(styles.button, type ? styles[type] : styles.default, {
+        [`${className}`]: !!className,
+      })}
       {...props}
     >
       <span className={styles.text}>{text}</span>

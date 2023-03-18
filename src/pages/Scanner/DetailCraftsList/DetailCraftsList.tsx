@@ -1,12 +1,16 @@
 import { FC } from "react";
 
+import cn from "classnames";
+
+import DataContainer from "@src/components/DataContainer/DataContainer";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
+import SkeletonDetailCraftList from "@src/pages/Scanner/DetailCraftsList/Skeleton";
 import useDetailCraftList from "@src/pages/Scanner/_hooks/useDetailCraftList";
 import useUpdateDetailCraft from "@src/pages/Scanner/_hooks/useUpdateDetailCraft";
-import { IUpdateDetailStatus } from "@src/pages/Scanner/_types";
+import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
 import useScannerData from "@src/store/scanner";
 import { IDetailCraft } from "@src/types/detailCraft";
 
@@ -14,52 +18,53 @@ import styles from "./DetailCraftsList.module.scss";
 
 interface IDetailCraftsListProps {
   detailCraft: IDetailCraft;
-  updateDetailStatus: IUpdateDetailStatus;
-  getDetailCraft: () => void;
 }
 
-const DetailCraftsList: FC<IDetailCraftsListProps> = ({
-  detailCraft,
-  updateDetailStatus,
-  getDetailCraft,
-}) => {
+const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
   const canUpdate = useScannerData((state) => state.canUpdate);
 
   const { detailCraftsList, listError, listIsFetching } =
     useDetailCraftList(detailCraft);
 
-  const { updateDetailCraft, updateError } = useUpdateDetailCraft(
-    detailCraft,
-    updateDetailStatus,
-    getDetailCraft,
-  );
+  const { updateDetailCraft, updateError } = useUpdateDetailCraft(detailCraft);
+
+  const { updateDetailStatus } = useUpdateDetailStatus(detailCraft);
 
   const handleUpdateClick = (detailCraft: IDetailCraft) => {
-    updateDetailCraft(detailCraft);
+    updateDetailCraft(detailCraft, {
+      onSuccess: () => {
+        updateDetailStatus({ status: "ASSEMBLY", detailCraft });
+      },
+    });
   };
+
+  console.log("canUpdate", canUpdate);
 
   return (
     <div className={styles.stages}>
       <>
-        <Title variant="h2">Этапы производства</Title>
-        {/* <h2 className={styles.titleH2}>Этапы производства</h2> */}
-        {listIsFetching ? (
-          <>Загрузка...</>
-        ) : listError ? (
-          <StatusLabel text={(listError as Error).message} type="error" />
-        ) : (
-          <ul>
+        <Title variant="h3" className={styles.titleH3}>
+          Этапы производства
+        </Title>
+        <DataContainer
+          isLoading={listIsFetching}
+          error={listError}
+          skeleton={<SkeletonDetailCraftList />}
+        >
+          <ul className={styles.list}>
             {detailCraft &&
               detailCraftsList?.map((detilCraftItem) => (
-                <li key={detilCraftItem.id} className={styles.stageItemWrap}>
+                <li
+                  key={detilCraftItem.id}
+                  className={cn(styles.stageItemWrap, {
+                    [styles.selected]: detilCraftItem.id === detailCraft?.id,
+                  })}
+                >
                   <div
-                    className={`${styles.stageItem} ${
-                      styles[detilCraftItem.status]
-                    } ${
-                      detilCraftItem.id === detailCraft?.id
-                        ? styles.selected
-                        : ""
-                    }`}
+                    className={cn(
+                      styles.stageItem,
+                      styles[detilCraftItem.status],
+                    )}
                   >
                     <div className={styles.stageStatus}>
                       {detailCraftStatuses[detilCraftItem.status].name}
@@ -86,7 +91,7 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({
                 </li>
               ))}
           </ul>
-        )}
+        </DataContainer>
 
         {updateError && (
           <StatusLabel text={(updateError as Error).message} type="error" />

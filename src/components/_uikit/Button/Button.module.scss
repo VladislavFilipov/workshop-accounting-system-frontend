@@ -1,5 +1,6 @@
 @use "sass:color";
-@import "../../../styles/mixins";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 .button {
   cursor: pointer;
@@ -7,31 +8,52 @@
   display: flex;
   align-items: center;
 
-  height: 60px;
-  padding: 0 30px;
+  height: 2.5rem;
+  padding: 0 1rem;
 
-  background-color: $black;
+  text-decoration: none !important;
+
   border: none;
-  border-radius: 15px;
+  border-radius: 0.6rem;
   outline: none;
 
-  &.confirm {
-    background-color: $success-color;
+  transition: all 0.1s;
+
+  .text {
+    @include mixins.setFont(1rem, 600, 1rem, white);
+    margin-bottom: 2px;
+  }
+
+  &.default {
+    background-color: vars.$black;
+
+    // border: 0.2rem solid vars.$black;
 
     &:hover {
-      background-color: color.adjust($success-color, $lightness: -10%);
+      background-color: vars.$text-color;
+      box-shadow: 0 0 1rem -0.5rem vars.$black;
+
+      // border: 5px solid $black;
+
+      // .text {
+      //   color: vars.$black;
+      // }
+    }
+  }
+
+  &.confirm {
+    background-color: vars.$success-color;
+
+    &:hover {
+      background-color: color.adjust(vars.$success-color, $lightness: -10%);
     }
   }
 
   &.danger {
-    background-color: $danger-color;
+    background-color: vars.$danger-color;
 
     &:hover {
-      background-color: color.adjust($success-color, $lightness: -10%);
+      background-color: color.adjust(vars.$success-color, $lightness: -10%);
     }
-  }
-
-  .text {
-    @include setFont(24px, 600, 24px, white);
   }
 }

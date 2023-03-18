@@ -2,8 +2,11 @@ import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 type CustomAxiosError = AxiosError<{ apierror: { message: string } }>;
 
+export const baseURL = `${process.env.SERVER_URL}/api/v${process.env.API_VERSION}`;
+// export const baseURL = `http://localhost:5000`;
+
 const axios = Axios.create({
-  baseURL: `${process.env.SERVER_URL}/api/v${process.env.API_VERSION}`,
+  baseURL,
   headers: {
     "Content-Type": "application/json",
   },

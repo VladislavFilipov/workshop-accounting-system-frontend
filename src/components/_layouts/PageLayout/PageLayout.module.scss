@@ -1,4 +1,5 @@
-@import "../../../styles/mixins";
+@use "src/styles/mixins" as mixins;
+@use "src/styles/variables" as vars;
 
 .menu {
   display: flex;
@@ -6,21 +7,21 @@
   align-items: flex-start;
 
   min-height: 100%;
-  padding-bottom: 200px;
+  padding-bottom: 6rem;
 
   .title {
-    @include setFont(100px, 600, 100px);
-    margin-bottom: 20px;
+    @include mixins.setFont(4rem, 600, 4rem);
+    margin-bottom: 0.8rem;
     text-transform: uppercase;
   }
 
-  .titleMini {
-    @include setFont(60px, 600, 60px);
-    margin-bottom: 20px;
+  .titleSmall {
+    @include mixins.setFont(2.5rem, 600, 2.5rem);
+    text-transform: none !important;
   }
 
   .subtitle {
-    @include setFont(30px, 400, 30px, #adadad);
-    margin-bottom: 80px;
+    margin-bottom: 3rem;
+    color: vars.$gray-dark;
   }
 }

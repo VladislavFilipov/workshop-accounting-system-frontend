@@ -1,0 +1,33 @@
+@use "src/styles/variables" as vars;
+
+.list {
+  text-transform: uppercase;
+
+  .work {
+    display: grid;
+    grid-template-columns: 5rem 10rem 10rem 10rem;
+    align-items: center;
+    justify-items: center;
+
+    width: 35rem;
+
+    font-weight: 600;
+    color: vars.$text-color;
+
+    & > * {
+      padding: 0.7rem 0.5rem;
+      text-align: center;
+    }
+
+    &.head {
+      font-weight: 600;
+      color: vars.$text-color;
+
+      // border-bottom: 0.rem solid vars.$text-color;
+    }
+
+    &:nth-child(odd) {
+      background-color: vars.$gray-light;
+    }
+  }
+}

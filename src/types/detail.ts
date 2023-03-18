@@ -3,7 +3,6 @@ import { IUser } from "@src/types/user";
 export type TDetailStatus =
   | "INACTIVE"
   | "WAITING"
-  | "WAITING"
   | "COMPLETE"
   | "ASSEMBLY"
   | "DEFECT";

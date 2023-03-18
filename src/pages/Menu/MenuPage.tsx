@@ -12,8 +12,9 @@ const MenuPage: FC = () => {
   const logout = useAuthStore((state) => state.logout);
   return (
     <PageLayout
-      title="МЕНЮ"
-      subtitle="Пожалуйста, выберете необходимую задачу"
+      title="Меню"
+      isLargeTitle
+      subtitle="Пожалуйста, выберите необходимую задачу"
       className={styles.menu}
     >
       <>
@@ -24,8 +25,13 @@ const MenuPage: FC = () => {
             pathTo="/scanner"
             isDefault
           />
+          <MenuButton
+            imgSrc={qrScanIcon}
+            text="Активные работы"
+            pathTo="/active-works"
+            isDefault
+          />
         </div>
-
         <MenuButton imgSrc={exitIcon} text="Выход" onClick={logout} />
       </>
     </PageLayout>

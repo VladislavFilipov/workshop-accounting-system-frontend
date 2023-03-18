@@ -1,10 +1,6 @@
-import { lazy } from "react";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
+import ErrorScreen from "@src/components/ErrorScreen";
 // const AppLayout = lazy(() => import("@src/components/_layouts/AppLayout"));
 // const ProtectedRoute = lazy(
 //   () => import("@src/components/_shared/ProtectedRoute/ProtectedRoute"),
@@ -14,27 +10,18 @@ import {
 // const Users = lazy(() => import("@src/pages/Users"));
 import AppLayout from "@src/components/_layouts/AppLayout";
 import ProtectedRoute from "@src/components/_shared/ProtectedRoute/ProtectedRoute";
+import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
 import Menu from "@src/pages/Menu";
 import Scanner from "@src/pages/Scanner";
+import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
 import Users from "@src/pages/Users";
 
 // has temporary login simulation
-export const routes2 = createRoutesFromElements(
-  <Route path="/" element={<AppLayout />}>
-    <Route path="/" element={<ProtectedRoute />}>
-      <Route index element={<Menu />} />
-    </Route>
-    <Route path="/scanner" element={<ProtectedRoute />}>
-      <Route index element={<Scanner />} />
-    </Route>
-    <Route path="/login" element={<Users />} />
-  </Route>,
-);
-
 export const routes = [
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <ErrorScreen type="error" />,
     children: [
       {
         path: "/",
@@ -44,13 +31,37 @@ export const routes = [
       {
         path: "/scanner",
         element: <ProtectedRoute />,
-        children: [{ index: true, element: <Scanner /> }],
+        children: [
+          {
+            path: "/scanner",
+            element: <Scanner />,
+            children: [
+              {
+                path: "/scanner/stamps",
+                element: <Stamps />,
+              },
+              {
+                path: "/scanner/items",
+                element: <div>Items</div>,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: "/active-works",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <ActiveWorks /> }],
       },
       {
         path: "/login",
         element: <Users />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorScreen type="pageNotFound" />,
   },
 ];
 

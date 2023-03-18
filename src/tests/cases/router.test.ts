@@ -1,17 +1,12 @@
 import "@testing-library/jest-dom";
-import {
-  act,
-  fireEvent,
-  renderHook,
-  RenderResult,
-} from "@testing-library/react";
+import { act, renderHook, RenderResult } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import useAuthStore from "@src/store/auth";
 import { renderApp } from "@src/tests/_helpers/renders";
 import { IUser } from "@src/types/user";
 
-const MENU_TITLE = "МЕНЮ";
+const MENU_TITLE = "Меню";
 
 describe("Router tests", () => {
   let rendered: RenderResult | null = null;
@@ -58,7 +53,7 @@ describe("Router tests", () => {
     if (linkButton) {
       await user.click(linkButton);
 
-      const scannerTitle = rendered?.queryByText("УЧЕТ РАБОТ");
+      const scannerTitle = rendered?.queryByText("Учёт работ");
       expect(scannerTitle).toBeInTheDocument();
     }
   });
