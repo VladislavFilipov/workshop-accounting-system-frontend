@@ -1,3 +1,5 @@
+@use "src/styles/variables" as vars;
+
 .appLayout {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,12 @@
 
     & > * {
       flex: 1;
+    }
+  }
+
+  @media #{vars.$desktop-screen} {
+    .content {
+      padding: 0 2rem 1.5rem;
     }
   }
 }

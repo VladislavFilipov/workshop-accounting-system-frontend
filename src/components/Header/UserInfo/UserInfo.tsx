@@ -19,7 +19,7 @@ const UserInfo: FC = () => {
         {user && (
           <>
             <div className={styles.role}>
-              {userRoles[user.role].toLowerCase()}
+              {userRoles[user.role].ruName.toLowerCase()}
             </div>
             <div className={styles.jobs}>
               {user.jobs_id.map((job) => (

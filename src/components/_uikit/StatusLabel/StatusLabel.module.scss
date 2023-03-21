@@ -12,23 +12,23 @@ $selectors: map.keys($types);
 
 @mixin setType($selector) {
   &.#{$selector} {
-    @include mixins.setFont(24px, 600, 24px, map.get($types, $selector));
+    @include mixins.setFont(1rem, 600, 1rem, map.get($types, $selector));
     background-color: color.adjust(map.get($types, $selector), $lightness: 40%);
   }
 }
 
 .statusLabel {
   height: max-content;
-  margin: 30px 0;
-  padding: 7px 15px;
-  border-radius: 4px;
+  margin: 1.2rem 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
 
   @for $i from 1 through length($selectors) {
     @include setType(nth($selectors, $i));
   }
 
   .status {
-    margin-right: 15px;
+    margin-right: 0.5rem;
     font-weight: 600 !important;
   }
 }

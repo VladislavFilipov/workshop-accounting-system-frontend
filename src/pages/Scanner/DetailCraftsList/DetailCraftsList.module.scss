@@ -3,16 +3,11 @@
 @use "src/styles/variables" as vars;
 @use "src/styles/mixins" as mixins;
 
-$statuses: (
-  "WAITING": vars.$detail-craft-waiting,
-  "WORKING": vars.$detail-craft-working,
-  "COMPLETE": vars.$detail-craft-complete,
-);
-$selectors: map.keys($statuses);
+$statuses: "WAITING", "WORKING", "COMPLETE";
 
-@mixin setType($selector) {
-  &.#{$selector} {
-    $color: map.get($statuses, $selector);
+@mixin setType($status) {
+  &.#{$status} {
+    $color: map.get(vars.$status-colors, $status);
 
     background-color: color.adjust($color, $lightness: 30%);
 
@@ -75,8 +70,8 @@ $selectors: map.keys($statuses);
       @include mixins.setFont(1rem, 500, 1rem, rgb(188, 187, 187));
     }
 
-    @for $i from 1 through length($selectors) {
-      @include setType(nth($selectors, $i));
+    @for $i from 1 through length($statuses) {
+      @include setType(nth($statuses, $i));
     }
   }
 

@@ -9,9 +9,11 @@ import ErrorScreen from "@src/components/ErrorScreen";
 // const Scanner = lazy(() => import("@src/pages/Scanner"));
 // const Users = lazy(() => import("@src/pages/Users"));
 import AppLayout from "@src/components/_layouts/AppLayout";
-import ProtectedRoute from "@src/components/_shared/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "@src/components/_shared/ProtectedRoute";
+import userRoles from "@src/data/userRoles";
 import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
 import Menu from "@src/pages/Menu";
+import Packaging from "@src/pages/Packaging";
 import Scanner from "@src/pages/Scanner";
 import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
 import Users from "@src/pages/Users";
@@ -52,6 +54,11 @@ export const routes = [
         path: "/active-works",
         element: <ProtectedRoute />,
         children: [{ index: true, element: <ActiveWorks /> }],
+      },
+      {
+        path: "/packaging",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <Packaging /> }],
       },
       {
         path: "/login",

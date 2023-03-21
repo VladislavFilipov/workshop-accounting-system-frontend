@@ -1,7 +1,11 @@
 import { FC, PropsWithChildren, ReactNode } from "react";
 
+import cn from "classnames";
+
 import Spinner from "@src/components/_uikit/Spinner/Spinner";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
+
+import styles from "./DataContainer.module.scss";
 
 interface IDataContainerProps {
   isLoading: boolean;
@@ -18,7 +22,7 @@ const DataContainer: FC<PropsWithChildren<IDataContainerProps>> = ({
   className,
 }) => {
   return (
-    <div className={className}>
+    <div className={cn(styles.container, { [`${className}`]: !!className })}>
       {isLoading ? (
         skeleton ?? <Spinner />
       ) : error ? (

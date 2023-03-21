@@ -24,4 +24,17 @@
     margin-bottom: 3rem;
     color: vars.$gray-dark;
   }
+
+  @media #{vars.$desktop-screen} {
+    .titleSmall {
+      @include mixins.setFont(2rem, 600, 2rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.1rem;
+    }
+  }
 }
