@@ -16,10 +16,6 @@ const details = {
       url: `${baseUrl}/detail?id=${id}`,
       data: detail,
     }),
-  // .then((res) => {
-  //   console.log("getAll", res);
-  //   return res.filter((item) => item.id > 0);
-  // })
 };
 
 export default details;

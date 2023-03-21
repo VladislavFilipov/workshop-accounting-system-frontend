@@ -10,16 +10,6 @@ const users = {
       method: GET,
       url: `${url}/`,
     }),
-  // editHabit: async (habit: IHabit) =>
-  //   request<IHabit>({
-  //     method: PUT,
-  //     url: `${url}/${habit.id}`,
-  //     data: habit
-  //   })
-  // .then((res) => {
-  //   console.log("getAll", res);
-  //   return res.filter((item) => item.id > 0);
-  // })
 };
 
 export default users;

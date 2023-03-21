@@ -25,10 +25,16 @@ const MenuPage: FC = () => {
             pathTo="/scanner"
             isDefault
           />
-          <MenuButton
+          {/* <MenuButton
             imgSrc={qrScanIcon}
             text="Активные работы"
             pathTo="/active-works"
+            isDefault
+          /> */}
+          <MenuButton
+            imgSrc={qrScanIcon}
+            text="Фасовка"
+            pathTo="/packaging"
             isDefault
           />
         </div>
