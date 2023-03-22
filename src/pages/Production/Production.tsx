@@ -2,15 +2,12 @@ import DataContainer from "@src/components/DataContainer/DataContainer";
 import WorkplacesList from "@src/components/WorkplacesList";
 import SkeletonWorkplacesList from "@src/components/WorkplacesList/Skeleton";
 import PageLayout from "@src/components/_layouts/PageLayout";
-import usePackWorkplaces from "@src/pages/Packaging/_hooks/usePackWorkplaces";
+import useProdWorkplaces from "@src/pages/Production/_hooks/useProdWorkplaces";
 
-const Packaging = () => {
-  const [workplaces, isLoading, error] = usePackWorkplaces();
+const Production = () => {
+  const [workplaces, isLoading, error] = useProdWorkplaces();
   return (
-    <PageLayout
-      title="Фасовка"
-      subtitle="Сведения о процессах работ на фасовочных местах"
-    >
+    <PageLayout title="Производство" subtitle="Сведения о работе станков">
       <DataContainer
         error={error}
         isLoading={isLoading}
@@ -22,4 +19,4 @@ const Packaging = () => {
   );
 };
 
-export default Packaging;
+export default Production;

@@ -1,0 +1,15 @@
+@use "src/styles/variables" as vars;
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+
+  .skeletonItem {
+    height: 5.75rem;
+  }
+
+  @media #{vars.$workplace-screen} {
+    grid-template-columns: 1fr 1fr;
+  }
+}
