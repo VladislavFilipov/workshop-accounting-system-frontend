@@ -4,3 +4,4 @@ export const DETAILS_CRAFT_LIST_KEY = "detials/craft_list";
 export const DETAILS_CRAFT_DETAIL_KEY = "detials/craft_detail";
 export const ACTIVE_WORKS_KEY = "active-works";
 export const PACK_WORKPLACES_KEY = "packaging/workplaces";
+export const PROD_WORKPLACES_KEY = "production/workplaces";

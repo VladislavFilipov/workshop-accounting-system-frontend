@@ -33,6 +33,12 @@ const MenuPage: FC = () => {
           /> */}
           <MenuButton
             imgSrc={qrScanIcon}
+            text="Производство"
+            pathTo="/production"
+            isDefault
+          />
+          <MenuButton
+            imgSrc={qrScanIcon}
             text="Фасовка"
             pathTo="/packaging"
             isDefault
