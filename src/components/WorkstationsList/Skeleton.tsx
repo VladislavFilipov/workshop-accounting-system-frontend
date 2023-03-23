@@ -2,9 +2,9 @@ import { FC } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import styles from "./WorkplacesList.module.scss";
+import styles from "./WorkstationsList.module.scss";
 
-const SkeletonWorkplacesList: FC = () => {
+const SkeletonWorkstationsList: FC = () => {
   return (
     <div className={styles.list}>
       {Array(4)
@@ -16,4 +16,4 @@ const SkeletonWorkplacesList: FC = () => {
   );
 };
 
-export default SkeletonWorkplacesList;
+export default SkeletonWorkstationsList;

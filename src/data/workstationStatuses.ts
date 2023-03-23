@@ -1,8 +1,8 @@
 import { ASSEMBLY, COMPLETE, INACTIVE, WAITING } from "@src/const/statuses";
-import { TWorkplaceStatus } from "@src/types/workplace";
+import { TWorkstationStatus } from "@src/types/workstation";
 
 const workplaceStatuses: {
-  [key in TWorkplaceStatus]: { name: TWorkplaceStatus; ruName: string };
+  [key in TWorkstationStatus]: { name: TWorkstationStatus; ruName: string };
 } = {
   INACTIVE: { name: INACTIVE, ruName: "Неактивно" },
   WAITING: { name: WAITING, ruName: "Ожидание" },
