@@ -2,21 +2,21 @@ import DataContainer from "@src/components/DataContainer/DataContainer";
 import WorkstationsList from "@src/components/WorkstationsList";
 import SkeletonWorkstationsList from "@src/components/WorkstationsList/Skeleton";
 import PageLayout from "@src/components/_layouts/PageLayout";
-import useProdWorkstations from "@src/pages/Production/_hooks/useProdWorkstations";
+import useMachines from "@src/pages/Machines/_hooks/useMachines";
 
-const Production = () => {
-  const [workstations, isLoading, error] = useProdWorkstations();
+const Machines = () => {
+  const [machines, isLoading, error] = useMachines();
   return (
-    <PageLayout title="Производство" subtitle="Сведения о работе станков">
+    <PageLayout title="Станки" subtitle="Сведения о работе станков">
       <DataContainer
         error={error}
         isLoading={isLoading}
         skeleton={<SkeletonWorkstationsList />}
       >
-        {workstations && <WorkstationsList workstations={workstations} />}
+        {machines && <WorkstationsList workstations={machines} />}
       </DataContainer>
     </PageLayout>
   );
 };
 
-export default Production;
+export default Machines;

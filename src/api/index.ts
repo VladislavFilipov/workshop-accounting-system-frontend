@@ -2,8 +2,8 @@ import activeWorks from "@src/api/endpoints/activeWorks";
 import detailCraft from "@src/api/endpoints/detailCraft";
 import details from "@src/api/endpoints/details";
 import items from "@src/api/endpoints/items";
-import packaging from "@src/api/endpoints/packaging";
-import production from "@src/api/endpoints/production";
+import machines from "@src/api/endpoints/machines";
+import packstations from "@src/api/endpoints/packstations";
 import users from "@src/api/endpoints/users";
 
 const Api = {
@@ -12,8 +12,8 @@ const Api = {
   items,
   details,
   activeWorks,
-  packaging,
-  production,
+  packstations,
+  machines,
 };
 
 export default Api;

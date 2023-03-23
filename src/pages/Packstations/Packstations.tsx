@@ -2,10 +2,10 @@ import DataContainer from "@src/components/DataContainer/DataContainer";
 import WorkstationsList from "@src/components/WorkstationsList";
 import SkeletonWorkstationsList from "@src/components/WorkstationsList/Skeleton";
 import PageLayout from "@src/components/_layouts/PageLayout";
-import usePackWorkstations from "@src/pages/Packaging/_hooks/usePackWorkstations";
+import usePackstations from "@src/pages/Packstations/_hooks/usePackstations";
 
-const Packaging = () => {
-  const [workplaces, isLoading, error] = usePackWorkstations();
+const Packstations = () => {
+  const [packstations, isLoading, error] = usePackstations();
   return (
     <PageLayout
       title="Фасовка"
@@ -16,10 +16,10 @@ const Packaging = () => {
         isLoading={isLoading}
         skeleton={<SkeletonWorkstationsList />}
       >
-        {workplaces && <WorkstationsList workstations={workplaces} />}
+        {packstations && <WorkstationsList workstations={packstations} />}
       </DataContainer>
     </PageLayout>
   );
 };
 
-export default Packaging;
+export default Packstations;

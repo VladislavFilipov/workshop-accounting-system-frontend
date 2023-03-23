@@ -11,10 +11,11 @@ import ErrorScreen from "@src/components/ErrorScreen";
 import AppLayout from "@src/components/_layouts/AppLayout";
 import ProtectedRoute from "@src/components/_shared/ProtectedRoute";
 import userRoles from "@src/data/userRoles";
+import AccountingPackaging from "@src/pages/AccountingPackaging";
 import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
+import Machines from "@src/pages/Machines";
 import Menu from "@src/pages/Menu";
-import Packaging from "@src/pages/Packaging";
-import Production from "@src/pages/Production";
+import Packstations from "@src/pages/Packstations";
 import Scanner from "@src/pages/Scanner";
 import Items from "@src/pages/Scanner/_routes/Items/Items";
 import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
@@ -53,20 +54,37 @@ export const routes = [
         ],
       },
       {
+        path: "/accounting/packaging",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/accounting/packaging",
+            element: <AccountingPackaging />,
+          },
+        ],
+      },
+      {
         path: "/active-works",
         element: <ProtectedRoute />,
         children: [{ index: true, element: <ActiveWorks /> }],
       },
       {
-        path: "/packaging",
+        path: "/monitoring",
         element: <ProtectedRoute />,
-        children: [{ index: true, element: <Packaging /> }],
+        children: [
+          {
+            path: "/monitoring/packstations",
+            element: <ProtectedRoute />,
+            children: [{ index: true, element: <Packstations /> }],
+          },
+          {
+            path: "/monitoring/machines",
+            element: <ProtectedRoute />,
+            children: [{ index: true, element: <Machines /> }],
+          },
+        ],
       },
-      {
-        path: "/production",
-        element: <ProtectedRoute />,
-        children: [{ index: true, element: <Production /> }],
-      },
+
       {
         path: "/login",
         element: <Users />,

@@ -25,6 +25,13 @@ const MenuPage: FC = () => {
             pathTo="/scanner"
             isDefault
           />
+          <MenuButton
+            imgSrc={qrScanIcon}
+            text="Учёт фасовки"
+            pathTo="/accounting/packaging"
+            isDefault
+          />
+          <br />
           {/* <MenuButton
             imgSrc={qrScanIcon}
             text="Активные работы"
@@ -33,17 +40,18 @@ const MenuPage: FC = () => {
           /> */}
           <MenuButton
             imgSrc={qrScanIcon}
-            text="Производство"
-            pathTo="/production"
+            text="Станки"
+            pathTo="/monitoring/machines"
             isDefault
           />
           <MenuButton
             imgSrc={qrScanIcon}
-            text="Фасовка"
-            pathTo="/packaging"
+            text="Фасовочные станции"
+            pathTo="/monitoring/packstations"
             isDefault
           />
         </div>
+        <br />
         <MenuButton imgSrc={exitIcon} text="Выход" onClick={logout} />
       </>
     </PageLayout>
