@@ -1,19 +1,19 @@
 import DataContainer from "@src/components/DataContainer/DataContainer";
-import WorkplacesList from "@src/components/WorkplacesList";
-import SkeletonWorkplacesList from "@src/components/WorkplacesList/Skeleton";
+import WorkstationsList from "@src/components/WorkstationsList";
+import SkeletonWorkstationsList from "@src/components/WorkstationsList/Skeleton";
 import PageLayout from "@src/components/_layouts/PageLayout";
-import useProdWorkplaces from "@src/pages/Production/_hooks/useProdWorkplaces";
+import useProdWorkstations from "@src/pages/Production/_hooks/useProdWorkstations";
 
 const Production = () => {
-  const [workplaces, isLoading, error] = useProdWorkplaces();
+  const [workstations, isLoading, error] = useProdWorkstations();
   return (
     <PageLayout title="Производство" subtitle="Сведения о работе станков">
       <DataContainer
         error={error}
         isLoading={isLoading}
-        skeleton={<SkeletonWorkplacesList />}
+        skeleton={<SkeletonWorkstationsList />}
       >
-        {workplaces && <WorkplacesList workplaces={workplaces} />}
+        {workstations && <WorkstationsList workstations={workstations} />}
       </DataContainer>
     </PageLayout>
   );

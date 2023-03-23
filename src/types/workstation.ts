@@ -2,12 +2,12 @@ import { INACTIVE, WAITING, COMPLETE, ASSEMBLY } from "@src/const/statuses";
 
 const statuses = [INACTIVE, WAITING, COMPLETE, ASSEMBLY];
 
-export type TWorkplaceStatus = typeof statuses[number];
+export type TWorkstationStatus = typeof statuses[number];
 
-export interface IWorkplace {
+export interface IWorkstation {
   id: number;
   name: string;
-  status: TWorkplaceStatus;
+  status: TWorkstationStatus;
   amountCurrent: number;
   amountTotal: number;
 }
