@@ -6,3 +6,4 @@ export const ACTIVE_WORKS_KEY = "active-works";
 export const PACKSTATIONS_KEY = "packstations";
 export const MACHINES_KEY = "machines";
 export const CREATE_PACK_SCAN_KEY = "accounting/packaging/scan/create";
+export const REQUESTS_LIST_KEY = "requests";

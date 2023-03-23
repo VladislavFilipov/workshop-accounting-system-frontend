@@ -16,6 +16,7 @@ import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
 import Machines from "@src/pages/Machines";
 import Menu from "@src/pages/Menu";
 import Packstations from "@src/pages/Packstations";
+import Requests from "@src/pages/Requests/Requests";
 import Scanner from "@src/pages/Scanner";
 import Items from "@src/pages/Scanner/_routes/Items/Items";
 import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
@@ -64,11 +65,6 @@ export const routes = [
         ],
       },
       {
-        path: "/active-works",
-        element: <ProtectedRoute />,
-        children: [{ index: true, element: <ActiveWorks /> }],
-      },
-      {
         path: "/monitoring",
         element: <ProtectedRoute />,
         children: [
@@ -84,7 +80,16 @@ export const routes = [
           },
         ],
       },
-
+      {
+        path: "/active-works",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <ActiveWorks /> }],
+      },
+      {
+        path: "/requests",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <Requests /> }],
+      },
       {
         path: "/login",
         element: <Users />,

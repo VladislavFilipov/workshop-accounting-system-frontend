@@ -50,6 +50,13 @@ const MenuPage: FC = () => {
             pathTo="/monitoring/packstations"
             isDefault
           />
+          <br />
+          <MenuButton
+            imgSrc={qrScanIcon}
+            text="Заявки"
+            pathTo="/requests"
+            isDefault
+          />
         </div>
         <br />
         <MenuButton imgSrc={exitIcon} text="Выход" onClick={logout} />
