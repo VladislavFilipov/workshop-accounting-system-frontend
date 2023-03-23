@@ -16,6 +16,7 @@ import Menu from "@src/pages/Menu";
 import Packaging from "@src/pages/Packaging";
 import Production from "@src/pages/Production";
 import Scanner from "@src/pages/Scanner";
+import Items from "@src/pages/Scanner/_routes/Items/Items";
 import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
 import Users from "@src/pages/Users";
 
@@ -45,7 +46,7 @@ export const routes = [
               },
               {
                 path: "/scanner/items",
-                element: <div>Items</div>,
+                element: <Items />,
               },
             ],
           },

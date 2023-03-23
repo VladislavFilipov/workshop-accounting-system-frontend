@@ -6,7 +6,7 @@ type TTypeOfScanning = typeof types[number];
 
 interface IScannerData {
   typeOfScanning: TTypeOfScanning | undefined;
-  scannedToken: string;
+  scannedId: string;
   parseInput: (value: string) => void;
   parseError: Error | undefined;
   canUpdate: boolean;
@@ -17,10 +17,10 @@ interface IScannerData {
 
 const useScannerData = create<IScannerData>((set) => ({
   typeOfScanning: undefined,
-  scannedToken: "",
+  scannedId: "",
   parseError: undefined,
   parseInput: (value: string) => {
-    const [type, token] = value.split("\n");
+    const [type, id] = value.split("\n");
 
     set({
       typeOfScanning: undefined,
@@ -29,13 +29,13 @@ const useScannerData = create<IScannerData>((set) => ({
     if (!types.includes(type as TTypeOfScanning)) {
       set({
         typeOfScanning: undefined,
-        scannedToken: "",
+        scannedId: "",
         parseError: new Error("Некорректный тип."),
       });
     } else {
       set({
         typeOfScanning: type as TTypeOfScanning,
-        scannedToken: token,
+        scannedId: id,
         parseError: undefined,
       });
     }

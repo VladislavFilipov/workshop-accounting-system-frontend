@@ -32,7 +32,7 @@ const useDetailCraftByInput = () => {
         }
         setTypeOfScanning(type as TTypeOfScanning);
 
-        return Api.detailCraft.getByToken(token);
+        return Api.detailCraft.getById(token);
       } else {
         throw new Error("Отсканируйте QR-код");
       }

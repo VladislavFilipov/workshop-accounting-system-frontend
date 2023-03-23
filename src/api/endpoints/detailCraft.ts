@@ -5,10 +5,10 @@ import { IDetailCraft, TDetailCraftStatus } from "@src/types/detailCraft";
 
 const url = "/details/craft";
 const detailsCraft = {
-  getByToken: async (token: string) =>
+  getById: async (id: string) =>
     request<IDetailCraft>({
       method: GET,
-      url: `${url}/token?data=${token}`,
+      url: `${url}/detail?id=${id}`,
     }),
   getByDetailId: async (detailId: number) =>
     request<IDetailCraft[]>({

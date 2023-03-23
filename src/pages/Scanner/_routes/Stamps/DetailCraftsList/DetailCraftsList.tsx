@@ -7,10 +7,10 @@ import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
-import SkeletonDetailCraftList from "@src/pages/Scanner/DetailCraftsList/Skeleton";
 import useDetailCraftList from "@src/pages/Scanner/_hooks/useDetailCraftList";
 import useUpdateDetailCraft from "@src/pages/Scanner/_hooks/useUpdateDetailCraft";
 import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
+import SkeletonDetailCraftList from "@src/pages/Scanner/_routes/Stamps/DetailCraftsList/Skeleton";
 import useScannerData from "@src/store/scanner";
 import { IDetailCraft } from "@src/types/detailCraft";
 
