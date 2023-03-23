@@ -1,0 +1,13 @@
+// @use "sass:map";
+// @use "sass:color";
+@use "src/styles/variables" as vars;
+
+// @use "src/styles/mixins" as mixins;
+
+.input {
+  height: 2rem;
+}
+
+.error {
+  color: vars.$danger-color;
+}

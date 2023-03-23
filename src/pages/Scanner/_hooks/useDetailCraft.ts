@@ -6,16 +6,16 @@ import useScannerData from "@src/store/scanner";
 
 const useDetailCraft = () => {
   // const typeOfScanning = useScannerData((state) => state.typeOfScanning);
-  const scannedToken = useScannerData((state) => state.scannedToken);
+  const scannedId = useScannerData((state) => state.scannedId);
 
   const {
     data: detailCraft,
     error,
     isLoading,
     refetch: getDetailCraft,
-  } = useQuery([DETAILS_CRAFT_KEY], () => {
-    if (!scannedToken) throw new Error("Некорректный токен.");
-    return Api.detailCraft.getByToken(scannedToken);
+  } = useQuery([DETAILS_CRAFT_KEY, scannedId], () => {
+    if (!scannedId) throw new Error("Некорректный токен.");
+    return Api.detailCraft.getById(scannedId);
   });
 
   return {
