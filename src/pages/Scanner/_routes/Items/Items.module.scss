@@ -1,11 +1,28 @@
+@use "src/styles/variables" as vars;
+
 .items {
   width: 85%;
-}
 
-.headerAdd {
-  margin: 1rem 0;
-}
+  .headerAdd {
+    margin: 1rem 0;
+  }
 
-.headerList {
-  margin-bottom: 1rem;
+  .headerList {
+    margin-bottom: 1rem;
+  }
+
+  .listLength {
+    color: vars.$gray;
+  }
+
+  .btnWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+
+    .acceptBtn {
+      height: 3.5rem;
+    }
+  }
 }

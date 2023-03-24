@@ -26,6 +26,7 @@ const KeepingForm: FC<IProps> = ({ data, handle, handleDelete }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: data,
     resolver: yupResolver(schema),
@@ -34,6 +35,7 @@ const KeepingForm: FC<IProps> = ({ data, handle, handleDelete }) => {
 
   const onSubmit: SubmitHandler<IKeeping> = (formData) => {
     handle(formData);
+    reset();
   };
 
   return (
@@ -77,13 +79,14 @@ const KeepingForm: FC<IProps> = ({ data, handle, handleDelete }) => {
         />
       </div>
       <div className={styles.btns}>
-        <Button text="Сохранить" role="submit" type="confirm" />
-        {handleDelete && (
+        {handleDelete ? (
           <Button
             text="Удалить"
             type="danger"
             onClick={() => handleDelete(data)}
           />
+        ) : (
+          <Button text="Добавить" role="submit" type="confirm" />
         )}
       </div>
     </form>

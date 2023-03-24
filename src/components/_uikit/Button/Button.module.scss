@@ -55,7 +55,7 @@
     background-color: vars.$danger-color;
 
     &:hover {
-      background-color: color.adjust(vars.$success-color, $lightness: -10%);
+      background-color: color.adjust(vars.$danger-color, $lightness: -10%);
     }
   }
 }

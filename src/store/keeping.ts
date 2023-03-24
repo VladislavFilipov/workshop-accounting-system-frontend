@@ -6,10 +6,12 @@ import { IKeeping } from "@src/types/keeping";
 
 interface IKeepingStore {
   list: IKeeping[];
-  getKeepingByDetail: (detail: IDetail) => IKeeping[];
+  status: "waiting" | "loading" | "error" | "success";
+  // getKeepingByDetail: (detail: IDetail) => IKeeping[];
   addKeeping: (keeping: IKeeping) => void;
   updateKeeping: (keeping: IKeeping) => void;
   deleteKeeping: (keeping: IKeeping) => void;
+  resetList: () => void;
 }
 
 // temporary implementation while server is not ready
@@ -17,9 +19,7 @@ const useKeepingStore = create<IKeepingStore>()(
   persist(
     (set, get) => ({
       list: [],
-      getKeepingByDetail: (detail: IDetail) => {
-        return get().list.filter((item) => item.detail.id === detail.id);
-      },
+      status: "waiting",
       addKeeping: (keeping: Omit<IKeeping, "id">) => {
         const id =
           get().list.reduce(
@@ -27,8 +27,10 @@ const useKeepingStore = create<IKeepingStore>()(
             get().list.length,
           ) + 1;
 
+        // console.log("addKeeping", [{ ...keeping, id }, ...get().list]);
+
         set({
-          list: [{ id, ...keeping }, ...get().list],
+          list: [{ ...keeping, id }, ...get().list],
         });
       },
       updateKeeping: (keeping: IKeeping) => {
@@ -42,6 +44,23 @@ const useKeepingStore = create<IKeepingStore>()(
         set({
           list: get().list.filter((item) => item.id !== keeping.id),
         });
+      },
+      resetList: () => {
+        set({
+          status: "loading",
+        });
+        setTimeout(() => {
+          set({
+            list: [],
+            status: "success",
+          });
+
+          setTimeout(() => {
+            set({
+              status: "waiting",
+            });
+          }, 2000);
+        }, 500);
       },
     }),
     {
