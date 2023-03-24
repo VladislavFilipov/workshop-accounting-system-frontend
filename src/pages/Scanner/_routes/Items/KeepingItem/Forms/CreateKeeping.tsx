@@ -1,24 +1,20 @@
 import { FC } from "react";
 
 import KeepingForm from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/KeepingForm";
+import iniTIalData from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/_initialData";
+import useKeepingStore from "@src/store/keeping";
 import { IDetail } from "@src/types/detail";
 import { IKeeping } from "@src/types/keeping";
-
-const iniTIalData: IKeeping = {
-  id: 0,
-  detail: {} as IDetail,
-  detailAmount: 1,
-  keepingBox: "box",
-  keepingBoxAmount: 1,
-};
 
 interface IProps {
   detail: IDetail;
 }
 
 const CreateKeeping: FC<IProps> = ({ detail }) => {
+  const addKeeping = useKeepingStore((state) => state.addKeeping);
   const handleSubmit = (data: IKeeping) => {
     console.log("handleSubmit", data);
+    addKeeping(data);
   };
 
   return (

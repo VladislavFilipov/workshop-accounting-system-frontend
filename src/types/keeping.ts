@@ -4,6 +4,6 @@ export interface IKeeping {
   id: number;
   detail: IDetail;
   detailAmount: number;
-  keepingBox: string;
+  keepingBox: number | undefined;
   keepingBoxAmount: number;
 }

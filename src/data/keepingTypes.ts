@@ -9,21 +9,25 @@ export const keepingTypes = {
     name: "box30x40",
     ruName: "Коробка 30x40",
   },
-  bag40x50: {
+  bag30l: {
     id: 3,
-    name: "bag40x50",
-    ruName: "Мешок 40x50",
+    name: "bag30l",
+    ruName: "Мешок 30л",
   },
-  bag50x60: {
+  bag60l: {
     id: 4,
-    name: "bag50x60",
-    ruName: "Мешок 50x60",
+    name: "bag60l",
+    ruName: "Мешок 60л",
   },
 };
 
-export const keepingTypesNormalized = Object.values(keepingTypes).map(
-  (value) => ({
+export const keepingTypesNormalized = [
+  {
+    value: undefined,
+    label: "- Не выбрано -",
+  },
+  ...Object.values(keepingTypes).map((value) => ({
     value: value.id,
     label: value.ruName,
-  }),
-);
+  })),
+];

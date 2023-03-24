@@ -1,3 +1,40 @@
-.input {
-  width: 20rem;
+@use "src/styles/variables" as vars;
+
+// @use "src/styles/mixins" as mixins;
+
+.form {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+
+  background-color: vars.$gray-light;
+  border: 0.1rem solid vars.$gray;
+  border-radius: 0.4rem;
+
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 25%;
+    gap: 1rem;
+
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .detail {
+    display: flex;
+    align-items: center;
+    background-color: white;
+  }
+
+  .input {
+    // width: 20rem;
+  }
+
+  .btns {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+  }
 }
