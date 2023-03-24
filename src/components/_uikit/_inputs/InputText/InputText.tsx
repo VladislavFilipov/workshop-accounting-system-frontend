@@ -1,4 +1,4 @@
-import { FC, forwardRef, HTMLAttributes } from "react";
+import { FC, forwardRef, HTMLAttributes, InputHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form/dist/types";
 
 import cn from "classnames";
@@ -14,10 +14,9 @@ interface IProps {
   error?: string;
 }
 
-type IInputProps = IProps & HTMLAttributes<HTMLInputElement>;
-export type Ref = HTMLInputElement;
+type IInputProps = IProps & InputHTMLAttributes<HTMLInputElement>;
 
-const InputText: FC<IInputProps> = forwardRef<Ref, IInputProps>(
+const InputText = forwardRef<HTMLInputElement, IInputProps>(
   ({ label, className, isPassword, error, ...props }, ref) => {
     return (
       <Wrap label={label} className={className} error={error}>
