@@ -1,20 +1,19 @@
 import request from "../request";
 
 import { GET, POST } from "@src/const/httpMethods";
-import { IAddPackstationScan } from "@src/types/packstation";
-import { IWorkstation } from "@src/types/workstation";
+import { IAddPackstationScan, IPackstation } from "@src/types/packstation";
 
 const url = "/workstation/packstation";
 const packaging = {
   getAll: async () =>
-    request<IWorkstation[]>({
+    request<IPackstation[]>({
       method: GET,
       url: `${url}/`,
     }),
   addScan: async (data: IAddPackstationScan) =>
     request({
       method: POST,
-      url: `${url}/`,
+      url: `${url}/scan/`,
       data,
     }),
 };

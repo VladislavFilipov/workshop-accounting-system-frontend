@@ -3,6 +3,8 @@ import { FC } from "react";
 import exitIcon from "@src/assets/exit-icon.png";
 import qrScanIcon from "@src/assets/qr-scan-icon.png";
 import PageLayout from "@src/components/_layouts/PageLayout/PageLayout";
+import userRoles from "@src/data/userRoles";
+import useCheckAccess from "@src/hooks/useCheckAccess";
 import MenuButton from "@src/pages/Menu/MenuButton/MenuButton";
 import useAuthStore from "@src/store/auth";
 
@@ -10,6 +12,10 @@ import styles from "./MenuPage.module.scss";
 
 const MenuPage: FC = () => {
   const logout = useAuthStore((state) => state.logout);
+  const hasModeratorAccess = useCheckAccess([
+    userRoles.MODERATOR.name,
+    userRoles.ADMIN.name,
+  ]);
   return (
     <PageLayout
       title="Меню"
@@ -38,25 +44,29 @@ const MenuPage: FC = () => {
             pathTo="/active-works"
             isDefault
           /> */}
-          <MenuButton
-            imgSrc={qrScanIcon}
-            text="Станки"
-            pathTo="/monitoring/machines"
-            isDefault
-          />
-          <MenuButton
-            imgSrc={qrScanIcon}
-            text="Фасовочные станции"
-            pathTo="/monitoring/packstations"
-            isDefault
-          />
-          <br />
-          <MenuButton
-            imgSrc={qrScanIcon}
-            text="Заявки"
-            pathTo="/requests"
-            isDefault
-          />
+          {hasModeratorAccess && (
+            <>
+              <MenuButton
+                imgSrc={qrScanIcon}
+                text="Станки"
+                pathTo="/monitoring/machines"
+                isDefault
+              />
+              <MenuButton
+                imgSrc={qrScanIcon}
+                text="Фасовочные станции"
+                pathTo="/monitoring/packstations"
+                isDefault
+              />
+              <br />
+              <MenuButton
+                imgSrc={qrScanIcon}
+                text="Заявки"
+                pathTo="/requests"
+                isDefault
+              />
+            </>
+          )}
         </div>
         <br />
         <MenuButton imgSrc={exitIcon} text="Выход" onClick={logout} />

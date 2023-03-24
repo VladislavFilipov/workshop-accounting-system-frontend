@@ -1,13 +1,14 @@
-import { ASSEMBLY, COMPLETE, INACTIVE, WAITING } from "@src/const/statuses";
+import { SLEEP, COMPLETE, WORK, REPAIR } from "@src/const/statuses";
 import { TWorkstationStatus } from "@src/types/workstation";
 
-const workplaceStatuses: {
+const workstationStatuses: {
   [key in TWorkstationStatus]: { name: TWorkstationStatus; ruName: string };
 } = {
-  INACTIVE: { name: INACTIVE, ruName: "Неактивно" },
-  WAITING: { name: WAITING, ruName: "Ожидание" },
-  ASSEMBLY: { name: ASSEMBLY, ruName: "В работе" },
-  COMPLETE: { name: COMPLETE, ruName: "Завершено" },
+  WORK: { name: WORK, ruName: "В работе" },
+  REPAIR: { name: REPAIR, ruName: "Ремонт" },
+  SLEEP: { name: SLEEP, ruName: "Неактивно" },
 } as const;
 
-export default workplaceStatuses;
+export default workstationStatuses;
+
+// "WORK" | "REPAIR" | "SLEEP"

@@ -3,7 +3,7 @@
 @use "src/styles/variables" as vars;
 @use "src/styles/mixins" as mixins;
 
-$statuses: "INACTIVE", "WAITING", "COMPLETE", "ASSEMBLY";
+$statuses: "WORK", "REPAIR", "SLEEP";
 
 @mixin setStatus($status) {
   &.status#{$status} {
@@ -12,10 +12,9 @@ $statuses: "INACTIVE", "WAITING", "COMPLETE", "ASSEMBLY";
     background-color: color.adjust($color, $lightness: 30%);
     border: 0.1rem solid $color;
 
-    // .name,
-    // .progress {
-    //   color: color.adjust($color, $lightness: -35%);
-    // }
+    * {
+      color: color.adjust($color, $lightness: -30%);
+    }
 
     .status {
       color: white;
@@ -25,7 +24,22 @@ $statuses: "INACTIVE", "WAITING", "COMPLETE", "ASSEMBLY";
   }
 }
 
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+
+  .skeletonItem {
+    height: 5.75rem;
+  }
+
+  @media #{vars.$workplace-screen} {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .card {
+  height: 100%;
   padding: 0.8rem;
   border-radius: 0.5rem;
 

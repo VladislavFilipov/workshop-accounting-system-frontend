@@ -2,7 +2,7 @@ import { FC } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import styles from "./WorkstationsList.module.scss";
+import styles from "./WorkstationCard.module.scss";
 
 const SkeletonWorkstationsList: FC = () => {
   return (

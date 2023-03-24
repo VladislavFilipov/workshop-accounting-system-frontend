@@ -4,3 +4,6 @@ export const WORKING = "WORKING";
 export const ASSEMBLY = "ASSEMBLY";
 export const COMPLETE = "COMPLETE";
 export const DEFECT = "DEFECT";
+export const WORK = "WORK";
+export const REPAIR = "REPAIR";
+export const SLEEP = "SLEEP";

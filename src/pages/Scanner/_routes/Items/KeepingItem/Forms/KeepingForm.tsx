@@ -8,6 +8,8 @@ import { InputText } from "@src/components/_uikit/_inputs";
 import schema from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/yupSchema";
 import { IKeeping } from "@src/types/keeping";
 
+import styles from "./KeepingForm.module.scss";
+
 interface IProps {
   data: IKeeping;
   handle: (data: IKeeping) => void;
@@ -32,10 +34,12 @@ const KeepingForm: FC<IProps> = ({ data, handle }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>{data.detail.name}</div>
       <InputText
+        label="Количество"
+        className={styles.input}
         {...register("detailAmount", {
-          setValueAs: (v) => Number(v),
+          valueAsNumber: true,
         })}
-        error={errors.detailAmount}
+        error={errors.detailAmount?.message}
       />
       <Button text="Сохранить" role="submit" />
     </form>

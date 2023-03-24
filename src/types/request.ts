@@ -1,6 +1,6 @@
 import { WAITING, WORKING } from "@src/const/statuses";
 
-const statuses = [WAITING, WORKING];
+const statuses = [WAITING, WORKING] as const;
 export type TRequestStatus = typeof statuses[number];
 
 export interface IRequest {

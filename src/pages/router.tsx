@@ -66,7 +66,11 @@ export const routes = [
       },
       {
         path: "/monitoring",
-        element: <ProtectedRoute />,
+        element: (
+          <ProtectedRoute
+            permittedRoles={[userRoles.MODERATOR.name, userRoles.ADMIN.name]}
+          />
+        ),
         children: [
           {
             path: "/monitoring/packstations",

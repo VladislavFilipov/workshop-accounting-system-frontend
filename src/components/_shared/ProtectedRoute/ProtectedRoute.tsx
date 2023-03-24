@@ -15,7 +15,9 @@ const ProtectedRoute: FC<IProtectedRouteProps> = ({ permittedRoles }) => {
   const hasAccess = useCheckAccess(permittedRoles);
   // console.log("isAuthorized", isAuthorized);
 
-  if (!isAuthorized || (permittedRoles && !hasAccess))
+  if (permittedRoles && !hasAccess)
+    return <Navigate to={"/"} state={{ from: location }} />;
+  if (!isAuthorized)
     return <Navigate to={"/login"} state={{ from: location }} />;
 
   return <Outlet />;

@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 
 import Api from "@src/api";
 import { PACKSTATIONS_KEY } from "@src/const/queryKeys";
-import { IWorkstation } from "@src/types/workstation";
+import { IPackstation } from "@src/types/packstation";
 
-const usePackstations = (): [IWorkstation[] | undefined, boolean, unknown] => {
+const usePackstations = (): [IPackstation[] | undefined, boolean, unknown] => {
   const {
     data: packstations,
     isLoading,

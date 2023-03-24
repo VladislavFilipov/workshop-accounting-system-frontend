@@ -33,11 +33,14 @@ $status-colors: (
   "ASSEMBLY": $status-color-working,
   "COMPLETE": $status-color-complete,
   "DEFECT": $danger-color,
+  "WORK": $status-color-working,
+  "REPAIR": $danger-color,
+  "SLEEP": $gray-dark,
 );
 
 // media
 // prettier-ignore
-$desktop-screen: "screen and (orientation: landscape) and (min-width: 1080px)";
+$desktop-screen: "screen and (orientation: landscape)"; // and (min-width: 1080px)
 
 // prettier-ignore
 $workplace-screen: "screen and (orientation: portrait) and (max-width: 1080px)";

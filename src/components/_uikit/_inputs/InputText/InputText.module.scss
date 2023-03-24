@@ -2,12 +2,14 @@
 // @use "sass:color";
 @use "src/styles/variables" as vars;
 
-// @use "src/styles/mixins" as mixins;
+@use "src/styles/mixins" as mixins;
 
 .input {
-  height: 2rem;
-}
+  @include mixins.setFont(1.1rem, 500, 1.1rem);
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.5rem;
 
-.error {
-  color: vars.$danger-color;
+  border: 0.2rem solid vars.$text-color;
+  border-radius: 0.4rem;
 }
