@@ -22,25 +22,26 @@ const Packstations = () => {
       >
         {packstations && (
           <ul className={cardStyles.list}>
-            {packstations.map((machine) => (
-              <li key={machine.id}>
-                <WorkstationCard workstation={machine}>
+            {packstations.map((packstation) => (
+              <li key={packstation.id}>
+                <WorkstationCard workstation={packstation}>
                   <div className={styles.packstation}>
                     <Text size="s" className={styles.description}>
-                      {machine.description}
+                      {packstation.description}
                     </Text>
                     <Text className={styles.request}>
-                      Заявка: <span>#{machine.crm_requests.enterprise_id}</span>
+                      Заявка:{" "}
+                      <span>#{packstation.crm_requests.enterprise_id}</span>
                     </Text>
                     <Text className={styles.goodsItem}>
                       Товар:{" "}
                       <span>
-                        {/* {machine.goods.vendor_code} -  */}
-                        {machine.goods.name}
+                        {/* {packstation.goods.vendor_code} -  */}
+                        {packstation.goods.name}
                       </span>
                     </Text>
                     <Text className={styles.count}>
-                      Количество: <span>{machine.pack_count}</span>
+                      Количество: <span>{packstation.pack_count}</span>
                     </Text>
                   </div>
                 </WorkstationCard>

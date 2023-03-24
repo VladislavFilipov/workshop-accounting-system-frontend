@@ -5,6 +5,7 @@ import PageLayout from "@src/components/_layouts/PageLayout";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import { InputText } from "@src/components/_uikit/_inputs";
+import PackstationInfo from "@src/pages/AccountingPackaging/PackstationInfo/PackstationInfo";
 import useAddPackagingScan from "@src/pages/AccountingPackaging/_hooks/useAddPackagingScan";
 
 import styles from "./AccountingPackaging.module.scss";
@@ -25,11 +26,19 @@ const AccountingPackaging = () => {
 
   return (
     <PageLayout title="Учет фасовки" subtitle="Отсканируйте QR-код упаковки">
-      <InputText ref={inputRef} autoFocus />
-      <Button text="Добавить" onClick={handleAddClick} type="confirm" />
+      <InputText ref={inputRef} autoFocus className={styles.input} />
+      <Button
+        text="Добавить"
+        onClick={handleAddClick}
+        type="confirm"
+        className={styles.addBtn}
+      />
+
       <DataContainer isLoading={isLoading} error={error}>
         {isSuccess && <StatusLabel text="Успешно добавлено" type="success" />}
       </DataContainer>
+
+      <PackstationInfo />
     </PageLayout>
   );
 };

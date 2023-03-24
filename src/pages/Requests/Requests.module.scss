@@ -1,9 +1,13 @@
-.list {
-  .request {
-    display: grid;
+@use "src/styles/variables" as vars;
 
-    .goodsList {
-      margin-left: 3rem;
-    }
+.list {
+  & > li:nth-child(even) {
+    background-color: vars.$gray-light;
   }
+}
+
+.head {
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }

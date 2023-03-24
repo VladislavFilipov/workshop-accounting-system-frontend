@@ -30,7 +30,7 @@ $statuses: "WORK", "REPAIR", "SLEEP";
   gap: 1rem;
 
   .skeletonItem {
-    height: 5.75rem;
+    height: 8.5rem;
   }
 
   @media #{vars.$workplace-screen} {
