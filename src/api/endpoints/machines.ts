@@ -1,12 +1,12 @@
 import request from "../request";
 
 import { GET } from "@src/const/httpMethods";
-import { IWorkstation } from "@src/types/workstation";
+import { IMachine } from "@src/types/machine";
 
 const url = "/workstation/machine"; // TODO tmp
 const production = {
   getAll: async () =>
-    request<IWorkstation[]>({
+    request<IMachine[]>({
       method: GET,
       url: `${url}/`,
     }),
