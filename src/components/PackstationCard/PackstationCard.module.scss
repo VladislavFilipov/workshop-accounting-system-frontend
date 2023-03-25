@@ -1,11 +1,3 @@
-@use "src/styles/variables" as vars;
-
-.wrap {
-  &:hover {
-    box-shadow: 0 0 1rem -0.5rem vars.$black;
-  }
-}
-
 .packstation {
   .description {
     margin: 0.5rem 0 1rem;

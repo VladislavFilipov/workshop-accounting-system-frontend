@@ -11,13 +11,19 @@ import styles from "./WorkstationCard.module.scss";
 
 interface IProps {
   workstation: IWorkstationCardProps;
+  className?: string;
 }
 const WorkstationCard: FC<PropsWithChildren<IProps>> = ({
   workstation,
   children,
+  className,
 }) => {
   return (
-    <div className={cn(styles.card, styles[`status${workstation.status}`])}>
+    <div
+      className={cn(styles.card, styles[`status${workstation.status}`], {
+        [`${className}`]: !!className,
+      })}
+    >
       <Title variant="h5" className={styles.name}>
         {workstation.name}
       </Title>

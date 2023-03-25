@@ -26,3 +26,14 @@ export interface IAddPackstationScan {
   crm_requests_id: number;
   goods_id: number;
 }
+
+export interface IPackstationScan {
+  id: number;
+  token: string;
+  create_date: string;
+  update_date: string;
+  packstation: IPackstation;
+  user: IUser;
+  crm_requests: IRequest;
+  goods: IGoodsItem;
+}

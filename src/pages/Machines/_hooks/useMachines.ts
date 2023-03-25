@@ -10,10 +10,16 @@ const useMachines = (): [IMachine[] | undefined, boolean, unknown] => {
     data: machines,
     isLoading,
     error,
-  } = useQuery([MACHINES_KEY], async () => {
-    const machines = await Api.machines.getAll();
-    return sortArrayOfObjects(machines, "id", "number");
-  });
+  } = useQuery(
+    [MACHINES_KEY],
+    async () => {
+      const machines = await Api.machines.getAll();
+      return sortArrayOfObjects(machines, "id", "number");
+    },
+    {
+      refetchInterval: 15000,
+    },
+  );
   return [machines, isLoading, error];
 };
 

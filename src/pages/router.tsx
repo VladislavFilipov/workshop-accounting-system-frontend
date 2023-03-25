@@ -15,6 +15,7 @@ import AccountingPackaging from "@src/pages/AccountingPackaging";
 import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
 import Machines from "@src/pages/Machines";
 import Menu from "@src/pages/Menu";
+import PackstationScans from "@src/pages/PackstationScans";
 import Packstations from "@src/pages/Packstations";
 import Requests from "@src/pages/Requests/Requests";
 import Scanner from "@src/pages/Scanner";
@@ -75,7 +76,14 @@ export const routes = [
           {
             path: "/monitoring/packstations",
             element: <ProtectedRoute />,
-            children: [{ index: true, element: <Packstations /> }],
+            children: [
+              { index: true, element: <Packstations /> },
+
+              {
+                path: "/monitoring/packstations/:id",
+                element: <PackstationScans />,
+              },
+            ],
           },
           {
             path: "/monitoring/machines",

@@ -1,14 +1,22 @@
 import { ErrorBoundary } from "react-error-boundary";
+import { Link, useLocation } from "react-router-dom";
 
 import UserInfo from "@src/components/Header/UserInfo";
+import Button from "@src/components/_uikit/Button/Button";
 
 import styles from "./Header.module.scss";
 
 const Header = () => {
+  const location = useLocation();
   return (
     <div className={styles.header}>
-      <div>{/* clock will be here */}</div>
-
+      {location.pathname !== "/" && location.pathname !== "/login" ? (
+        <Link to="/">
+          <Button text="Меню" />
+        </Link>
+      ) : (
+        <div></div>
+      )}
       <ErrorBoundary FallbackComponent={() => <>Error</>}>
         <UserInfo />
       </ErrorBoundary>

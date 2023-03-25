@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import DataContainer from "@src/components/DataContainer/DataContainer";
+import PackstationCard from "@src/components/PackstationCard";
 import WorkstationCard from "@src/components/WorkstationCard";
 import Text from "@src/components/_uikit/Text";
 import styles from "@src/pages/Packstations/Packstations.module.scss";
@@ -13,26 +14,27 @@ const PackstationInfo: FC = () => {
   return (
     <DataContainer isLoading={isLoading} error={error}>
       {packstation && (
-        <WorkstationCard workstation={packstation}>
-          <div className={styles.packstation}>
-            <Text size="s" className={styles.description}>
-              {packstation.description}
-            </Text>
-            <Text className={styles.request}>
-              Заявка: <span>#{packstation.crm_requests.enterprise_id}</span>
-            </Text>
-            <Text className={styles.goodsItem}>
-              Товар:{" "}
-              <span>
-                {/* {packstation.goods.vendor_code} -  */}
-                {packstation.goods.name}
-              </span>
-            </Text>
-            <Text className={styles.count}>
-              Количество: <span>{packstation.pack_count}</span>
-            </Text>
-          </div>
-        </WorkstationCard>
+        <PackstationCard packstation={packstation} />
+        // <WorkstationCard workstation={packstation}>
+        //   <div className={styles.packstation}>
+        //     <Text size="s" className={styles.description}>
+        //       {packstation.description}
+        //     </Text>
+        //     <Text className={styles.request}>
+        //       Заявка: <span>#{packstation.crm_requests.enterprise_id}</span>
+        //     </Text>
+        //     <Text className={styles.goodsItem}>
+        //       Товар:{" "}
+        //       <span>
+        //         {/* {packstation.goods.vendor_code} -  */}
+        //         {packstation.goods.name}
+        //       </span>
+        //     </Text>
+        //     <Text className={styles.count}>
+        //       Количество: <span>{packstation.pack_count}</span>
+        //     </Text>
+        //   </div>
+        // </WorkstationCard>
       )}
     </DataContainer>
   );
