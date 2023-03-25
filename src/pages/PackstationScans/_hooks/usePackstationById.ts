@@ -18,7 +18,7 @@ const usePackstationById = (
       return Api.packstations.getById(id);
     },
     {
-      refetchInterval: 15000,
+      refetchInterval: 5000,
     },
   );
   return [packstation, error, isLoading];

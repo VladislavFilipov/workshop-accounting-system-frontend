@@ -17,7 +17,7 @@ const useMachines = (): [IMachine[] | undefined, boolean, unknown] => {
       return sortArrayOfObjects(machines, "id", "number");
     },
     {
-      refetchInterval: 15000,
+      refetchInterval: 5000,
     },
   );
   return [machines, isLoading, error];

@@ -18,7 +18,7 @@ const usePackstationScans = (
       return Api.packstations.getScansByPackstation(id);
     },
     {
-      refetchInterval: 15000,
+      refetchInterval: 5000,
     },
   );
   return [scans, error, isLoading];
