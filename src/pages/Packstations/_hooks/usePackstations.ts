@@ -10,7 +10,7 @@ const usePackstations = (): [IPackstation[] | undefined, boolean, unknown] => {
     isLoading,
     error,
   } = useQuery([PACKSTATIONS_KEY], () => Api.packstations.getAll(), {
-    refetchInterval: 2000,
+    refetchInterval: 15000,
   });
   return [packstations, isLoading, error];
 };
