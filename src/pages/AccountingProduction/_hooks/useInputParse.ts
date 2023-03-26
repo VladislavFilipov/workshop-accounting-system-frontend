@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import useScannerData from "@src/store/scanner";
 
-const scannerPathname = "/scanner";
+const scannerPathname = "/accounting/production";
 const useInputParse = () => {
   const navigate = useNavigate();
   const location = useLocation();

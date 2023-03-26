@@ -31,14 +31,6 @@ const WorkstationCard: FC<PropsWithChildren<IProps>> = ({
         {workstationStatuses[workstation.status].ruName}
       </Text>
       {children}
-      {/* <div className={styles.line}>
-        <Text className={styles.status}>
-          {workstationStatuses[workstation.status].ruName}
-        </Text>
-        <Text className={styles.progress}>
-          {workstation.amountCurrent} / {workstation.amountTotal}
-        </Text>
-      </div> */}
     </div>
   );
 };

@@ -49,7 +49,7 @@ describe("Router tests", () => {
 
     const linkButton = rendered?.queryByText("Учёт производимых работ");
     expect(linkButton).toBeInTheDocument();
-
+    rendered?.debug();
     if (linkButton) {
       await user.click(linkButton);
 
