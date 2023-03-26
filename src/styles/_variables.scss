@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $black: #000f;
 
 // text
@@ -21,13 +23,24 @@ $success-color: rgb(71 212 113);
 $warning-color: rgb(212 210 71);
 
 // detail craft
-$detail-craft-waiting: #e4ea48;
-$detail-craft-working: #2ba9fd;
-$detail-craft-complete: #47d85d;
+$status-color-waiting: #e4ea48;
+$status-color-working: #2ba9fd;
+$status-color-complete: #47d85d;
+$status-colors: (
+  "INACTIVE": $gray-dark,
+  "WAITING": $status-color-waiting,
+  "WORKING": $status-color-working,
+  "ASSEMBLY": $status-color-working,
+  "COMPLETE": $status-color-complete,
+  "DEFECT": $danger-color,
+  "WORK": $status-color-working,
+  "REPAIR": $danger-color,
+  "SLEEP": $gray-dark,
+);
 
 // media
 // prettier-ignore
-$desktop-screen: "screen and (orientation: landscape) and (min-width: 1080px)";
+$desktop-screen: "screen and (orientation: landscape)"; // and (min-width: 1080px)
 
 // prettier-ignore
 $workplace-screen: "screen and (orientation: portrait) and (max-width: 1080px)";

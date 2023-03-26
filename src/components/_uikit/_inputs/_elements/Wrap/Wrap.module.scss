@@ -1,0 +1,20 @@
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
+
+.wrap {
+  display: block;
+  width: 100%;
+  height: max-content;
+
+  .label {
+    @include mixins.setFont(0.8rem, 600, 0.8rem);
+    margin-bottom: 0.3rem;
+  }
+
+  .error {
+    @include mixins.setFont(0.8rem, 600, 0.8rem, vars.$danger-color);
+    margin-top: 0.3rem;
+
+    // color: vars.$danger-color;
+  }
+}

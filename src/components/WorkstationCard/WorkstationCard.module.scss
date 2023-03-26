@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "sass:color";
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
+
+$statuses: "WORK", "REPAIR", "SLEEP";
+
+@mixin setStatus($status) {
+  &.status#{$status} {
+    $color: map.get(vars.$status-colors, $status);
+
+    background-color: color.adjust($color, $lightness: 30%);
+    border: 0.1rem solid $color;
+
+    * {
+      color: color.adjust($color, $lightness: -30%);
+    }
+
+    .status {
+      color: white;
+      text-shadow: 0 0 0.3rem color.adjust($color, $lightness: -20%);
+      background-color: $color;
+    }
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+
+  .skeletonItem {
+    height: 8.5rem;
+  }
+
+  @media #{vars.$workplace-screen} {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  height: 100%;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+
+  .name {
+    margin-bottom: 0.8rem;
+  }
+
+  .progress {
+    font-weight: 600;
+  }
+
+  .line {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .status {
+    width: max-content;
+    padding: 0.4rem 0.5rem 0.5rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+  }
+
+  @for $i from 1 through length($statuses) {
+    @include setStatus(nth($statuses, $i));
+  }
+}

@@ -1,0 +1,13 @@
+@use "src/styles/variables" as vars;
+
+.list {
+  & > li:nth-child(even) {
+    background-color: vars.$gray-light;
+  }
+}
+
+.head {
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}

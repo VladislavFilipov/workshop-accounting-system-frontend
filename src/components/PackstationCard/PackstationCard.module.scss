@@ -1,0 +1,16 @@
+.packstation {
+  .description {
+    margin: 0.5rem 0 1rem;
+  }
+
+  .count,
+  .request,
+  .goodsItem {
+    margin-top: 0.5rem;
+    line-height: 130%;
+
+    span {
+      font-weight: 600;
+    }
+  }
+}

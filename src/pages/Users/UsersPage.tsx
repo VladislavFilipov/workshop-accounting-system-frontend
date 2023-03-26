@@ -1,3 +1,6 @@
+/*
+  Users list provides fake authorization. In future will be replaces to real.
+*/
 import { FC } from "react";
 
 import { useQuery } from "@tanstack/react-query";
@@ -10,7 +13,6 @@ import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import { USERS_KEY } from "@src/const/queryKeys";
 import useAuthStore from "@src/store/auth";
-import menuButtonStyles from "@src/styles/modules/menuButton.module.scss";
 import { IUser } from "@src/types/user";
 import { formatUserName } from "@src/utils/userFunctions";
 
@@ -37,11 +39,6 @@ const UsersPage: FC = () => {
       className={styles.usersPage}
     >
       <DataContainer isLoading={isLoading} error={error}>
-        {/* {isLoading ? (
-        <>Загрузка...</>
-      ) : error ? (
-        <StatusLabel text={(error as Error).message} type="error" />
-      ) : ( */}
         <ul>
           {users?.map((user) => (
             <Button
@@ -52,7 +49,6 @@ const UsersPage: FC = () => {
             />
           ))}
         </ul>
-        {/* )} */}
       </DataContainer>
       {loginError && <StatusLabel text={loginError} type="error" />}
     </PageLayout>

@@ -1,5 +1,14 @@
+/*
+  react-query keys
+*/
 export const USERS_KEY = "users";
 export const DETAILS_CRAFT_KEY = "detials/craft";
 export const DETAILS_CRAFT_LIST_KEY = "detials/craft_list";
 export const DETAILS_CRAFT_DETAIL_KEY = "detials/craft_detail";
-export const ACTIVE_WORKS_KEY = "detials/active-works";
+export const ACTIVE_WORKS_KEY = "active-works";
+export const PACKSTATIONS_KEY = "packstations";
+export const PACKSTATION_KEY = "packstation";
+export const PACKSTATION_SCANS_KEY = "packstation/scans";
+export const MACHINES_KEY = "machines";
+export const CREATE_PACK_SCAN_KEY = "accounting/packaging/scan/create";
+export const REQUESTS_LIST_KEY = "requests";
