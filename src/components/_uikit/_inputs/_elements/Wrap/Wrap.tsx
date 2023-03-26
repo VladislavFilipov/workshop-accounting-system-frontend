@@ -1,3 +1,6 @@
+/*
+  Wrapper for all inputs provides base structure including label and error
+*/
 import { FC, PropsWithChildren } from "react";
 
 import cn from "classnames";

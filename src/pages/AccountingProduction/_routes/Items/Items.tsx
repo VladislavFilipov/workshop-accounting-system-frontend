@@ -1,14 +1,14 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC } from "react";
 
 import DataContainer from "@src/components/DataContainer/DataContainer";
 import Button from "@src/components/_uikit/Button/Button";
 import Spinner from "@src/components/_uikit/Spinner/Spinner";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
-import useDetailCraft from "@src/pages/Scanner/_hooks/useDetailCraft";
-import CreateKeeping from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/CreateKeeping";
-import EditKeeping from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/EditKeeping";
-import { getCorrectForm } from "@src/pages/Scanner/_routes/Items/_functions";
+import useDetailCraft from "@src/pages/AccountingProduction/_hooks/useDetailCraft";
+import CreateKeeping from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/CreateKeeping";
+import EditKeeping from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/EditKeeping";
+import { getCorrectForm } from "@src/pages/AccountingProduction/_routes/Items/_functions";
 import useKeepingStore from "@src/store/keeping";
 
 import styles from "./Items.module.scss";
@@ -18,15 +18,6 @@ const Items: FC = () => {
   const list = useKeepingStore((state) => state.list);
   const status = useKeepingStore((state) => state.status);
   const resetList = useKeepingStore((state) => state.resetList);
-  // const getKeepingByDetail = useKeepingStore(
-  //   (state) => state.getKeepingByDetail,
-  // );
-  // const listByDetail = useMemo<IKeeping[]>(() => {
-  //   console.log("list useMemo", list);
-  //   if (!detailCraft) return [];
-  //   return getKeepingByDetail(detailCraft.details_id);
-  // }, [detailCraft, list]);
-  // console.log("listByDetail", listByDetail);
 
   return (
     <DataContainer className={styles.items} isLoading={isLoading} error={error}>

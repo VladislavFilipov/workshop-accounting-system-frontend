@@ -1,3 +1,6 @@
+/*
+  Uncontrolled select component
+*/
 import { forwardRef, SelectHTMLAttributes } from "react";
 
 import Wrap from "@src/components/_uikit/_inputs/_elements/Wrap/Wrap";

@@ -1,3 +1,6 @@
+/*
+  Hook that returns permission for current user
+*/
 import { useMemo } from "react";
 
 import useAuthStore from "@src/store/auth";

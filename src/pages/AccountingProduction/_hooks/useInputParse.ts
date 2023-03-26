@@ -1,3 +1,6 @@
+/*
+  Hook provides ref for input and method for handling button click. Depends of type in input it navigates to subroute.
+*/
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 

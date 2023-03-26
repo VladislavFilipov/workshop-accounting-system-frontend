@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import KeepingForm from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/KeepingForm";
+import KeepingForm from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/KeepingForm";
 import useKeepingStore from "@src/store/keeping";
 import { IKeeping } from "@src/types/keeping";
 

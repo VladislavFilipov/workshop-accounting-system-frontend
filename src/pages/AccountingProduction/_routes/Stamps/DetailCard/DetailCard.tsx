@@ -1,10 +1,13 @@
+/*
+  Information about the detail to witch the current detail craft belongs
+*/
 import { FC } from "react";
 
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
 import detailStatuses from "@src/data/detailStatuses";
-import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
+import useUpdateDetailStatus from "@src/pages/AccountingProduction/_hooks/useUpdateDetailStatus";
 import useScannerData from "@src/store/scanner";
 import { IDetailCraft } from "@src/types/detailCraft";
 
@@ -29,7 +32,6 @@ const DetailCard: FC<IDetailCardProps> = ({ detailCraft }) => {
       <>
         {detailCraft && (
           <div className={styles.detailCard}>
-            {/* <h2 className={styles.titleH3}>Деталь</h2> */}
             <Title variant="h3" className={styles.titleH3}>
               Деталь
             </Title>

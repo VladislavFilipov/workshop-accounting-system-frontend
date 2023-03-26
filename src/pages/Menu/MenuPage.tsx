@@ -28,7 +28,7 @@ const MenuPage: FC = () => {
           <MenuButton
             imgSrc={qrScanIcon}
             text="Учёт производимых работ"
-            pathTo="/scanner"
+            pathTo="/accounting/production"
             isDefault
           />
           <MenuButton
@@ -72,13 +72,6 @@ const MenuPage: FC = () => {
         <MenuButton imgSrc={exitIcon} text="Выход" onClick={logout} />
       </>
     </PageLayout>
-    // <div className={styles.menu}>
-    //   <div className={styles.title}>МЕНЮ</div>
-    //   <div className={styles.subtitle}>
-    //     Пожалуйста, выберете необходимую задачу
-    //   </div>
-
-    // </div>
   );
 };
 

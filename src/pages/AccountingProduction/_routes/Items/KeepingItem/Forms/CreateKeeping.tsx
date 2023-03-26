@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import KeepingForm from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/KeepingForm";
-import iniTIalData from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/_initialData";
+import KeepingForm from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/KeepingForm";
+import iniTIalData from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/_initialData";
 import useKeepingStore from "@src/store/keeping";
 import { IDetail } from "@src/types/detail";
 import { IKeeping } from "@src/types/keeping";

@@ -1,4 +1,4 @@
-import { SLEEP, COMPLETE, WORK, REPAIR } from "@src/const/statuses";
+import { SLEEP, WORK, REPAIR } from "@src/const/statuses";
 import { TWorkstationStatus } from "@src/types/workstation";
 
 const workstationStatuses: {
@@ -10,5 +10,3 @@ const workstationStatuses: {
 } as const;
 
 export default workstationStatuses;
-
-// "WORK" | "REPAIR" | "SLEEP"

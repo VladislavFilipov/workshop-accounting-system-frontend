@@ -1,3 +1,6 @@
+/*
+  Function checks the order of detail crafts and returns permissions to update detail craft ststus and detail ststus.
+*/
 import { IDetailCraft } from "@src/types/detailCraft";
 import { sortArrayOfObjects } from "@src/utils/sort/sortArrayOfObjects";
 

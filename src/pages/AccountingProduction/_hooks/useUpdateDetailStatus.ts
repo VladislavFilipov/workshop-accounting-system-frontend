@@ -1,3 +1,6 @@
+/*
+  Hook provides method for update current detail status
+*/
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Api from "@src/api";

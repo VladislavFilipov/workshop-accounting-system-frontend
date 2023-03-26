@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import cn from "classnames";
 
-import styles from "@src/styles/modules/menuButton.module.scss";
+import styles from "./MenuButton.module.scss";
 
 interface IMenuButtonProps {
   imgSrc: string;

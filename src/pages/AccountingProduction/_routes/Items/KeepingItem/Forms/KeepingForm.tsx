@@ -10,7 +10,7 @@ import inputStyles from "@src/components/_uikit/_inputs/InputText/InputText.modu
 import Select from "@src/components/_uikit/_inputs/Select/Select";
 import Wrap from "@src/components/_uikit/_inputs/_elements/Wrap/Wrap";
 import { keepingTypesNormalized } from "@src/data/keepingTypes";
-import schema from "@src/pages/Scanner/_routes/Items/KeepingItem/Forms/_yupSchema";
+import schema from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/_yupSchema";
 import { IKeeping } from "@src/types/keeping";
 
 import styles from "./KeepingForm.module.scss";

@@ -1,26 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import ErrorScreen from "@src/components/ErrorScreen";
-// const AppLayout = lazy(() => import("@src/components/_layouts/AppLayout"));
-// const ProtectedRoute = lazy(
-//   () => import("@src/components/_shared/ProtectedRoute/ProtectedRoute"),
-// );
-// const Menu = lazy(() => import("@src/pages/Menu"));
-// const Scanner = lazy(() => import("@src/pages/Scanner"));
-// const Users = lazy(() => import("@src/pages/Users"));
 import AppLayout from "@src/components/_layouts/AppLayout";
 import ProtectedRoute from "@src/components/_shared/ProtectedRoute";
 import userRoles from "@src/data/userRoles";
 import AccountingPackaging from "@src/pages/AccountingPackaging";
+import AccountingProduction from "@src/pages/AccountingProduction";
+import Items from "@src/pages/AccountingProduction/_routes/Items/Items";
+import Stamps from "@src/pages/AccountingProduction/_routes/Stamps/Stamps";
 import ActiveWorks from "@src/pages/ActiveWorks/ActiveWorksPage";
 import Machines from "@src/pages/Machines";
 import Menu from "@src/pages/Menu";
 import PackstationScans from "@src/pages/PackstationScans";
 import Packstations from "@src/pages/Packstations";
 import Requests from "@src/pages/Requests/Requests";
-import Scanner from "@src/pages/Scanner";
-import Items from "@src/pages/Scanner/_routes/Items/Items";
-import Stamps from "@src/pages/Scanner/_routes/Stamps/Stamps";
 import Users from "@src/pages/Users";
 
 // has temporary login simulation
@@ -36,35 +29,71 @@ export const routes = [
         children: [{ index: true, element: <Menu /> }],
       },
       {
-        path: "/scanner",
+        path: "/accounting",
         element: <ProtectedRoute />,
         children: [
           {
-            path: "/scanner",
-            element: <Scanner />,
+            path: "/accounting/production",
+            element: <ProtectedRoute />,
             children: [
               {
-                path: "/scanner/stamps",
-                element: <Stamps />,
+                path: "/accounting/production",
+                element: <AccountingProduction />,
+                children: [
+                  {
+                    path: "/accounting/production/stamps",
+                    element: <Stamps />,
+                  },
+                  {
+                    path: "/accounting/production/items",
+                    element: <Items />,
+                  },
+                ],
               },
+            ],
+          },
+          {
+            path: "/accounting/packaging",
+            element: <ProtectedRoute />,
+            children: [
               {
-                path: "/scanner/items",
-                element: <Items />,
+                path: "/accounting/packaging",
+                element: <AccountingPackaging />,
               },
             ],
           },
         ],
       },
-      {
-        path: "/accounting/packaging",
-        element: <ProtectedRoute />,
-        children: [
-          {
-            path: "/accounting/packaging",
-            element: <AccountingPackaging />,
-          },
-        ],
-      },
+      // {
+      //   path: "/accounting/production",
+      //   element: <ProtectedRoute />,
+      //   children: [
+      //     {
+      //       path: "/accounting/production",
+      //       element: <AccountingProduction />,
+      //       children: [
+      //         {
+      //           path: "/accounting/production/stamps",
+      //           element: <Stamps />,
+      //         },
+      //         {
+      //           path: "/accounting/production/items",
+      //           element: <Items />,
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: "/accounting/packaging",
+      //   element: <ProtectedRoute />,
+      //   children: [
+      //     {
+      //       path: "/accounting/packaging",
+      //       element: <AccountingPackaging />,
+      //     },
+      //   ],
+      // },
       {
         path: "/monitoring",
         element: (

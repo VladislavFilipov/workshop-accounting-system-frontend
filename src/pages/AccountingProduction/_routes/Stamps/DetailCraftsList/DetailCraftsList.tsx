@@ -1,3 +1,6 @@
+/*
+  Information about all detail crafts of the detail to witch the current detail craft belongs
+*/
 import { FC } from "react";
 
 import cn from "classnames";
@@ -7,10 +10,10 @@ import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
-import useDetailCraftList from "@src/pages/Scanner/_hooks/useDetailCraftList";
-import useUpdateDetailCraft from "@src/pages/Scanner/_hooks/useUpdateDetailCraft";
-import useUpdateDetailStatus from "@src/pages/Scanner/_hooks/useUpdateDetailStatus";
-import SkeletonDetailCraftList from "@src/pages/Scanner/_routes/Stamps/DetailCraftsList/Skeleton";
+import useDetailCraftList from "@src/pages/AccountingProduction/_hooks/useDetailCraftList";
+import useUpdateDetailCraft from "@src/pages/AccountingProduction/_hooks/useUpdateDetailCraft";
+import useUpdateDetailStatus from "@src/pages/AccountingProduction/_hooks/useUpdateDetailStatus";
+import SkeletonDetailCraftList from "@src/pages/AccountingProduction/_routes/Stamps/DetailCraftsList/Skeleton";
 import useScannerData from "@src/store/scanner";
 import { IDetailCraft } from "@src/types/detailCraft";
 

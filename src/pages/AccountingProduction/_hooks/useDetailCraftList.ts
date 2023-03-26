@@ -2,25 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 
 import Api from "@src/api";
 import { DETAILS_CRAFT_KEY } from "@src/const/queryKeys";
-import { formatDetailCraftsList } from "@src/pages/Scanner/_functions/formatDetailCraftsList";
+import { formatDetailCraftsList } from "@src/pages/AccountingProduction/_functions/formatDetailCraftsList";
 import useScannerData from "@src/store/scanner";
 import { IDetailCraft } from "@src/types/detailCraft";
 
 const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
-  const [canUpdate, setCanUpdate] = useScannerData((state) => [
-    state.canUpdate,
-    state.setCanUpdate,
-  ]);
-  const [canDetailFinish, setCanDetailFinish] = useScannerData((state) => [
-    state.canDetailFinish,
-    state.setCanDetailFinish,
-  ]);
+  const setCanUpdate = useScannerData((state) => state.setCanUpdate);
+  const setCanDetailFinish = useScannerData(
+    (state) => state.setCanDetailFinish,
+  );
 
   const {
     data: detailCraftsList,
     error: listError,
     isLoading: listIsFetching,
-    // refetch: getDetailCraftsList,
   } = useQuery(
     [DETAILS_CRAFT_KEY + "list", detailCraft],
     async () => {
@@ -40,7 +35,6 @@ const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
     },
     {
       enabled: !!detailCraft,
-      // suspense: true,
     },
   );
   return { detailCraftsList, listError, listIsFetching };

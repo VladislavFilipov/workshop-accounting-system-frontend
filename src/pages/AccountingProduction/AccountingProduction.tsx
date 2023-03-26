@@ -1,11 +1,14 @@
+/*
+  Scanner connected to the client device scans QR-code that includes id of detail craft and type of processing.
+*/
 import { Outlet } from "react-router-dom";
 
 import PageLayout from "@src/components/_layouts/PageLayout/PageLayout";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
-import useInputParse from "@src/pages/Scanner/_hooks/useInputParse";
+import useInputParse from "@src/pages/AccountingProduction/_hooks/useInputParse";
 
-import styles from "./ScannerPage.module.scss";
+import styles from "./AccountingProduction.module.scss";
 
 const ScannerPage = () => {
   const { parseInput, inputRef, parseError } = useInputParse();

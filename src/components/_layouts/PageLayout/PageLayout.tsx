@@ -1,3 +1,6 @@
+/*
+  Layout provides base structure for page, includes title
+*/
 import { FC, PropsWithChildren } from "react";
 
 import cn from "classnames";

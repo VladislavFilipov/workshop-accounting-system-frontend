@@ -1,3 +1,6 @@
+/*
+  react-query keys
+*/
 export const USERS_KEY = "users";
 export const DETAILS_CRAFT_KEY = "detials/craft";
 export const DETAILS_CRAFT_LIST_KEY = "detials/craft_list";

@@ -1,3 +1,6 @@
+/*
+  Api request adapter for axios
+*/
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 type CustomAxiosError = AxiosError<{ apierror: { message: string } }>;

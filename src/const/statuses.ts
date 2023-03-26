@@ -1,3 +1,6 @@
+/*
+  statuses of any objects
+*/
 export const INACTIVE = "INACTIVE";
 export const WAITING = "WAITING";
 export const WORKING = "WORKING";

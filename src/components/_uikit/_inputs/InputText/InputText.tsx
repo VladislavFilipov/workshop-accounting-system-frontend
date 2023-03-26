@@ -1,7 +1,7 @@
-import { FC, forwardRef, HTMLAttributes, InputHTMLAttributes } from "react";
-import { FieldError } from "react-hook-form/dist/types";
-
-import cn from "classnames";
+/*
+  Uncontrolled input component
+*/
+import { forwardRef, InputHTMLAttributes } from "react";
 
 import Wrap from "@src/components/_uikit/_inputs/_elements/Wrap/Wrap";
 

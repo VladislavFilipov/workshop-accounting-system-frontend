@@ -1,3 +1,9 @@
+/*
+  Temporary object of storage keeping types.
+  
+  In future will be replaced to data fetched from server.
+*/
+
 export const keepingTypes = {
   box20x30: {
     id: 1,

@@ -1,3 +1,6 @@
+/*
+  List of requests for production from main CRM-system.
+*/
 import cn from "classnames";
 
 import DataContainer from "@src/components/DataContainer/DataContainer";

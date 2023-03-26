@@ -22,8 +22,6 @@
     &.head {
       font-weight: 600;
       color: vars.$text-color;
-
-      // border-bottom: 0.rem solid vars.$text-color;
     }
 
     &:nth-child(odd) {
