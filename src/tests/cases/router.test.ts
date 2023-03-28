@@ -1,5 +1,11 @@
 import "@testing-library/jest-dom";
-import { act, renderHook, RenderResult } from "@testing-library/react";
+import {
+  act,
+  renderHook,
+  RenderResult,
+  cleanup,
+  screen,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import useAuthStore from "@src/store/auth";
@@ -13,6 +19,7 @@ describe("Router tests", () => {
 
   afterEach(() => {
     rendered = null;
+    cleanup();
   });
 
   it("main route, not authorized", () => {
@@ -24,7 +31,7 @@ describe("Router tests", () => {
     expect(menuTitle).not.toBeInTheDocument();
   });
 
-  it("main route, authorized", () => {
+  it("main route, authorized", async () => {
     const { result } = renderHook(() => useAuthStore());
 
     act(() => {
@@ -34,7 +41,7 @@ describe("Router tests", () => {
 
     expect(result.current.isAuthorized).toBe(true);
 
-    const menuTitle = rendered?.queryByText(MENU_TITLE);
+    const menuTitle = await rendered?.findByText(MENU_TITLE);
     expect(menuTitle).toBeInTheDocument();
   });
 
@@ -47,13 +54,13 @@ describe("Router tests", () => {
       rendered = renderApp(["/"]);
     });
 
-    const linkButton = rendered?.queryByText("Учёт производимых работ");
+    const linkButton = await rendered?.findByText("Учёт производимых работ");
     expect(linkButton).toBeInTheDocument();
-    rendered?.debug();
+
     if (linkButton) {
       await user.click(linkButton);
 
-      const scannerTitle = rendered?.queryByText("Учёт работ");
+      const scannerTitle = await rendered?.findByText("Учёт работ");
       expect(scannerTitle).toBeInTheDocument();
     }
   });
