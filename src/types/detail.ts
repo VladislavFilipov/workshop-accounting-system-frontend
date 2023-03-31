@@ -1,3 +1,4 @@
+import { ILocation } from "@src/types/location";
 import { IUser } from "@src/types/user";
 
 export type TDetailStatus =
@@ -15,15 +16,20 @@ export interface IDetail {
   amount: number;
   status: TDetailStatus;
   user: IUser;
-  location: {
-    id: number;
-    description: string;
-    address: string;
-    locationName: string;
-    mailIndex: string;
-  };
-  token: string;
+  location: ILocation;
   files: any;
   items: any;
   stamps: any;
+  enterprise_id: number;
 }
+
+export type TDetailInCraft = Pick<
+  IDetail,
+  | "id"
+  | "name"
+  | "description"
+  | "amount"
+  | "tech_number"
+  | "status"
+  | "enterprise_id"
+>;

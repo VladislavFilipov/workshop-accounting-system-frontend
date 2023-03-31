@@ -1,4 +1,5 @@
-import { IDetail } from "@src/types/detail";
+import { IDetail, TDetailInCraft } from "@src/types/detail";
+import { ILocation } from "@src/types/location";
 
 export type TDetailCraftStatus = "WAITING" | "WORKING" | "COMPLETE";
 
@@ -10,16 +11,10 @@ export interface IDetailCraft {
     id: number;
     name: string;
     description: string;
+    enterprise_id: number;
   };
-  details_id: IDetail;
-  location_id: {
-    id: 6;
-    description: string;
-    address: string;
-    locationName: string;
-    mailIndex: string;
-  };
+  details_id: TDetailInCraft;
+  location_id: ILocation;
   create_date: string;
   ending_date: null | string;
-  token: string;
 }

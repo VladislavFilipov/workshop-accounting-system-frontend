@@ -4,22 +4,29 @@ import { persist } from "zustand/middleware";
 import { IDetail } from "@src/types/detail";
 import { IKeeping } from "@src/types/keeping";
 
-interface IKeepingStore {
+interface IState {
   list: IKeeping[];
   status: "waiting" | "loading" | "error" | "success";
-  // getKeepingByDetail: (detail: IDetail) => IKeeping[];
+}
+
+interface IActions {
   addKeeping: (keeping: IKeeping) => void;
   updateKeeping: (keeping: IKeeping) => void;
   deleteKeeping: (keeping: IKeeping) => void;
   resetList: () => void;
+  reset: () => void;
 }
 
+const initialState: IState = {
+  list: [],
+  status: "waiting",
+};
+
 // temporary implementation while server is not ready
-const useKeepingStore = create<IKeepingStore>()(
+const useKeepingStore = create<IState & IActions>()(
   persist(
     (set, get) => ({
-      list: [],
-      status: "waiting",
+      ...initialState,
       addKeeping: (keeping: Omit<IKeeping, "id">) => {
         const id =
           get().list.reduce(
@@ -62,6 +69,7 @@ const useKeepingStore = create<IKeepingStore>()(
           }, 2000);
         }, 500);
       },
+      reset: () => set(initialState),
     }),
     {
       name: "keeping",

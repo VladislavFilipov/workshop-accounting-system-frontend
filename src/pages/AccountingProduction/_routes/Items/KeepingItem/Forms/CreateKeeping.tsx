@@ -3,11 +3,11 @@ import { FC } from "react";
 import KeepingForm from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/KeepingForm";
 import iniTIalData from "@src/pages/AccountingProduction/_routes/Items/KeepingItem/Forms/_initialData";
 import useKeepingStore from "@src/store/keeping";
-import { IDetail } from "@src/types/detail";
+import { IDetail, TDetailInCraft } from "@src/types/detail";
 import { IKeeping } from "@src/types/keeping";
 
 interface IProps {
-  detail: IDetail;
+  detail: TDetailInCraft;
 }
 
 const CreateKeeping: FC<IProps> = ({ detail }) => {
