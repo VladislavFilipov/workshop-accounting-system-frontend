@@ -1,10 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import router from "@src/pages/router";
 import { IUser } from "@src/types/user";
 
-interface IAuthStore {
+interface IState {
   user: IUser | undefined;
   isAuthorized: boolean;
   // accessToken: string;
@@ -12,17 +11,25 @@ interface IAuthStore {
   // expiredIn: number;
   error: string | undefined;
   isLoading: boolean;
-  login: (user: IUser) => void;
-  logout: () => void;
 }
 
-const useAuthStore = create<IAuthStore>()(
+interface IActions {
+  login: (user: IUser) => void;
+  logout: () => void;
+  reset: () => void;
+}
+
+const initialState: IState = {
+  user: undefined,
+  isAuthorized: false,
+  error: undefined,
+  isLoading: false,
+};
+
+const useAuthStore = create<IState & IActions>()(
   persist(
     (set) => ({
-      user: undefined,
-      isAuthorized: false,
-      error: undefined,
-      isLoading: false,
+      ...initialState,
       login: async (user: IUser) => {
         // plug, in future real authentication will be here
         if (user) {
@@ -30,7 +37,6 @@ const useAuthStore = create<IAuthStore>()(
             user,
             isAuthorized: true,
           });
-          router.navigate("/");
         } else {
           set({
             error: "Не удалось войти.",
@@ -42,8 +48,8 @@ const useAuthStore = create<IAuthStore>()(
           user: undefined,
           isAuthorized: false,
         });
-        router.navigate("/login");
       },
+      reset: () => set(initialState),
     }),
     {
       name: "auth",

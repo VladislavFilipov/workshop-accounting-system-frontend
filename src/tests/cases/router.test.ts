@@ -1,33 +1,19 @@
 import "@testing-library/jest-dom";
-import {
-  act,
-  renderHook,
-  RenderResult,
-  cleanup,
-  screen,
-} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { act, renderHook } from "@testing-library/react";
 
 import useAuthStore from "@src/store/auth";
-import { renderApp } from "@src/tests/_helpers/renders";
-import { IUser } from "@src/types/user";
+import { beforeAfterSetup } from "@src/tests/_helpers/beforeAfterSetup";
+import { usersList } from "@src/tests/_mswListeners/_data";
 
 const MENU_TITLE = "Меню";
-
+const user = usersList[0];
 describe("Router tests", () => {
-  let rendered: RenderResult | null = null;
-
-  afterEach(() => {
-    rendered = null;
-    cleanup();
+  const { rendered, events } = beforeAfterSetup({
+    withAuth: false,
   });
 
   it("main route, not authorized", () => {
-    act(() => {
-      rendered = renderApp(["/"]);
-    });
-
-    const menuTitle = rendered?.queryByText(MENU_TITLE);
+    const menuTitle = rendered()?.queryByText(MENU_TITLE);
     expect(menuTitle).not.toBeInTheDocument();
   });
 
@@ -35,32 +21,28 @@ describe("Router tests", () => {
     const { result } = renderHook(() => useAuthStore());
 
     act(() => {
-      result.current.login({} as IUser);
-      rendered = renderApp(["/"]);
+      result.current.login(user);
     });
-
     expect(result.current.isAuthorized).toBe(true);
 
-    const menuTitle = await rendered?.findByText(MENU_TITLE);
+    const menuTitle = await rendered()?.findByText(MENU_TITLE);
     expect(menuTitle).toBeInTheDocument();
   });
 
   it("main route -> scanner", async () => {
     const { result } = renderHook(() => useAuthStore());
-    const user = userEvent.setup();
 
     act(() => {
-      result.current.login({} as IUser);
-      rendered = renderApp(["/"]);
+      result.current.login(user);
     });
 
-    const linkButton = await rendered?.findByText("Учёт производимых работ");
+    const linkButton = await rendered()?.findByText("Учёт производимых работ");
     expect(linkButton).toBeInTheDocument();
 
     if (linkButton) {
-      await user.click(linkButton);
-
-      const scannerTitle = await rendered?.findByText("Учёт работ");
+      await events.click(linkButton);
+      rendered()?.debug();
+      const scannerTitle = await rendered()?.findByText("Учёт работ");
       expect(scannerTitle).toBeInTheDocument();
     }
   });
