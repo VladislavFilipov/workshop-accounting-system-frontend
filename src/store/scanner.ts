@@ -4,21 +4,31 @@ const types = ["item", "stamp"] as const;
 
 type TTypeOfScanning = typeof types[number];
 
-interface IScannerData {
+interface IState {
   typeOfScanning: TTypeOfScanning | undefined;
   scannedId: string;
-  parseInput: (value: string) => void;
   parseError: Error | undefined;
   canUpdate: boolean;
   canDetailFinish: boolean;
-  setCanUpdate: (value: boolean) => void;
-  setCanDetailFinish: (value: boolean) => void;
 }
 
-const useScannerData = create<IScannerData>((set) => ({
+interface IActions {
+  parseInput: (value: string) => void;
+  setCanUpdate: (value: boolean) => void;
+  setCanDetailFinish: (value: boolean) => void;
+  reset: () => void;
+}
+
+const initialState: IState = {
   typeOfScanning: undefined,
   scannedId: "",
   parseError: undefined,
+  canUpdate: false,
+  canDetailFinish: false,
+};
+
+const useScannerData = create<IState & IActions>((set) => ({
+  ...initialState,
   parseInput: (value: string) => {
     const [type, id] = value.split("\n");
 
@@ -40,10 +50,13 @@ const useScannerData = create<IScannerData>((set) => ({
       });
     }
   },
-  canUpdate: false,
-  canDetailFinish: false,
   setCanUpdate: (value: boolean) => set({ canUpdate: value }),
   setCanDetailFinish: (value: boolean) => set({ canDetailFinish: value }),
+  reset: () => set(initialState),
 }));
+
+// export const resetScannerData = () => {
+//   useScannerData.setState(initialState, true);
+// }
 
 export default useScannerData;

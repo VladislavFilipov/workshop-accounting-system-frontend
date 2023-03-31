@@ -2,6 +2,7 @@
   Users list provides fake authorization. In future will be replaces to real.
 */
 import { FC } from "react";
+import { Navigate } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 import cn from "classnames";
@@ -27,10 +28,13 @@ const UsersPage: FC = () => {
 
   const login = useAuthStore((state) => state.login);
   const loginError = useAuthStore((state) => state.error);
+  const isAuthorized = useAuthStore((state) => state.isAuthorized);
 
   const handleUserClick = async (user: IUser) => {
     login(user);
   };
+
+  if (isAuthorized) return <Navigate to={"/"} />;
 
   return (
     <PageLayout

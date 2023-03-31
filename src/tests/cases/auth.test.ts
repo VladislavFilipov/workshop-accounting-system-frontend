@@ -1,41 +1,36 @@
 import "@testing-library/jest-dom";
-import { act, RenderResult, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { act, renderHook } from "@testing-library/react";
 
-import { renderApp } from "@src/tests/_helpers/renders";
+import useAuthStore from "@src/store/auth";
+import { beforeAfterSetup } from "@src/tests/_helpers/beforeAfterSetup";
 import { usersList } from "@src/tests/_mswListeners/_data";
-import { mswServer } from "@src/tests/_mswListeners/_server";
 import { IUser } from "@src/types/user";
 import { formatUserName } from "@src/utils/userFunctions";
 
 describe("Auth", () => {
-  let rendered: RenderResult | null = null;
-  const user = userEvent.setup();
-
-  beforeEach(() => mswServer.listen());
-  afterEach(() => {
-    mswServer.resetHandlers();
-    rendered = null;
+  const { rendered, router, events } = beforeAfterSetup({
+    routerOptions: { initialEntries: ["/login"] },
+    withAuth: false,
   });
-  afterAll(() => mswServer.close());
+
+  afterEach(() => {
+    const { result } = renderHook(() => useAuthStore());
+    act(() => {
+      result.current.logout();
+    });
+  });
 
   it("select user from list", async () => {
-    act(() => {
-      rendered = renderApp(["/login"]);
-    });
-
     const firstUser: IUser = usersList[0];
 
-    let firstUserName = undefined;
-    await waitFor(async () => {
-      firstUserName = rendered?.queryByText(formatUserName(firstUser, true));
-      expect(firstUserName).toBeInTheDocument();
-    });
+    const firstUserName = await rendered()?.findByText(
+      formatUserName(firstUser, true),
+    );
+    expect(firstUserName).toBeInTheDocument();
 
-    if (firstUserName) user.click(firstUserName);
-
-    await waitFor(async () => {
-      expect(location.pathname).toEqual("/");
-    });
+    if (firstUserName) {
+      await events.click(firstUserName);
+      expect(router()?.state.location.pathname).toEqual("/");
+    }
   });
 });

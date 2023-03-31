@@ -1,8 +1,8 @@
-import { IDetail } from "@src/types/detail";
+import { TDetailInCraft } from "@src/types/detail";
 
 export interface IKeeping {
   id: number;
-  detail: IDetail;
+  detail: TDetailInCraft;
   detailAmount: number;
   keepingBox: number | undefined;
   keepingBoxAmount: number;
