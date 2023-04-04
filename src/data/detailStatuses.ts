@@ -1,8 +1,10 @@
 import { TDetailStatus } from "@src/types/detail";
 
-const detailStatuses: {
-  [key in TDetailStatus]: { name: string };
-} = {
+interface IStatusBody {
+  name: string;
+}
+
+const detailStatuses: Record<TDetailStatus, IStatusBody> = {
   INACTIVE: { name: "Неактивна" },
   WAITING: { name: "Ожидание" },
   ASSEMBLY: { name: "В производстве" },

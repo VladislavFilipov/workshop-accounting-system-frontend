@@ -1,12 +1,12 @@
 import { TDetailCraftStatus } from "@src/types/detailCraft";
 
-const detailCraftStatuses: {
-  [key in TDetailCraftStatus]: {
-    next: TDetailCraftStatus | null;
-    name: string;
-    buttonText: string;
-  };
-} = {
+interface IStatusBody {
+  next: TDetailCraftStatus | null;
+  name: string;
+  buttonText: string;
+}
+
+const detailCraftStatuses: Record<TDetailCraftStatus, IStatusBody> = {
   WAITING: { next: "WORKING", name: "Ожидание", buttonText: "Начать работу" },
   WORKING: {
     next: "COMPLETE",
