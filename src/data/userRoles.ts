@@ -1,8 +1,11 @@
 import { TUserRole } from "@src/types/user";
 
-const userRoles: {
-  [key in TUserRole]: { name: TUserRole; ruName: string };
-} = {
+interface IRoleBody {
+  name: TUserRole;
+  ruName: string;
+}
+
+const userRoles: Record<TUserRole, IRoleBody> = {
   ADMIN: { name: "ADMIN", ruName: "Администратор" },
   MODERATOR: { name: "MODERATOR", ruName: "Модератор" },
   USER: { name: "USER", ruName: "Сотрудник" },

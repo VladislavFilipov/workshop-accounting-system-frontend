@@ -1,8 +1,6 @@
 export type TErrorScreenTypes = "error" | "pageNotFound";
-
-export type TErrorScreenData = {
-  [key in TErrorScreenTypes]: {
-    title: string;
-    subtitle: string;
-  };
-};
+interface IErrorScreenBody {
+  title: string;
+  subtitle: string;
+}
+export type TErrorScreenData = Record<TErrorScreenTypes, IErrorScreenBody>;
