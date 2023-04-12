@@ -1,12 +1,15 @@
+import {
+  ASSEMBLY,
+  COMPLETE,
+  DEFECT,
+  INACTIVE,
+  WAITING,
+} from "@src/const/statuses";
 import { ILocation } from "@src/types/location";
 import { IUser } from "@src/types/user";
 
-export type TDetailStatus =
-  | "INACTIVE"
-  | "WAITING"
-  | "COMPLETE"
-  | "ASSEMBLY"
-  | "DEFECT";
+const detailStatuses = [INACTIVE, WAITING, COMPLETE, ASSEMBLY, DEFECT] as const;
+export type TDetailStatus = typeof detailStatuses[number];
 
 export interface IDetail {
   id: number;
