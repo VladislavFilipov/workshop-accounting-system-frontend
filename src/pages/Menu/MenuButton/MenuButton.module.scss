@@ -11,6 +11,7 @@
   align-items: center;
 
   width: max-content;
+  max-width: 100%;
   padding: 0.6rem;
 
   text-decoration: none;
@@ -34,8 +35,14 @@
     background-color: color.adjust(vars.$text-color, $lightness: 15%);
   }
 
-  .img {
-    height: 4rem;
+  .img svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0.5rem;
+
+    // path {
+    //   fill: white;
+    // }
   }
 
   .text {

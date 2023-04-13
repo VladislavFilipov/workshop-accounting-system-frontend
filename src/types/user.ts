@@ -1,7 +1,12 @@
+import { ACTIVE, DELETED, NOT_ACTIVE } from "@src/const/useStatuses";
+import { ADMIN, MODERATOR, USER } from "@src/const/userRoles";
 import { IJob } from "@src/types/job";
 
-export type TUserStatus = "ACTIVE" | "NOT_ACTIVE" | "DELETED";
-export type TUserRole = "ADMIN" | "MODERATOR" | "USER";
+const userStatuses = [ACTIVE, NOT_ACTIVE, DELETED] as const;
+export type TUserStatus = typeof userStatuses[number];
+
+const userRoles = [ADMIN, MODERATOR, USER] as const;
+export type TUserRole = typeof userRoles[number];
 
 export interface IUser {
   id: number;

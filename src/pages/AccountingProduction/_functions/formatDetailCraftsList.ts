@@ -1,6 +1,7 @@
 /*
   Function checks the order of detail crafts and returns permissions to update detail craft ststus and detail ststus.
 */
+import { WAITING, WORKING } from "@src/const/statuses";
 import { IDetailCraft } from "@src/types/detailCraft";
 import { sortArrayOfObjects } from "@src/utils/sort/sortArrayOfObjects";
 
@@ -16,7 +17,7 @@ export const formatDetailCraftsList = (
 
   const currentIndex = sortedList.findIndex(
     (detailCraft) =>
-      detailCraft.status === "WAITING" || detailCraft.status === "WORKING",
+      detailCraft.status === WAITING || detailCraft.status === WORKING,
   );
 
   const workingDetailCraft: null | IDetailCraft =

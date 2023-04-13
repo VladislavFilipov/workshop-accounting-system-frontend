@@ -12,12 +12,23 @@ interface IProps {
   className?: string;
   isPassword?: boolean;
   error?: string;
+  isTextarea?: boolean;
 }
 
 type IInputProps = IProps & InputHTMLAttributes<HTMLInputElement>;
 
 const InputText = forwardRef<HTMLInputElement, IInputProps>(
-  ({ label, className, isPassword, error, ...props }, ref) => {
+  (
+    {
+      label = "Введите текст",
+      className,
+      isPassword,
+      error,
+      isTextarea = false,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Wrap label={label} className={className} error={error}>
         <input
@@ -25,6 +36,7 @@ const InputText = forwardRef<HTMLInputElement, IInputProps>(
           className={styles.input}
           ref={ref}
           {...props}
+          placeholder={label}
         />
       </Wrap>
     );

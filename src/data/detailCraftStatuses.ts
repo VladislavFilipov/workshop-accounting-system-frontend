@@ -1,3 +1,4 @@
+import { COMPLETE, WORKING } from "@src/const/statuses";
 import { TDetailCraftStatus } from "@src/types/detailCraft";
 
 interface IStatusBody {
@@ -7,9 +8,9 @@ interface IStatusBody {
 }
 
 const detailCraftStatuses: Record<TDetailCraftStatus, IStatusBody> = {
-  WAITING: { next: "WORKING", name: "Ожидание", buttonText: "Начать работу" },
+  WAITING: { next: WORKING, name: "Ожидание", buttonText: "Начать работу" },
   WORKING: {
-    next: "COMPLETE",
+    next: COMPLETE,
     name: "В производстве",
     buttonText: "Завершить",
   },

@@ -36,7 +36,7 @@ describe("Router tests", () => {
       result.current.login(user);
     });
 
-    const linkButton = await rendered()?.findByText("Учёт производимых работ");
+    const linkButton = await rendered()?.findByText("Работы");
     expect(linkButton).toBeInTheDocument();
 
     if (linkButton) {

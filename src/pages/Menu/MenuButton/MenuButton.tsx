@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 import cn from "classnames";
@@ -6,7 +6,7 @@ import cn from "classnames";
 import styles from "./MenuButton.module.scss";
 
 interface IMenuButtonProps {
-  imgSrc: string;
+  img: ReactNode;
   text: string;
   pathTo?: string;
   isDefault?: boolean;
@@ -15,14 +15,14 @@ interface IMenuButtonProps {
 
 const MenuButton: FC<IMenuButtonProps> = ({
   text,
-  imgSrc,
+  img,
   pathTo,
   isDefault,
   onClick,
 }) => {
   const body = (
     <>
-      <img className={styles.img} src={imgSrc} alt="" />
+      <div className={styles.img}>{img}</div>
       <div className={styles.text}>{text}</div>
     </>
   );
