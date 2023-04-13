@@ -2,7 +2,10 @@ import { FC } from "react";
 
 import BoxSVG from "@src/assets/icons/menu/box.svg";
 import ExitSVG from "@src/assets/icons/menu/exit.svg";
+import ListSVG from "@src/assets/icons/menu/list-file.svg";
 import MonitorSVG from "@src/assets/icons/menu/monitor.svg";
+import MonitoringPackSVG from "@src/assets/icons/menu/monitoring-packaging.svg";
+import MonitoringProdSVG from "@src/assets/icons/menu/monitoring-production.svg";
 import QRcodeSVG from "@src/assets/icons/menu/qrcode.svg";
 import ToolsSVG from "@src/assets/icons/menu/tools.svg";
 import PageLayout from "@src/components/_layouts/PageLayout/PageLayout";
@@ -53,19 +56,19 @@ const MenuPage: FC = () => {
                 <MonitorSVG className={styles.monitorSvg} /> Мониторинг
               </Title>
               <MenuButton
-                img={<QRcodeSVG />}
+                img={<MonitoringProdSVG className={styles.fillSvg} />}
                 text="Станки"
                 pathTo="/monitoring/machines"
                 isDefault
               />
               <MenuButton
-                img={<QRcodeSVG />}
+                img={<MonitoringPackSVG className={styles.strokeSvg} />}
                 text="Фасовочные станции"
                 pathTo="/monitoring/packstations"
                 isDefault
               />
               <MenuButton
-                img={<QRcodeSVG />}
+                img={<ListSVG className={styles.strokeSvg} />}
                 text="Заявки"
                 pathTo="/requests"
                 isDefault

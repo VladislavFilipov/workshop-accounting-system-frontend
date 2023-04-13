@@ -20,12 +20,25 @@
       }
     }
 
+    .fillSvg {
+      // display: block;
+      // width: 4rem;
+      // height: 4rem;
+      color: white;
+
+      path,
+      rect {
+        fill: white;
+      }
+    }
+
     .strokeSvg {
       // display: block;
       // width: 4rem;
       // height: 4rem;
 
-      path {
+      path,
+      rect {
         stroke: white;
       }
     }
