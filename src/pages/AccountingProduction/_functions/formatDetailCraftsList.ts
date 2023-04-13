@@ -5,27 +5,21 @@ import { WAITING, WORKING } from "@src/const/statuses";
 import { IDetailCraft } from "@src/types/detailCraft";
 import { sortArrayOfObjects } from "@src/utils/sort/sortArrayOfObjects";
 
-export const formatDetailCraftsList = (
-  detailCraftsList: IDetailCraft[],
-  scannedDetailCraft: IDetailCraft,
-) => {
+export const formatDetailCraftsList = (detailCraftsList: IDetailCraft[]) => {
   const sortedList: IDetailCraft[] = sortArrayOfObjects(
     detailCraftsList,
     "stage_number",
     "number",
   );
 
-  const currentIndex = sortedList.findIndex(
+  const curDetailCraft = sortedList.find(
     (detailCraft) =>
       detailCraft.status === WAITING || detailCraft.status === WORKING,
   );
 
-  const workingDetailCraft: null | IDetailCraft =
-    currentIndex !== -1 ? sortedList[currentIndex] : null;
-
-  const canUpdate: boolean = workingDetailCraft
-    ? workingDetailCraft.id === scannedDetailCraft.id
-    : false;
-
-  return { sortedList, canUpdate, canDetailFinish: currentIndex === -1 };
+  return {
+    sortedList,
+    curDetailCraftId: curDetailCraft?.id ?? undefined,
+    canDetailFinish: !curDetailCraft,
+  };
 };

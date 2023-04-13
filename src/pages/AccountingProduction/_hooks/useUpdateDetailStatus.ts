@@ -4,34 +4,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Api from "@src/api";
-import {
-  DETAILS_CRAFT_DETAIL_KEY,
-  DETAILS_CRAFT_KEY,
-} from "@src/const/queryKeys";
-import { TDetailStatus } from "@src/types/detail";
-import { IDetailCraft } from "@src/types/detailCraft";
+import { DETAIL_KEY, UPDATE_DETAIL_STATUS_KEY } from "@src/const/queryKeys";
+import { IDetail, TDetailStatus } from "@src/types/detail";
 
-const useUpdateDetailStatus = (detailCraft: IDetailCraft | undefined) => {
+const useUpdateDetailStatus = () => {
   const queryClient = useQueryClient();
   const { mutateAsync: updateDetailStatus, error: updateDetailError } =
     useMutation(
-      [DETAILS_CRAFT_DETAIL_KEY, detailCraft],
-      ({
-        status,
-        detailCraft,
-      }: {
-        status: TDetailStatus;
-        detailCraft: IDetailCraft;
-      }) =>
+      [UPDATE_DETAIL_STATUS_KEY],
+      ({ status, detail }: { status: TDetailStatus; detail: IDetail }) =>
         Api.details.updateDetailStatus(
           {
             status,
           },
-          detailCraft.details_id.id,
+          detail.id,
         ),
       {
         onSuccess: () => {
-          queryClient.invalidateQueries([DETAILS_CRAFT_KEY]);
+          queryClient.invalidateQueries([DETAIL_KEY]);
         },
       },
     );

@@ -4,54 +4,61 @@ const types = ["item", "stamp"] as const;
 
 type TTypeOfScanning = typeof types[number];
 
+// "-Eid" means "enterprice id" from main CRM system
 interface IState {
   typeOfScanning: TTypeOfScanning | undefined;
-  scannedId: string;
+  scannedEid: string;
+  scannedStampEid: string;
   parseError: Error | undefined;
-  canUpdate: boolean;
+  curDetailCraftId: number | undefined;
   canDetailFinish: boolean;
 }
 
 interface IActions {
   parseInput: (value: string) => void;
-  setCanUpdate: (value: boolean) => void;
+  setCurDetailCraftId: (id: number | undefined) => void;
   setCanDetailFinish: (value: boolean) => void;
   reset: () => void;
 }
 
 const initialState: IState = {
   typeOfScanning: undefined,
-  scannedId: "",
+  scannedEid: "",
+  scannedStampEid: "",
   parseError: undefined,
-  canUpdate: false,
+  curDetailCraftId: undefined,
   canDetailFinish: false,
 };
 
 const useScannerData = create<IState & IActions>((set) => ({
   ...initialState,
   parseInput: (value: string) => {
-    const [type, id] = value.split("\n");
+    const isDetail = value.includes("-");
+    const [type, id] = value.split(isDetail ? "-" : "\n");
 
     set({
       typeOfScanning: undefined,
     });
 
-    if (!types.includes(type as TTypeOfScanning)) {
+    const tmpType = isDetail ? "stamp" : type;
+    if (!types.includes(tmpType as TTypeOfScanning)) {
       set({
         typeOfScanning: undefined,
-        scannedId: "",
+        scannedEid: "",
+        scannedStampEid: "",
         parseError: new Error("Некорректный тип."),
       });
     } else {
       set({
-        typeOfScanning: type as TTypeOfScanning,
-        scannedId: id,
+        typeOfScanning: tmpType as TTypeOfScanning,
+        scannedEid: id,
+        scannedStampEid: type,
         parseError: undefined,
       });
     }
   },
-  setCanUpdate: (value: boolean) => set({ canUpdate: value }),
-  setCanDetailFinish: (value: boolean) => set({ canDetailFinish: value }),
+  setCurDetailCraftId: (id) => set({ curDetailCraftId: id }),
+  setCanDetailFinish: (value) => set({ canDetailFinish: value }),
   reset: () => set(initialState),
 }));
 

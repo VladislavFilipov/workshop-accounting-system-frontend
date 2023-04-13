@@ -14,7 +14,7 @@
   .label {
     @include mixins.setFont(1.1rem, 500, 1.1rem);
     position: absolute;
-    top: 0.6rem;
+    top: 0.5rem;
 
     width: max-content;
     margin-bottom: 0.3rem;

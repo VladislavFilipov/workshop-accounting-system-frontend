@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 
 import Api from "@src/api";
-import { DETAILS_CRAFT_KEY } from "@src/const/queryKeys";
+import { DETAILS_CRAFT_LIST_KEY } from "@src/const/queryKeys";
 import { formatDetailCraftsList } from "@src/pages/AccountingProduction/_functions/formatDetailCraftsList";
 import useScannerData from "@src/store/scanner";
-import { IDetailCraft } from "@src/types/detailCraft";
+import { IDetail } from "@src/types/detail";
 
-const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
-  const setCanUpdate = useScannerData((state) => state.setCanUpdate);
+const useDetailCraftList = (detail: IDetail) => {
+  const setCurDetailCraftId = useScannerData(
+    (state) => state.setCurDetailCraftId,
+  );
   const setCanDetailFinish = useScannerData(
     (state) => state.setCanDetailFinish,
   );
@@ -16,27 +18,21 @@ const useDetailCraftList = (detailCraft: IDetailCraft | undefined) => {
     data: detailCraftsList,
     error: listError,
     isLoading: listIsFetching,
-  } = useQuery(
-    [DETAILS_CRAFT_KEY + "list", detailCraft],
-    async () => {
-      console.log("getDetailCraftsList detailCraft", detailCraft);
-      const detailId: number | undefined = detailCraft?.details_id.id;
-      if (!detailId) throw new Error("Error");
+  } = useQuery([DETAILS_CRAFT_LIST_KEY, detail], async () => {
+    console.log("getDetailCraftsList detail", detail);
+    const detailId: number | undefined = detail.id;
+    if (!detailId) throw new Error("Error");
 
-      const { sortedList, canUpdate, canDetailFinish } = formatDetailCraftsList(
-        await Api.detailCraft.getByDetailId(detailId),
-        detailCraft as IDetailCraft,
-      );
+    const { sortedList, curDetailCraftId } = formatDetailCraftsList(
+      await Api.detailCraft.getByDetailId(detailId),
+      // detailCraft as IDetailCraft,
+    );
 
-      setCanUpdate(canUpdate);
-      setCanDetailFinish(canDetailFinish);
+    setCurDetailCraftId(curDetailCraftId);
+    setCanDetailFinish(true);
 
-      return sortedList;
-    },
-    {
-      enabled: !!detailCraft,
-    },
-  );
+    return sortedList;
+  });
   return { detailCraftsList, listError, listIsFetching };
 };
 
