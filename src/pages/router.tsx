@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorScreen from "@src/components/ErrorScreen";
 import AppLayout from "@src/components/_layouts/AppLayout";
 import ProtectedRoute from "@src/components/_shared/ProtectedRoute";
-import userRoles from "@src/data/userRoles";
+import { ADMIN, MODERATOR } from "@src/const/userRoles";
 
 const AccountingPackaging = lazy(
   () => import("@src/pages/AccountingPackaging"),
@@ -78,11 +78,7 @@ export const routes = [
       },
       {
         path: "/monitoring",
-        element: (
-          <ProtectedRoute
-            permittedRoles={[userRoles.MODERATOR.name, userRoles.ADMIN.name]}
-          />
-        ),
+        element: <ProtectedRoute permittedRoles={[MODERATOR, ADMIN]} />,
         children: [
           {
             path: "/monitoring/packstations",

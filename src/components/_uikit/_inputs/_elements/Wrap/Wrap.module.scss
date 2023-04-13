@@ -1,14 +1,45 @@
 @use "src/styles/variables" as vars;
 @use "src/styles/mixins" as mixins;
 
+@mixin labelToTop {
+  @include mixins.setFont(0.8rem, 600, 0.8rem);
+  top: -0.5rem;
+}
+
 .wrap {
-  display: block;
+  position: relative;
   width: 100%;
   height: max-content;
 
   .label {
-    @include mixins.setFont(0.8rem, 600, 0.8rem);
+    @include mixins.setFont(1.1rem, 500, 1.1rem);
+    position: absolute;
+    top: 0.6rem;
+
+    width: max-content;
     margin-bottom: 0.3rem;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.3rem;
+
+    background-color: white;
+
+    transition: 0.1s;
+  }
+
+  *::placeholder {
+    visibility: hidden;
+  }
+
+  input,
+  select,
+  textarea {
+    &:not(:placeholder-shown) ~ .label {
+      @include labelToTop;
+    }
+
+    &:focus ~ .label {
+      @include labelToTop;
+    }
   }
 
   .error {
