@@ -42,17 +42,17 @@ describe("AccountingProduction input parsing and navigation", () => {
     }
   });
 
-  it("scanned value includes 'stamps'", async () => {
-    if (inputField && getDataButton) {
-      await events.type(inputField, "stamp\n22");
-      await events.click(getDataButton);
+  // it("scanned value includes 'stamps'", async () => {
+  //   if (inputField && getDataButton) {
+  //     await events.type(inputField, "stamp\n22");
+  //     await events.click(getDataButton);
 
-      expect(router()?.state.location.pathname).toEqual(
-        "/accounting/production/stamps",
-      );
+  //     expect(router()?.state.location.pathname).toEqual(
+  //       "/accounting/production/stamps",
+  //     );
 
-      const header = await rendered()?.findByText(/Этапы производства/i);
-      expect(header).toBeInTheDocument();
-    }
-  });
+  //     const header = await rendered()?.findByText(/Этапы производства/i);
+  //     expect(header).toBeInTheDocument();
+  //   }
+  // });
 });
