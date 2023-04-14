@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 
 import cn from "classnames";
 
+import UserSVG from "@src/assets/icons/user-icon.svg";
 import DataContainer from "@src/components/DataContainer/DataContainer";
 import PageLayout from "@src/components/_layouts/PageLayout/PageLayout";
 import Button from "@src/components/_uikit/Button/Button";
@@ -45,6 +46,7 @@ const UsersPage: FC = () => {
               className={cn(styles.userButton)}
               onClick={() => handleUserClick(user)}
               size="l"
+              icon={<UserSVG className={styles.buttonIcon} />}
             />
           ))}
         </ul>

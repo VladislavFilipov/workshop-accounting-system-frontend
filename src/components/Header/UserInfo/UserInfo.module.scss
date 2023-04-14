@@ -32,11 +32,30 @@
   }
 
   .avatar {
-    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    img {
-      width: 3.5rem;
-      height: 3.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+
+    background-color: vars.$text-color-light;
+
+    // border: 0.1rem solid vars.$black;
+    border-radius: 50%;
+
+    // img {
+    //   width: 3.5rem;
+    //   height: 3.5rem;
+    // }
+
+    svg {
+      width: 70%;
+      height: 70%;
+
+      path {
+        stroke: white;
+      }
     }
   }
 }

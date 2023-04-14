@@ -26,7 +26,12 @@ const AccountingPackaging = () => {
 
   return (
     <PageLayout title="Учет фасовки" subtitle="Отсканируйте QR-код упаковки">
-      <InputText ref={inputRef} autoFocus className={styles.input} />
+      <InputText
+        ref={inputRef}
+        autoFocus
+        className={styles.input}
+        label="QR-код упаковки"
+      />
       <Button
         text="Добавить"
         onClick={handleAddClick}

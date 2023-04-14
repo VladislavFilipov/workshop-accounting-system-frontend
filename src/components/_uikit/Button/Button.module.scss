@@ -21,6 +21,11 @@ $selectors: map.keys($sizes);
       margin-bottom: 2px;
     }
 
+    .icon {
+      width: calc($cur * 0.5);
+      height: calc($cur * 0.5);
+    }
+
     // font-size: #{$cur}rem;
     // line-height: #{$cur + math.floor(calc($cur / 4))}rem;
   }
@@ -30,6 +35,7 @@ $selectors: map.keys($sizes);
   cursor: pointer;
 
   display: flex;
+  gap: 0.7rem;
   align-items: center;
 
   padding: 0 1rem;

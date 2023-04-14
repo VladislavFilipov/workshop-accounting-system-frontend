@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, ReactNode } from "react";
 
 import cn from "classnames";
 
@@ -8,12 +8,14 @@ interface IButtonProps {
   text: string;
   type?: "confirm" | "danger";
   size?: "s" | "m" | "l";
+  icon?: ReactNode;
 }
 
 const Button: FC<IButtonProps & HTMLAttributes<HTMLButtonElement>> = ({
   text,
   type,
   size = "m",
+  icon,
   className,
   ...props
 }) => {
@@ -29,6 +31,7 @@ const Button: FC<IButtonProps & HTMLAttributes<HTMLButtonElement>> = ({
       )}
       {...props}
     >
+      {icon && <div className={styles.icon}>{icon}</div>}
       <span className={styles.text}>{text}</span>
     </button>
   );
