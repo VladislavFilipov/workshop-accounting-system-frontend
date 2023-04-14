@@ -19,7 +19,7 @@ const detailsCraft = {
   update: async (
     updateData: {
       status: TDetailCraftStatus;
-      location_id?: number;
+      user_id: number;
     },
     id: number,
   ) =>
