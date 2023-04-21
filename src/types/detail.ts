@@ -1,14 +1,14 @@
 import {
-  ASSEMBLY,
   COMPLETE,
   DEFECT,
   INACTIVE,
   WAITING,
+  WORKING,
 } from "@src/const/statuses";
 import { ILocation } from "@src/types/location";
 import { IUser } from "@src/types/user";
 
-const detailStatuses = [INACTIVE, WAITING, COMPLETE, ASSEMBLY, DEFECT] as const;
+const detailStatuses = [INACTIVE, WAITING, COMPLETE, WORKING, DEFECT] as const;
 export type TDetailStatus = typeof detailStatuses[number];
 
 export interface IDetail {

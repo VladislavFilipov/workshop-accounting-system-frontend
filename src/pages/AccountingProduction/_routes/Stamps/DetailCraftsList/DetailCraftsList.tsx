@@ -35,11 +35,7 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detail }) => {
   // const { updateDetailStatus } = useUpdateDetailStatus();
 
   const handleUpdateClick = (detailCraft: IDetailCraft) => {
-    updateDetailCraft(detailCraft, {
-      onSuccess: () => {
-        // updateDetailStatus({ status: "ASSEMBLY", detail });
-      },
-    });
+    updateDetailCraft(detailCraft);
   };
 
   console.log("curDetailCraftId", curDetailCraftId);

@@ -33,7 +33,7 @@ const UsersPage: FC = () => {
 
   return (
     <PageLayout
-      title="НАЧАЛО РАБОТЫ"
+      title="Начало работы"
       subtitle="Пожалуйста, выберите пользователя"
       className={styles.usersPage}
     >

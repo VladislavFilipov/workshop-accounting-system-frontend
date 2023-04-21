@@ -3,6 +3,8 @@
 */
 import { FC } from "react";
 
+import cn from "classnames";
+
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
 import Title from "@src/components/_uikit/Title";
@@ -22,13 +24,7 @@ interface IDetailCardProps {
 }
 
 const DetailCard: FC<IDetailCardProps> = ({ detail, stamp }) => {
-  const canDetailFinish = useScannerData((state) => state.canDetailFinish);
-
-  const { updateDetailStatus, updateDetailError } = useUpdateDetailStatus();
-
-  const handleDetailComplete = () => {
-    updateDetailStatus({ status: "COMPLETE", detail });
-  };
+  console.log(detail.status);
 
   return (
     <div>
@@ -63,26 +59,16 @@ const DetailCard: FC<IDetailCardProps> = ({ detail, stamp }) => {
             <div className={styles.line}>
               <span>Количество</span> {detail.amount}
             </div>
-            <div className={styles.line}>
-              <span>Статус</span> {detailStatuses[detail.status]?.name}
+            <div className={cn(styles.line, styles.statusLine)}>
+              <span>Статус</span>
+              <div
+                className={cn(styles.status, styles["status" + detail.status])}
+              >
+                {detailStatuses[detail.status]?.name}
+              </div>
             </div>
           </div>
         }
-
-        {canDetailFinish && detail.status !== "COMPLETE" && (
-          <Button
-            text="Завершить деталь"
-            type="confirm"
-            onClick={handleDetailComplete}
-          />
-        )}
-
-        {updateDetailError && (
-          <StatusLabel
-            text={(updateDetailError as Error).message}
-            type="error"
-          />
-        )}
       </>
     </div>
   );

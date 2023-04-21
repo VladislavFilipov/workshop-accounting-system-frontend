@@ -19,7 +19,9 @@
   .content {
     display: flex;
     flex-grow: 1;
+
     height: 100%;
+    margin-top: 5rem;
     padding: 1.5rem 2rem;
 
     & > * {
@@ -28,11 +30,13 @@
   }
 
   .bgLogo {
-    position: absolute;
+    position: fixed;
     z-index: -1;
     right: -5rem;
     bottom: -2rem;
     left: -5rem;
+
+    opacity: 0.5;
   }
 
   @media #{vars.$desktop-screen} {
@@ -41,10 +45,10 @@
     }
 
     .bgLogo {
-      right: 2rem;
+      // right: 30%;
       bottom: 0;
-      left: auto;
-      width: 10rem;
+      left: calc(50% + calc(1080px / 2) - 12rem);
+      max-width: 10rem;
     }
   }
 }

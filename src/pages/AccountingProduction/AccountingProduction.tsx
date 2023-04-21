@@ -35,7 +35,7 @@ const ScannerPage = () => {
                 // inputRef.current.value = `stamp\n210b91bd-55da-4166-9e18-68c7258da871`;
                 // inputRef.current.value = `stamp\n1`;
 
-                inputRef.current.value = `160-80`;
+                inputRef.current.value = `800000499-80000011`;
               // inputRef.current.value = `item\n23`;
             }}
           />

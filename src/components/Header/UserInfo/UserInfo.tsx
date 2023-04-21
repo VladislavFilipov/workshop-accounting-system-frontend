@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import cn from "classnames";
+
 import accountImage from "@src/assets/account-circle.png";
 import UserSVG from "@src/assets/icons/user-icon.svg";
 import userRoles from "@src/data/userRoles";
@@ -14,7 +16,7 @@ const UserInfo: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <div className={styles.username}>
+        <div className={cn(styles.username, { [styles.notSelected]: !user })}>
           {formatUserName(user, false, "Пользователь не выбран")}
         </div>
         {user && (

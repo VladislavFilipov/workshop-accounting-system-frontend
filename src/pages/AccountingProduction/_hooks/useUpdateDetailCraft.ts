@@ -4,7 +4,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import Api from "@src/api";
-import { DETAILS_CRAFT_LIST_KEY } from "@src/const/queryKeys";
+import { DETAILS_CRAFT_LIST_KEY, DETAIL_KEY } from "@src/const/queryKeys";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
 import useAuthStore from "@src/store/auth";
 import { IDetailCraft } from "@src/types/detailCraft";
@@ -36,6 +36,7 @@ const useUpdateDetailCraft = () => {
     {
       onSuccess: async () => {
         queryClient.invalidateQueries([DETAILS_CRAFT_LIST_KEY]);
+        queryClient.invalidateQueries([DETAIL_KEY]);
       },
     },
   );

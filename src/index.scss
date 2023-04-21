@@ -28,6 +28,12 @@ li {
   list-style: none;
 }
 
+input,
+textarea {
+  border: none;
+  outline: none;
+}
+
 a:link {
   text-decoration: none;
 }
