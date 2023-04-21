@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Link, useLocation } from "react-router-dom";
 
+import cn from "classnames";
+
 import UserInfo from "@src/components/Header/UserInfo";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
@@ -32,7 +34,12 @@ const Header = () => {
         ) : (
           <div></div>
         )}
-        {show && <Title variant="h5">{title}</Title>}
+        <Title
+          variant="h5"
+          className={cn(styles.title, { [styles["showTitle"]]: show })}
+        >
+          {title}
+        </Title>
       </div>
       <ErrorBoundary
         FallbackComponent={() => <StatusLabel text="Ошибка" type="error" />}

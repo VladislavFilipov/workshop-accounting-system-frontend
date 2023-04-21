@@ -7,6 +7,7 @@
   right: 0;
   left: 0;
 
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,5 +25,16 @@
     align-items: center;
 
     min-width: 1rem;
+
+    .title {
+      transform: translateY(5rem);
+
+      // bottom: -3rem;
+      transition: 0.1s;
+    }
+
+    .showTitle {
+      transform: translateY(0);
+    }
   }
 }
