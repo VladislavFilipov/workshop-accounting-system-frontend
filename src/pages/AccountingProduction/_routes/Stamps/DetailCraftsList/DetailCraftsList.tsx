@@ -66,7 +66,8 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detail }) => {
                   )}
                 >
                   <div className={styles.stageStatus}>
-                    {detailCraftStatuses[detilCraftItem.status].name}
+                    {detailCraftStatuses[detilCraftItem.status]?.name ??
+                      "Ожидание"}
                   </div>
                   <div>
                     <div className={styles.stageName}>
@@ -80,7 +81,10 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detail }) => {
 
                 {detilCraftItem.id === curDetailCraftId && (
                   <Button
-                    text={detailCraftStatuses[detilCraftItem.status].buttonText}
+                    text={
+                      detailCraftStatuses[detilCraftItem.status]?.buttonText ??
+                      "Начать работу"
+                    }
                     type="confirm"
                     onClick={() => handleUpdateClick(detilCraftItem)}
                   />
