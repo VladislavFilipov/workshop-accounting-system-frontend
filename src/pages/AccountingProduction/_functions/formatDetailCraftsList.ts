@@ -11,11 +11,15 @@ export const formatDetailCraftsList = (detailCraftsList: IDetailCraft[]) => {
     "stage_number",
     "number",
   );
+  console.log("sortedList", sortedList);
 
   const curDetailCraft = sortedList.find(
     (detailCraft) =>
-      detailCraft.status === WAITING || detailCraft.status === WORKING,
+      detailCraft.status === "INACTIVE" ||
+      detailCraft.status === WAITING ||
+      detailCraft.status === WORKING,
   );
+  console.log("curDetailCraft", curDetailCraft);
 
   return {
     sortedList,
