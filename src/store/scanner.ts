@@ -11,13 +11,11 @@ interface IState {
   scannedStampEid: string;
   parseError: Error | undefined;
   curDetailCraftId: number | undefined;
-  canDetailFinish: boolean;
 }
 
 interface IActions {
   parseInput: (value: string) => void;
   setCurDetailCraftId: (id: number | undefined) => void;
-  setCanDetailFinish: (value: boolean) => void;
   reset: () => void;
 }
 
@@ -27,7 +25,6 @@ const initialState: IState = {
   scannedStampEid: "",
   parseError: undefined,
   curDetailCraftId: undefined,
-  canDetailFinish: false,
 };
 
 const useScannerData = create<IState & IActions>((set) => ({
@@ -58,7 +55,6 @@ const useScannerData = create<IState & IActions>((set) => ({
     }
   },
   setCurDetailCraftId: (id) => set({ curDetailCraftId: id }),
-  setCanDetailFinish: (value) => set({ canDetailFinish: value }),
   reset: () => set(initialState),
 }));
 

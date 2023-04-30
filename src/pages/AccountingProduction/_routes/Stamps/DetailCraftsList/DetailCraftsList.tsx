@@ -12,7 +12,6 @@ import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
 import useDetailCraftList from "@src/pages/AccountingProduction/_hooks/useDetailCraftList";
 import useUpdateDetailCraft from "@src/pages/AccountingProduction/_hooks/useUpdateDetailCraft";
-import useUpdateDetailStatus from "@src/pages/AccountingProduction/_hooks/useUpdateDetailStatus";
 import SkeletonDetailCraftList from "@src/pages/AccountingProduction/_routes/Stamps/DetailCraftsList/Skeleton";
 import useScannerData from "@src/store/scanner";
 import { IDetail } from "@src/types/detail";
@@ -31,8 +30,6 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detail }) => {
     useDetailCraftList(detail);
 
   const { updateDetailCraft, updateError } = useUpdateDetailCraft();
-
-  // const { updateDetailStatus } = useUpdateDetailStatus();
 
   const handleUpdateClick = (detailCraft: IDetailCraft) => {
     updateDetailCraft(detailCraft);
@@ -66,8 +63,7 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detail }) => {
                   )}
                 >
                   <div className={styles.stageStatus}>
-                    {detailCraftStatuses[detilCraftItem.status]?.name ??
-                      "Ожидание"}
+                    {detailCraftStatuses[detilCraftItem.status]?.name}
                   </div>
                   <div>
                     <div className={styles.stageName}>

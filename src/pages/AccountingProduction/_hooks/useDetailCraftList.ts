@@ -2,16 +2,23 @@ import { useQuery } from "@tanstack/react-query";
 
 import Api from "@src/api";
 import { DETAILS_CRAFT_LIST_KEY } from "@src/const/queryKeys";
-import { formatDetailCraftsList } from "@src/pages/AccountingProduction/_functions/formatDetailCraftsList";
+import { getSortedListWithCurrent } from "@src/pages/AccountingProduction/_functions/getSortedListWithCurrent";
 import useScannerData from "@src/store/scanner";
 import { IDetail } from "@src/types/detail";
+import { IDetailCraft } from "@src/types/detailCraft";
 
-const useDetailCraftList = (detail: IDetail) => {
+/**
+ * Wrapper for React Query hook receiving list of crafting processes (detailCrafts) for the current detail
+ */
+const useDetailCraftList = (
+  detail: IDetail,
+): {
+  detailCraftsList: IDetailCraft[] | undefined;
+  listError: unknown;
+  listIsFetching: boolean;
+} => {
   const setCurDetailCraftId = useScannerData(
     (state) => state.setCurDetailCraftId,
-  );
-  const setCanDetailFinish = useScannerData(
-    (state) => state.setCanDetailFinish,
   );
 
   const {
@@ -19,17 +26,14 @@ const useDetailCraftList = (detail: IDetail) => {
     error: listError,
     isLoading: listIsFetching,
   } = useQuery([DETAILS_CRAFT_LIST_KEY, detail], async () => {
-    console.log("getDetailCraftsList detail", detail);
     const detailId: number | undefined = detail.id;
     if (!detailId) throw new Error("Error");
 
-    const { sortedList, curDetailCraftId } = formatDetailCraftsList(
+    const { sortedList, curDetailCraftId } = getSortedListWithCurrent(
       await Api.detailCraft.getByDetailId(detailId),
-      // detailCraft as IDetailCraft,
     );
 
     setCurDetailCraftId(curDetailCraftId);
-    setCanDetailFinish(true);
 
     return sortedList;
   });
