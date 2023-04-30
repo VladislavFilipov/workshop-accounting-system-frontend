@@ -30,10 +30,11 @@ const PageLayout: FC<PropsWithChildren<IPageLayoutProps>> = ({
   useEffect(() => setTitle(title), []);
 
   return (
-    <div className={cn(styles.menu, { [`${className}`]: !!className })}>
+    <div className={cn(styles.page, { [`${className}`]: !!className })}>
       <Title
         variant="h1"
         className={cn(styles.title, { [styles.titleSmall]: !isLargeTitle })}
+        data-testid={title}
       >
         {title}
       </Title>

@@ -1,7 +1,7 @@
 @use "src/styles/mixins" as mixins;
 @use "src/styles/variables" as vars;
 
-.menu {
+.page {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
