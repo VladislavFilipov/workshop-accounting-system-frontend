@@ -16,6 +16,13 @@ const useInputParse = () => {
   const parseInput = useScannerData((state) => state.parseInput);
   const parseError = useScannerData((state) => state.parseError);
   const typeOfScanning = useScannerData((state) => state.typeOfScanning);
+  const reset = useScannerData((state) => state.reset);
+
+  useEffect(() => {
+    reset();
+    // if (typeOfScanning) navigate(`${scannerPathname}/${typeOfScanning}s`);
+    // else if (location.pathname !== scannerPathname) navigate(scannerPathname);
+  }, []);
 
   useEffect(() => {
     if (typeOfScanning) navigate(`${scannerPathname}/${typeOfScanning}s`);

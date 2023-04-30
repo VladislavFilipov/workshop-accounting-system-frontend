@@ -7,7 +7,7 @@ interface IStatusBody {
 const detailStatuses: Record<TDetailStatus, IStatusBody> = {
   INACTIVE: { name: "Неактивна" },
   WAITING: { name: "Ожидание" },
-  ASSEMBLY: { name: "В производстве" },
+  WORKING: { name: "В производстве" },
   DEFECT: { name: "Дефект" },
   COMPLETE: { name: "Завершена" },
 };

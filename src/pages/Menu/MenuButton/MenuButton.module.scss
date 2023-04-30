@@ -10,8 +10,9 @@
   gap: 0.6rem;
   align-items: center;
 
-  width: max-content;
+  max-width: 85%;
   padding: 0.6rem;
+  padding-right: 1rem;
 
   text-decoration: none;
 
@@ -19,26 +20,31 @@
   border-radius: 0.8rem;
 
   &.default {
-    width: 29rem;
+    // min-width: 29rem;
+    width: 85%;
   }
 
   &:hover {
-    // .text {
-    // box-shadow: 0 0 50px -25px vars.$text-color;
     background-color: vars.$text-color;
-
-    // }
   }
 
   &:active {
     background-color: color.adjust(vars.$text-color, $lightness: 15%);
   }
 
-  .img {
-    height: 4rem;
+  .img svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0.5rem;
   }
 
   .text {
     @include mixins.setFont(1.5rem, 600, 1.5rem, white);
+  }
+
+  @media #{vars.$desktop-screen} {
+    &.default {
+      max-width: 30rem;
+    }
   }
 }

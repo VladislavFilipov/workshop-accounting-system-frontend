@@ -4,15 +4,14 @@
 import { FC } from "react";
 import { Navigate } from "react-router-dom";
 
-import { useQuery } from "@tanstack/react-query";
 import cn from "classnames";
 
-import Api from "@src/api";
+import UserSVG from "@src/assets/icons/user-icon.svg";
 import DataContainer from "@src/components/DataContainer/DataContainer";
 import PageLayout from "@src/components/_layouts/PageLayout/PageLayout";
 import Button from "@src/components/_uikit/Button/Button";
 import StatusLabel from "@src/components/_uikit/StatusLabel/StatusLabel";
-import { USERS_KEY } from "@src/const/queryKeys";
+import useUsers from "@src/pages/Users/_hooks/useUsers";
 import useAuthStore from "@src/store/auth";
 import { IUser } from "@src/types/user";
 import { formatUserName } from "@src/utils/userFunctions";
@@ -20,11 +19,7 @@ import { formatUserName } from "@src/utils/userFunctions";
 import styles from "./UsersPage.module.scss";
 
 const UsersPage: FC = () => {
-  const {
-    data: users,
-    isLoading,
-    error,
-  } = useQuery([USERS_KEY], Api.users.getAll);
+  const { users, isLoading, error } = useUsers();
 
   const login = useAuthStore((state) => state.login);
   const loginError = useAuthStore((state) => state.error);
@@ -38,7 +33,7 @@ const UsersPage: FC = () => {
 
   return (
     <PageLayout
-      title="НАЧАЛО РАБОТЫ"
+      title="Начало работы"
       subtitle="Пожалуйста, выберите пользователя"
       className={styles.usersPage}
     >
@@ -47,9 +42,11 @@ const UsersPage: FC = () => {
           {users?.map((user) => (
             <Button
               key={user.id}
-              text={formatUserName(user, true)}
+              text={formatUserName(user, false)}
               className={cn(styles.userButton)}
               onClick={() => handleUserClick(user)}
+              size="l"
+              icon={<UserSVG className={styles.buttonIcon} />}
             />
           ))}
         </ul>

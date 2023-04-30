@@ -11,6 +11,7 @@ export const usersList: IUser[] = [
     status: "NOT_ACTIVE",
     role: "USER",
     first_name: "Ivan",
+    middle_name: "Ivanovich",
     last_name: "Ivanov",
     token: "ecdf3ee1-9e21-453e-a6af-5ee33b0dbd22",
     create_date: "2023-02-17T15:11:14.423",
@@ -20,7 +21,13 @@ export const usersList: IUser[] = [
         name: "Шлифовщик",
       },
     ],
-    location_id: null,
+    location_id: {
+      id: 4,
+      address: "Какой-то адрес",
+      description: "Какое-либо описание адреса",
+      location_name: "Лепсари-Цех",
+      mail_index: 0,
+    },
   },
   {
     id: 6,
@@ -31,6 +38,7 @@ export const usersList: IUser[] = [
     status: "NOT_ACTIVE",
     role: "ADMIN",
     first_name: "Peter",
+    middle_name: "Petrovich",
     last_name: "Petrov",
     token: "3c71aa3d-0bfe-463b-b41a-cb9414a07239",
     create_date: "2023-02-17T15:11:51.859",
@@ -44,7 +52,13 @@ export const usersList: IUser[] = [
         name: "Штамповщик",
       },
     ],
-    location_id: null,
+    location_id: {
+      id: 4,
+      address: "Какой-то адрес",
+      description: "Какое-либо описание адреса",
+      location_name: "Лепсари-Цех",
+      mail_index: 0,
+    },
   },
 ];
 

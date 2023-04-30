@@ -13,19 +13,19 @@ describe("Router tests", () => {
   });
 
   it("main route, not authorized", () => {
-    const menuTitle = rendered()?.queryByText(MENU_TITLE);
+    const menuTitle = rendered()?.queryByTestId(MENU_TITLE);
     expect(menuTitle).not.toBeInTheDocument();
   });
 
   it("main route, authorized", async () => {
-    const { result } = renderHook(() => useAuthStore());
+    const { result: authStore } = renderHook(() => useAuthStore());
 
     act(() => {
-      result.current.login(user);
+      authStore.current.login(user);
     });
-    expect(result.current.isAuthorized).toBe(true);
+    expect(authStore.current.isAuthorized).toBe(true);
 
-    const menuTitle = await rendered()?.findByText(MENU_TITLE);
+    const menuTitle = await rendered()?.findByTestId(MENU_TITLE);
     expect(menuTitle).toBeInTheDocument();
   });
 
@@ -36,13 +36,12 @@ describe("Router tests", () => {
       result.current.login(user);
     });
 
-    const linkButton = await rendered()?.findByText("Учёт производимых работ");
+    const linkButton = await rendered()?.findByText("Работы");
     expect(linkButton).toBeInTheDocument();
 
     if (linkButton) {
       await events.click(linkButton);
-      rendered()?.debug();
-      const scannerTitle = await rendered()?.findByText("Учёт работ");
+      const scannerTitle = await rendered()?.findByTestId("Учёт работ");
       expect(scannerTitle).toBeInTheDocument();
     }
   });

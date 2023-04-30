@@ -5,6 +5,7 @@ import items from "@src/api/endpoints/items";
 import machines from "@src/api/endpoints/machines";
 import packstations from "@src/api/endpoints/packstations";
 import requests from "@src/api/endpoints/requests";
+import stamps from "@src/api/endpoints/stamps";
 import users from "@src/api/endpoints/users";
 
 const Api = {
@@ -16,6 +17,7 @@ const Api = {
   packstations,
   machines,
   requests,
+  stamps,
 };
 
 export default Api;

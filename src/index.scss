@@ -15,7 +15,7 @@ html {
   }
 
   @media #{vars.$workplace-screen} {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 
@@ -26,6 +26,12 @@ body {
 ul,
 li {
   list-style: none;
+}
+
+input,
+textarea {
+  border: none;
+  outline: none;
 }
 
 a:link {

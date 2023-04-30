@@ -1,3 +1,4 @@
+import { ADMIN, MODERATOR, USER } from "@src/const/userRoles";
 import { TUserRole } from "@src/types/user";
 
 interface IRoleBody {
@@ -6,9 +7,9 @@ interface IRoleBody {
 }
 
 const userRoles: Record<TUserRole, IRoleBody> = {
-  ADMIN: { name: "ADMIN", ruName: "Администратор" },
-  MODERATOR: { name: "MODERATOR", ruName: "Модератор" },
-  USER: { name: "USER", ruName: "Сотрудник" },
+  ADMIN: { name: ADMIN, ruName: "Администратор" },
+  MODERATOR: { name: MODERATOR, ruName: "Модератор" },
+  USER: { name: USER, ruName: "Сотрудник" },
 } as const;
 
 export default userRoles;

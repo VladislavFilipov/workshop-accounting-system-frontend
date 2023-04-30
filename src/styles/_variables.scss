@@ -43,4 +43,4 @@ $status-colors: (
 $desktop-screen: "screen and (orientation: landscape)"; // and (min-width: 1080px)
 
 // prettier-ignore
-$workplace-screen: "screen and (orientation: portrait) and (max-width: 1080px)";
+$workplace-screen: "screen and (orientation: portrait)"; // and (max-width: 1080px)

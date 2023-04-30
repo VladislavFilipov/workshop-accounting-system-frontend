@@ -52,10 +52,18 @@ export const beforeAfterSetup = ({
       router = result.router;
     });
   });
+
   afterEach(() => {
     rendered = null;
     router = null;
     cleanup();
+
+    if (!withAuth) {
+      const { result } = renderHook(() => useAuthStore());
+      act(() => {
+        result.current.logout();
+      });
+    }
   });
   afterAll(() => {
     if (!withAuth) return;

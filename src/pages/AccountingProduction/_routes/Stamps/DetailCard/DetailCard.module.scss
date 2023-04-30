@@ -1,11 +1,20 @@
+@use "sass:map";
+@use "sass:color";
 @use "src/styles/variables" as vars;
 @use "src/styles/mixins" as mixins;
 
+$statuses: "INACTIVE", "WAITING", "WORKING", "COMPLETE";
+
+@mixin setType($status) {
+  @content ($status);
+}
+
 .detailCard {
-  width: 32rem;
+  width: 100%;
   margin: 1.2rem 0;
   padding: 0.8rem;
 
+  background-color: white;
   border: 0.2rem solid vars.$black;
   border-radius: 0.4rem;
 
@@ -24,5 +33,33 @@
       justify-self: flex-end;
       color: vars.$gray-dark;
     }
+  }
+
+  .statusLine {
+    align-items: center;
+  }
+
+  .status {
+    width: max-content;
+    padding: 0.1rem 0.3rem;
+  }
+
+  @for $i from 1 through length($statuses) {
+    @include setType(nth($statuses, $i)) using ($status) {
+      .status#{$status} {
+        $color: map.get(vars.$status-colors, $status);
+        padding: 0.4rem 0.5rem 0.5rem;
+
+        color: white;
+        text-shadow: 0 0 0.3rem color.adjust($color, $lightness: -20%);
+
+        background-color: $color;
+        border-radius: 0.5rem;
+      }
+    }
+  }
+
+  @media #{vars.$desktop-screen} {
+    width: max-content;
   }
 }

@@ -3,20 +3,10 @@
 @use "src/styles/variables" as vars;
 @use "src/styles/mixins" as mixins;
 
-$statuses: "WAITING", "WORKING", "COMPLETE";
+$statuses: "INACTIVE", "WAITING", "WORKING", "COMPLETE";
 
 @mixin setType($status) {
-  &.#{$status} {
-    $color: map.get(vars.$status-colors, $status);
-
-    background-color: color.adjust($color, $lightness: 30%);
-
-    // border: 5px solid $color;
-    .stageStatus {
-      color: white;
-      background-color: $color;
-    }
-  }
+  @content ($status);
 }
 
 .stages {
@@ -27,13 +17,10 @@ $statuses: "WAITING", "WORKING", "COMPLETE";
   }
 
   .stageItemWrap {
-    display: flex;
-    gap: 1.2rem;
-    justify-content: space-between;
     margin: 0.8rem 0;
 
     button {
-      margin-top: 0.4rem;
+      margin: 0.4rem auto 0;
     }
   }
 
@@ -41,9 +28,7 @@ $statuses: "WAITING", "WORKING", "COMPLETE";
     // display: grid;
     // grid-template-columns: 21.6rem 1fr;
     gap: 0.8rem;
-
-    width: 26rem;
-    max-width: 26rem;
+    width: 100%;
     padding: 0.4rem;
 
     // width: max-content;
@@ -59,7 +44,7 @@ $statuses: "WAITING", "WORKING", "COMPLETE";
 
       text-align: center;
 
-      border-radius: 0.4rem;
+      border-radius: 0.5rem;
     }
 
     .stageName {
@@ -71,7 +56,19 @@ $statuses: "WAITING", "WORKING", "COMPLETE";
     }
 
     @for $i from 1 through length($statuses) {
-      @include setType(nth($statuses, $i));
+      @include setType(nth($statuses, $i)) using ($status) {
+        &.#{$status} {
+          $color: map.get(vars.$status-colors, $status);
+
+          background-color: color.adjust($color, $lightness: 30%);
+
+          .stageStatus {
+            color: white;
+            text-shadow: 0 0 0.3rem color.adjust($color, $lightness: -20%);
+            background-color: $color;
+          }
+        }
+      }
     }
   }
 
@@ -94,6 +91,24 @@ $statuses: "WAITING", "WORKING", "COMPLETE";
 
       .stageName {
         margin-bottom: 5px;
+      }
+    }
+  }
+
+  @media #{vars.$desktop-screen} {
+    .stageItemWrap {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: space-between;
+
+      // margin: 0.8rem 0;
+      .stageItem {
+        width: 70%;
+      }
+
+      button {
+        margin-top: 0.4rem;
+        margin-right: 0;
       }
     }
   }

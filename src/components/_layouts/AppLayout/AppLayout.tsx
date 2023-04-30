@@ -1,20 +1,22 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
+import BgLogoSVG from "@src/assets/bg-logo.svg";
 import Header from "@src/components/Header";
 import Spinner from "@src/components/_uikit/Spinner/Spinner";
 
-import style from "./AppLayout.module.scss";
+import styles from "./AppLayout.module.scss";
 
 const AppLayout = () => {
   return (
-    <div className={style.appLayout}>
+    <div className={styles.appLayout}>
       <Header />
-      <div className={style.content}>
+      <div className={styles.content}>
         <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </div>
+      <BgLogoSVG className={styles.bgLogo} />
     </div>
   );
 };

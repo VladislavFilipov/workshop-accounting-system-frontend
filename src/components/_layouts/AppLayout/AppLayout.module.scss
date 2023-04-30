@@ -1,10 +1,16 @@
 @use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixins;
 
 .appLayout {
+  position: relative;
+  z-index: 0;
+
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
   max-width: 1080px;
+  height: 100%;
   min-height: 100vh;
   margin: 0 auto;
 
@@ -14,7 +20,9 @@
   .content {
     display: flex;
     flex-grow: 1;
+
     height: 100%;
+    margin-top: 5rem;
     padding: 1.5rem 2rem;
 
     & > * {
@@ -22,9 +30,34 @@
     }
   }
 
+  .bgLogo {
+    position: fixed;
+    z-index: -1;
+    right: -5rem;
+    bottom: -2rem;
+    left: -5rem;
+
+    opacity: 0.5;
+  }
+
   @media #{vars.$desktop-screen} {
     .content {
-      padding: 0 2rem 1.5rem;
+      padding: 2rem 2rem 1.5rem;
+    }
+
+    .bgLogo {
+      position: absolute;
+      right: unset;
+      bottom: 0.5rem;
+
+      // left: unset;
+      left: calc(50% - 5rem);
+
+      // left: calc(50% + calc(1080px / 2) - 12rem);
+      // max-width: 10rem;
+
+      // right: 30%;
+      width: 10rem;
     }
   }
 }

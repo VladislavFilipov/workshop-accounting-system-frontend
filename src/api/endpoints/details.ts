@@ -10,6 +10,11 @@ const details = {
       method: GET,
       url: `${baseUrl}/token?data=${token}`,
     }),
+  getByEnterpriceId: async (enterpriceId: string) =>
+    request<IDetail>({
+      method: GET,
+      url: `${baseUrl}/enterprise?id=${enterpriceId}`,
+    }),
   updateDetailStatus: async (detail: { status: TDetailStatus }, id: number) =>
     request<IDetail>({
       method: PATCH,

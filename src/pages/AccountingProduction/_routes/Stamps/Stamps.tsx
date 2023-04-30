@@ -1,25 +1,37 @@
 import { FC } from "react";
 
 import DataContainer from "@src/components/DataContainer/DataContainer";
-import useDetailCraft from "@src/pages/AccountingProduction/_hooks/useDetailCraft";
+import useDetail from "@src/pages/AccountingProduction/_hooks/useDetail";
 import DetailCard from "@src/pages/AccountingProduction/_routes/Stamps/DetailCard/DetailCard";
 import DetailCraftsList from "@src/pages/AccountingProduction/_routes/Stamps/DetailCraftsList/DetailCraftsList";
+import { IDetailCraft } from "@src/types/detailCraft";
 
 import styles from "./Stamps.module.scss";
 
 const Stamps: FC = () => {
-  const { detailCraft, error, isLoading } = useDetailCraft();
+  const {
+    detail,
+    errorDetail,
+    isLoadingDetail,
+    stamp,
+    errorStamp,
+    isLoadingStamp,
+  } = useDetail();
 
   return (
     <DataContainer
       className={styles.stamps}
-      isLoading={isLoading}
-      error={error}
+      isLoading={isLoadingDetail || isLoadingStamp}
+      error={errorDetail || errorStamp}
     >
-      {detailCraft && (
+      {detail && (
         <>
-          <DetailCard detailCraft={detailCraft} />
-          <DetailCraftsList detailCraft={detailCraft} />
+          <DetailCard
+            detailCraft={{} as IDetailCraft}
+            detail={detail}
+            stamp={stamp}
+          />
+          <DetailCraftsList detail={detail} />
         </>
       )}
     </DataContainer>

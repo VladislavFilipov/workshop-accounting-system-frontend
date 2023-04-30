@@ -1,3 +1,4 @@
+@use "src/styles/variables" as vars;
 @use "src/styles/mixins" as mixins;
 
 .menu {
@@ -7,6 +8,59 @@
     flex-grow: 1;
     gap: 1rem;
 
+    width: 100%;
     margin-bottom: 1rem;
+
+    .boxSvg {
+      path {
+        stroke: white;
+      }
+    }
+
+    .fillSvg {
+      color: white;
+
+      path,
+      rect {
+        fill: white;
+      }
+    }
+
+    .strokeSvg {
+      path,
+      rect {
+        stroke: white;
+      }
+    }
+
+    .toolsSvg {
+      path {
+        fill: white;
+      }
+    }
+
+    .blockTitle {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      color: vars.$text-color-light;
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .qrcodeSvg {
+        path {
+          fill: vars.$text-color-light;
+        }
+      }
+
+      .monitorSvg {
+        path {
+          stroke: vars.$text-color-light;
+        }
+      }
+    }
   }
 }

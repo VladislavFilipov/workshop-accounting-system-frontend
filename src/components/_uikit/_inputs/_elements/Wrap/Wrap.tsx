@@ -21,8 +21,8 @@ const Wrap: FC<PropsWithChildren<IProps>> = ({
 }) => {
   return (
     <label className={cn(styles.wrap, { [`${className}`]: !!className })}>
-      {label && <div className={styles.label}>{label}</div>}
       {children}
+      {label && <div className={styles.label}>{label}</div>}
       {error && <div className={styles.error}>{error}</div>}
     </label>
   );

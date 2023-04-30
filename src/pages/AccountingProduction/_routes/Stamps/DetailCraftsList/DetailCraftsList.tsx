@@ -12,36 +12,30 @@ import Title from "@src/components/_uikit/Title";
 import detailCraftStatuses from "@src/data/detailCraftStatuses";
 import useDetailCraftList from "@src/pages/AccountingProduction/_hooks/useDetailCraftList";
 import useUpdateDetailCraft from "@src/pages/AccountingProduction/_hooks/useUpdateDetailCraft";
-import useUpdateDetailStatus from "@src/pages/AccountingProduction/_hooks/useUpdateDetailStatus";
 import SkeletonDetailCraftList from "@src/pages/AccountingProduction/_routes/Stamps/DetailCraftsList/Skeleton";
 import useScannerData from "@src/store/scanner";
+import { IDetail } from "@src/types/detail";
 import { IDetailCraft } from "@src/types/detailCraft";
 
 import styles from "./DetailCraftsList.module.scss";
 
 interface IDetailCraftsListProps {
-  detailCraft: IDetailCraft;
+  detail: IDetail;
 }
 
-const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
-  const canUpdate = useScannerData((state) => state.canUpdate);
+const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detail }) => {
+  const curDetailCraftId = useScannerData((state) => state.curDetailCraftId);
 
   const { detailCraftsList, listError, listIsFetching } =
-    useDetailCraftList(detailCraft);
+    useDetailCraftList(detail);
 
-  const { updateDetailCraft, updateError } = useUpdateDetailCraft(detailCraft);
-
-  const { updateDetailStatus } = useUpdateDetailStatus(detailCraft);
+  const { updateDetailCraft, updateError } = useUpdateDetailCraft();
 
   const handleUpdateClick = (detailCraft: IDetailCraft) => {
-    updateDetailCraft(detailCraft, {
-      onSuccess: () => {
-        updateDetailStatus({ status: "ASSEMBLY", detailCraft });
-      },
-    });
+    updateDetailCraft(detailCraft);
   };
 
-  console.log("canUpdate", canUpdate);
+  console.log("curDetailCraftId", curDetailCraftId);
 
   return (
     <div className={styles.stages}>
@@ -55,44 +49,44 @@ const DetailCraftsList: FC<IDetailCraftsListProps> = ({ detailCraft }) => {
           skeleton={<SkeletonDetailCraftList />}
         >
           <ul className={styles.list}>
-            {detailCraft &&
-              detailCraftsList?.map((detilCraftItem) => (
-                <li
-                  key={detilCraftItem.id}
-                  className={cn(styles.stageItemWrap, {
-                    [styles.selected]: detilCraftItem.id === detailCraft?.id,
-                  })}
+            {detailCraftsList?.map((detilCraftItem) => (
+              <li
+                key={detilCraftItem.id}
+                className={cn(styles.stageItemWrap, {
+                  [styles.selected]: detilCraftItem.id === curDetailCraftId,
+                })}
+              >
+                <div
+                  className={cn(
+                    styles.stageItem,
+                    styles[detilCraftItem.status],
+                  )}
                 >
-                  <div
-                    className={cn(
-                      styles.stageItem,
-                      styles[detilCraftItem.status],
-                    )}
-                  >
-                    <div className={styles.stageStatus}>
-                      {detailCraftStatuses[detilCraftItem.status].name}
+                  <div className={styles.stageStatus}>
+                    {detailCraftStatuses[detilCraftItem.status]?.name}
+                  </div>
+                  <div>
+                    <div className={styles.stageName}>
+                      {detilCraftItem?.stage_id.name}
                     </div>
-                    <div>
-                      <div className={styles.stageName}>
-                        {detilCraftItem?.stage_id.name}
-                      </div>
-                      <div className={styles.stageDesc}>
-                        {detilCraftItem?.stage_id.description}
-                      </div>
+                    <div className={styles.stageDesc}>
+                      {detilCraftItem?.stage_id.description}
                     </div>
                   </div>
+                </div>
 
-                  {detilCraftItem.id === detailCraft?.id && canUpdate && (
-                    <Button
-                      text={
-                        detailCraftStatuses[detilCraftItem.status].buttonText
-                      }
-                      type="confirm"
-                      onClick={() => handleUpdateClick(detilCraftItem)}
-                    />
-                  )}
-                </li>
-              ))}
+                {detilCraftItem.id === curDetailCraftId && (
+                  <Button
+                    text={
+                      detailCraftStatuses[detilCraftItem.status]?.buttonText ??
+                      "Начать работу"
+                    }
+                    type="confirm"
+                    onClick={() => handleUpdateClick(detilCraftItem)}
+                  />
+                )}
+              </li>
+            ))}
           </ul>
         </DataContainer>
 

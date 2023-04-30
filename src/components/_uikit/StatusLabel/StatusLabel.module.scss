@@ -18,11 +18,10 @@ $selectors: map.keys($types);
 }
 
 .statusLabel {
-  width: max-content;
+  // width: minmax(max-content, 100%);
   height: max-content;
   margin: 1.2rem 0;
   padding: 0.5rem 0.8rem;
-
   border-radius: 0.2rem;
 
   @for $i from 1 through length($selectors) {
