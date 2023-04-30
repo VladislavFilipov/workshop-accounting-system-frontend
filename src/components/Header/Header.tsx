@@ -18,10 +18,13 @@ const Header = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    document.addEventListener("scroll", (e) => {
+    const onScrollListener = () => {
       if (document.documentElement.scrollTop > 100) setShow(true);
       else setShow(false);
-    });
+    };
+    document.addEventListener("scroll", onScrollListener);
+
+    return () => document.removeEventListener("scroll", onScrollListener);
   }, []);
 
   return (

@@ -10,6 +10,7 @@
   flex-direction: column;
 
   max-width: 1080px;
+  height: 100%;
   min-height: 100vh;
   margin: 0 auto;
 
@@ -41,14 +42,22 @@
 
   @media #{vars.$desktop-screen} {
     .content {
-      padding: 0 2rem 1.5rem;
+      padding: 2rem 2rem 1.5rem;
     }
 
     .bgLogo {
+      position: absolute;
+      right: unset;
+      bottom: 0.5rem;
+
+      // left: unset;
+      left: calc(50% - 5rem);
+
+      // left: calc(50% + calc(1080px / 2) - 12rem);
+      // max-width: 10rem;
+
       // right: 30%;
-      bottom: 0;
-      left: calc(50% + calc(1080px / 2) - 12rem);
-      max-width: 10rem;
+      width: 10rem;
     }
   }
 }

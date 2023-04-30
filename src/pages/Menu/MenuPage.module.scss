@@ -8,22 +8,16 @@
     flex-grow: 1;
     gap: 1rem;
 
+    width: 100%;
     margin-bottom: 1rem;
 
     .boxSvg {
-      // display: block;
-      // width: 4rem;
-      // height: 4rem;
-
       path {
         stroke: white;
       }
     }
 
     .fillSvg {
-      // display: block;
-      // width: 4rem;
-      // height: 4rem;
       color: white;
 
       path,
@@ -33,10 +27,6 @@
     }
 
     .strokeSvg {
-      // display: block;
-      // width: 4rem;
-      // height: 4rem;
-
       path,
       rect {
         stroke: white;
